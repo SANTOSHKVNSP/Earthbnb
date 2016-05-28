@@ -6,6 +6,20 @@ column name | data type | details
 id          | integer   | not null, primary key
 name        | string    | not null
 
+## amenity_taggings
+column name | data type | details
+------------|-----------|-----------------------
+id          | integer   | not null, primary key
+amenity_id  | integer   | not null, foreign key (references amenities), indexed, unique [property_id]
+property_id | integer   | not null, foreign key (references properties), indexed
+
+## photos
+column name | data type | details
+------------|-----------|-----------------------
+id          | integer   | not null, primary key
+object_id   | integer   | not null, foreign key (references properties or users), indexed
+object_type | string    | not null
+
 ## properties
 column name      | data type | details
 -----------------|-----------|-----------------------
@@ -30,6 +44,27 @@ column name | data type | details
 id          | integer   | not null, primary key
 desc        | string    | not null
 
+## rental_request
+column name | data type | details
+------------|-----------|-----------------------
+id          | integer   | not null, primary key
+user_id     | integer   | not null, foreign key (references users), indexed
+property_id | integer   | not null, foreign key (references properties), indexed
+check_in    | datetime  | not null
+check_out   | datetime  | not null
+status      | string    | not null, default: "PENDING"
+guests      | integer   | not null
+
+## reviews
+column name | data type | details
+------------|-----------|-----------------------
+id          | integer   | not null, primary key
+user_id     | integer   | not null, foreign key (references users), indexed
+date        | datetime  | not null
+property_id | integer   | not null, foreign key (references properties), indexed
+body        | text      | not null
+stars       | integer   | not null
+
 ## room_type
 column name | data type | details
 ------------|-----------|-----------------------
@@ -41,13 +76,6 @@ column name | data type | details
 ------------|-----------|-----------------------
 id          | integer   | not null, primary key
 name        | string    | not null
-
-## amenity_taggings
-column name | data type | details
-------------|-----------|-----------------------
-id          | integer   | not null, primary key
-amenity_id  | integer   | not null, foreign key (references amenities), indexed, unique [property_id]
-property_id | integer   | not null, foreign key (references properties), indexed
 
 ## users
 column name     | data type | details
