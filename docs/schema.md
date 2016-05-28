@@ -1,46 +1,53 @@
 # Schema Information
 
-## notes
-column name | data type | details
-------------|-----------|-----------------------
-id          | integer   | not null, primary key
-title       | string    | not null
-body        | text      | not null
-author_id   | integer   | not null, foreign key (references users), indexed
-notebook_id | integer   | not null, foreign key (references notebooks), indexed
-archived    | boolean   | not null, default: false
-
-## notebooks
-column name | data type | details
-------------|-----------|-----------------------
-id          | integer   | not null, primary key
-author_id   | integer   | not null, foreign key (references users), indexed
-title       | string    | not null
-description | string    |
-
-## reminders
-column name | data type | details
-------------|-----------|-----------------------
-id          | integer   | not null, primary key
-user_id     | integer   | not null, foreign key (references users), indexed
-note_id     | string    | not null, foreign key (references notes), indexed
-date        | datetime  | not null
-type        | string    | not null
-prev_id     | integer   | foreign key (references reminders), indexed
-
-## tags
+## amenities
 column name | data type | details
 ------------|-----------|-----------------------
 id          | integer   | not null, primary key
 name        | string    | not null
 
-## taggings
+## properties
+column name      | data type | details
+-----------------|-----------|-----------------------
+id               | integer   | not null, primary key
+user_id          | integer   | not null, foreign key (references users), indexed
+description      | string    | not null
+house rules      | string    | not null
+price            | float     | not null
+latitude         | float     | not null
+longitude        | float     | not null
+check_in         | string    | not null
+check_out        | string    | not null
+bedrooms         | integer   | not null
+beds             | integer   | not null
+accommodates     | integer   | not null
+property_type_id | integer   | not null, foreign key (references property_type), indexed
+room_type_id     | integer   | not null, foreign key (references room_type), indexed
+
+## property_type
+column name | data type | details
+------------|-----------|-----------------------
+id          | integer   | not null, primary key
+desc        | string    | not null
+
+## room_type
+column name | data type | details
+------------|-----------|-----------------------
+id          | integer   | not null, primary key
+desc        | string    | not null
+
+## species
 column name | data type | details
 ------------|-----------|-----------------------
 id          | integer   | not null, primary key
 name        | string    | not null
-note_id     | integer   | not null, foreign key (references notes), indexed, unique [tag_id]
-tag_id      | integer   | not null, foreign key (references tags), indexed
+
+## amenity_taggings
+column name | data type | details
+------------|-----------|-----------------------
+id          | integer   | not null, primary key
+amenity_id  | integer   | not null, foreign key (references amenities), indexed, unique [property_id]
+property_id | integer   | not null, foreign key (references properties), indexed
 
 ## users
 column name     | data type | details
@@ -49,8 +56,7 @@ id              | integer   | not null, primary key
 email           | string    | not null, indexed, unique
 password_digest | string    | not null
 session_token   | string    | not null, indexed, unique
-first_name      | string    |
-last_name       | string    |
+name            | string    |
 bio             | text      |
 species_id      | integer   | not null, foreign key (references species), indexed
 location        | string    | not null
