@@ -17,6 +17,7 @@ property_id | integer   | not null, foreign key (references properties), indexed
 column name | data type | details
 ------------|-----------|-----------------------
 id          | integer   | not null, primary key
+url         | string    | not null
 object_id   | integer   | not null, foreign key (references properties or users), indexed
 object_type | string    | not null
 
@@ -60,15 +61,16 @@ status      | string    | not null, default: "PENDING"
 guests      | integer   | not null
 
 ## reviews
-column name | data type | details
-------------|-----------|-----------------------
-id          | integer   | not null, primary key
-user_id     | integer   | not null, foreign key (references users), indexed
-date        | datetime  | not null
-object_id   | integer   | not null, foreign key (references properties or users), indexed
-object_type | string    | not null
-body        | text      | not null
-stars       | integer   | not null
+column name    | data type | details
+---------------|-----------|-----------------------
+id             | integer   | not null, primary key
+user_id        | integer   | not null, foreign key (references users), indexed
+date           | datetime  | not null
+reservation_id | integer   | not null
+object_id      | integer   | not null, foreign key (references properties or users), indexed
+object_type    | string    | not null
+body           | text      | not null
+stars          | integer   | not null
 
 ## room_type
 column name | data type | details
