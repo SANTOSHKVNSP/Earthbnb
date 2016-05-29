@@ -30,6 +30,10 @@ house rules      | string    | not null
 price            | float     | not null
 latitude         | float     | not null
 longitude        | float     | not null
+address          | string    | not null
+city             | string    | not null
+province         | string    | not null
+country          | string    | not null
 check_in         | string    | not null
 check_out        | string    | not null
 bedrooms         | integer   | not null
@@ -44,7 +48,7 @@ column name | data type | details
 id          | integer   | not null, primary key
 desc        | string    | not null
 
-## rental_request
+## reservation
 column name | data type | details
 ------------|-----------|-----------------------
 id          | integer   | not null, primary key
@@ -61,7 +65,8 @@ column name | data type | details
 id          | integer   | not null, primary key
 user_id     | integer   | not null, foreign key (references users), indexed
 date        | datetime  | not null
-property_id | integer   | not null, foreign key (references properties), indexed
+object_id   | integer   | not null, foreign key (references properties or users), indexed
+object_type | string    | not null
 body        | text      | not null
 stars       | integer   | not null
 

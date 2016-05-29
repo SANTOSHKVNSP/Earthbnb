@@ -1,19 +1,49 @@
 # View Wireframes
 
-## New User
+## Public
+
+### New User
 ![new-user]
 
-## New Session
+### New Session
 ![new-session]
 
-## NotesIndex / NoteIndexItem / NoteForm
-![notes]
+### Root
+![root]
 
-## NotebooksIndex / NotebookIndexItem
-![notebooks]
+### Show User
+![show-user]
 
-## NotebookForm
-![notebook-form]
+### Property Index
+![property-index]
+
+### Show Property
+![show-property]
+
+## Private
+
+### Edit User
+![edit-user]
+
+### New Property
+![new-property]
+
+### Edit Property
+![edit-property]
+
+### Reservation Index
+![reservation-index]
+
+### Show Reservation
+![show-reservation]
+
+### Review Index
+![review-index]
+
+### New Review
+![new-review]
+
+
 
 [new-user]: ./wireframes/new_user.png
 [new-session]: ./wireframes/new_session.png
