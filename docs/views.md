@@ -25,11 +25,8 @@
 ### Edit User
 ![edit-user]
 
-### New Property
+### New/Edit Property
 ![new-property]
-
-### Edit Property
-![edit-property]
 
 ### Reservation Index
 ![reservation-index]
@@ -54,7 +51,6 @@
 [property-index]: ./wireframes/property_index.JPG
 [new-property]: ./wireframes/new_property.JPG
 [show-property]: ./wireframes/show_property.JPG
-[edit-property]: ./wireframes/edit_property.JPG
 
 [reservation-index]: ./wireframes/reservation_index.JPG
 [show-reservation]: ./wireframes/show_reservation.JPG
