@@ -2,14 +2,14 @@
 
 ## Public
 
+### Root
+![root]
+
 ### New User
 ![new-user]
 
 ### New Session
 ![new-session]
-
-### Root
-![root]
 
 ### Show User
 ![show-user]
@@ -43,10 +43,21 @@
 ### New Review
 ![new-review]
 
+[root]: ./wireframes/root.JPG
 
+[new-session]: ./wireframes/new_session.JPG
 
-[new-user]: ./wireframes/new_user.png
-[new-session]: ./wireframes/new_session.png
-[notes]: ./wireframes/root_notes.png
-[notebooks]: ./wireframes/root_notebooks.png
-[notebook-form]: ./wireframes/notebook_form.png
+[new-user]: ./wireframes/new_user.JPG
+[show-user]: ./wireframes/show_user.JPG
+[edit-user]: ./wireframes/edit_user.JPG
+
+[property-index]: ./wireframes/property_index.JPG
+[new-property]: ./wireframes/new_property.JPG
+[show-property]: ./wireframes/show_property.JPG
+[edit-property]: ./wireframes/edit_property.JPG
+
+[reservation-index]: ./wireframes/reservation_index.JPG
+[show-reservation]: ./wireframes/show_reservation.JPG
+
+[review-index]: ./wireframes/review_index.JPG
+[new-review]: ./wireframes/new_review.JPG
