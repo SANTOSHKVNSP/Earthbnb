@@ -11,119 +11,156 @@ finally to the **components** that update as a result. This is important
 because once you start implementing your flux loops, that's precisely
 what you'll need to do.
 
+## Property Cycles
 
-## Note Cycles
+### Property API Request Actions
 
-### Notes API Request Actions
+* `fetchProperties`
+  0. 'idle' event listener is added to Google map on `Map` `didMount`
+  1. `fetchProperties` is invoked from 'idle' event listener
+  2. `GET /api/properties` is called.
+  3. `receiveAllProperties` is set as the callback.
 
-* `fetchAllNotes`
-  0. invoked from `NotesIndex` `didMount`/`willReceiveProps`
-  0. `GET /api/notes` is called.
-  0. `receiveAllNotes` is set as the callback.
+* `createProperty`
+  1. invoked from add property button `onClick`
+  2. `POST /api/properties` is called.
+  3. `receiveSingleProperty` is set as the callback.
 
-* `createNote`
-  0. invoked from new note button `onClick`
-  0. `POST /api/notes` is called.
-  0. `receiveSingleNote` is set as the callback.
+* `fetchProperty`
+  1. invoked from `PropertyDetail` `didMount`
+  2. `GET /api/properties/:id` is called.
+  3. `receiveSingleProperty` is set as the callback.
 
-* `fetchSingleNote`
-  0. invoked from `NoteDetail` `didMount`/`willReceiveProps`
-  0. `GET /api/notes/:id` is called.
-  0. `receiveSingleNote` is set as the callback.
+* `updateProperty`
+  1. invoked from `PropertyDetail` `onSubmit`
+  2. `PATCH /api/properties` is called.
+  3. `receiveSingleProperty` is set as the callback.
 
-* `updateNote`
-  0. invoked from `NoteForm` `onSubmit`
-  0. `POST /api/notes` is called.
-  0. `receiveSingleNote` is set as the callback.
+* `destroyProperty`
+  1. invoked from delete property button `onClick`
+  2. `DELETE /api/properties/:id` is called.
+  3. `removeSingleProperty` is set as the callback.
 
-* `destroyNote`
-  0. invoked from delete note button `onClick`
-  0. `DELETE /api/notes/:id` is called.
-  0. `removeNote` is set as the callback.
+### Property API Response Actions
 
-### Notes API Response Actions
+* `receiveAllProperties`
+  1. invoked from an API callback.
+  2. `PropertyStore` store updates `_properties` and emits change.
 
-* `receiveAllNotes`
-  0. invoked from an API callback.
-  0. `Note` store updates `_notes` and emits change.
+* `receiveSingleProperty`
+  1. invoked from an API callback.
+  2. `PropertyStore` store updates `_properties[id]` and emits change.
 
-* `receiveSingleNote`
-  0. invoked from an API callback.
-  0. `Note` store updates `_notes[id]` and emits change.
-
-* `removeNote`
-  0. invoked from an API callback.
-  0. `Note` store removes `_notes[id]` and emits change.
-
-### Store Listeners
-
-* `NotesIndex` component listens to `Note` store.
-* `NoteDetail` component listens to `Note` store.
-
-
-## Notebook Cycles
-
-### Notebooks API Request Actions
-
-* `fetchAllNotebooks`
-  0. invoked from `NotebooksIndex` `didMount`/`willReceiveProps`
-  0. `GET /api/notebooks` is called.
-  0. `receiveAllNotebooks` is set as the callback.
-
-* `createNotebook`
-  0. invoked from new notebook button `onClick`
-  0. `POST /api/notebooks` is called.
-  0. `receiveSingleNotebook` is set as the callback.
-
-* `fetchSingleNotebook`
-  0. invoked from `NotebookDetail` `didMount`/`willReceiveProps`
-  0. `GET /api/notebooks/:id` is called.
-  0. `receiveSingleNotebook` is set as the callback.
-
-* `updateNotebook`
-  0. invoked from `NotebookForm` `onSubmit`
-  0. `POST /api/notebooks` is called.
-  0. `receiveSingleNotebook` is set as the callback.
-
-* `destroyNotebook`
-  0. invoked from delete notebook button `onClick`
-  0. `DELETE /api/notebooks/:id` is called.
-  0. `removeNotebook` is set as the callback.
-
-### Notebooks API Response Actions
-
-* `receiveAllNotebooks`
-  0. invoked from an API callback.
-  0. `Notebook` store updates `_notebooks` and emits change.
-
-* `receiveSingleNotebook`
-  0. invoked from an API callback.
-  0. `Notebook` store updates `_notebooks[id]` and emits change.
-
-* `removeNotebook`
-  0. invoked from an API callback.
-  0. `Notebook` store removes `_notebooks[id]` and emits change.
+* `removeProperty`
+  1. invoked from an API callback.
+  2. `Property` store removes `_properties[id]` and emits change.
 
 ### Store Listeners
 
-* `NotebooksIndex` component listens to `Notebook` store.
+* `PropertySearch` component listens to `PropertyStore` store.
+* `PropertyDetail` component listens to `PropertyStore` store.
 
 
-## SearchSuggestion Cycles
+## User Cycles
 
-* `fetchSearchSuggestions`
-  0. invoked from `NoteSearchBar` `onChange` when there is text
-  0. `GET /api/notes` is called with `text` param.
-  0. `receiveSearchSuggestions` is set as the callback.
+### User API Request Actions
 
-* `receiveSearchSuggestions`
-  0. invoked from an API callback.
-  0. `SearchSuggestion` store updates `_suggestions` and emits change.
+* `fetchUser`
+  1. invoked from `UserDetail` `didMount`
+  2. `GET /api/users/:id` is called.
+  3. `receiveSingleUser` is set as the callback.
 
-* `removeSearchSuggestions`
-  0. invoked from `NoteSearchBar` `onChange` when empty
-  0. `SearchSuggestion` store resets `_suggestions` and emits change.
+* `updateUser`
+  1. invoked from `PropertyDetail` `onSubmit`
+  2. `PATCH /api/properties` is called.
+  3. `receiveSingleProperty` is set as the callback.
+
+### User API Response Actions
+
+* `receiveSingleUser`
+  1. invoked from an API callback.
+
+
+## Reservation Cycles
+
+### Reservation API Request Actions
+
+* `fetchAllReservations`
+  1. invoked from `ReservationsIndex` `didMount`
+  2. `GET /api/reservations` is called.
+  3. `receiveAllReservations` is set as the callback.
+
+* `createReservation`
+  1. invoked from `AddReservation` `onSubmit`
+  2. `POST /api/reservations` is called.
+  3. `receiveSingleReservation` is set as the callback.
+
+* `fetchSingleReservation`
+  1. invoked from `ReservationDetail` `didMount`
+  2. `GET /api/reservations/:id` is called.
+  3. `receiveSingleReservation` is set as the callback.
+
+* `destroyReservation`
+  1. invoked from delete reservation button `onClick`
+  2. `DELETE /api/reservations/:id` is called.
+  3. `removeReservation` is set as the callback.
+
+### Reservation API Response Actions
+
+* `receiveAllReservations`
+  1. invoked from an API callback.
+  2. `ReservationStore` store updates `_reservations` and emits change.
+
+* `receiveSingleReservation`
+  1. invoked from an API callback.
+  2. `ReservationStore` store updates `_reservations[id]` and emits change.
+
+* `removeReservation`
+  1. invoked from an API callback.
+  2. `ReservationStore` store removes `_reservations[id]` and emits change.
 
 ### Store Listeners
 
-* `SearchBarSuggestions` component listens to `SearchSuggestion` store.
+* `AddReservation` component listens to `ReservationStore` store.
+* `ReservationsIndex` component listens to `ReservationStore` store.
+* `ReservationsDetail` component listens to `ReservationStore` store.
+
+
+## Review Cycles
+
+### Review API Request Actions
+
+* `fetchAllReviews`
+  1. invoked from `ReviewType` `didMount`
+  2. `GET /api/reviews` is called.
+  3. `receiveAllReviews` is set as the callback.
+
+* `createReview`
+  1. invoked from `NewReview` `onSubmit`
+  2. `POST /api/reviews` is called.
+  3. `receiveSingleReview` is set as the callback.
+
+* `destroyReview`
+  1. invoked from delete review button `onClick`
+  2. `DELETE /api/reviews/:id` is called.
+  3. `removeReview` is set as the callback.
+
+### Reservation API Response Actions
+
+* `receiveAllReviews`
+  1. invoked from an API callback.
+  2. `ReviewStore` store updates `_reviews` and emits change.
+
+* `receiveSingleReview`
+  1. invoked from an API callback.
+  2. `ReviewStore` store updates `_reviews[id]` and emits change.
+
+* `removeReview`
+  1. invoked from an API callback.
+  2. `ReviewStore` store removes `_reviews[id]` and emits change.
+
+### Store Listeners
+
+* `ReviewType` component listens to `ReviewStore` store.
+* `PropertyDetail` component listens to `ReviewStore` store.
+* `UserDetail` component listens to `ReviewStore` store.

@@ -1,44 +1,39 @@
-# Phase 3: Notebooks and Tags (2 days)
+# Phase 3: Reservations
 
 ## Rails
 ### Models
-* Notebook
-* Tag
-* Tagging
+* Reservation
 
 ### Controllers
-* Api::NotebooksController (create, destroy, index, show, update)
+* Api::ReservationController (create, destroy, index, show, update)
 
 ### Views
-* notebooks/index.json.jbuilder
-* notebooks/show.json.jbuilder
-* tags/show.json.jbuilder
 
 ## Flux
 ### Views (React Components)
-* NotebooksIndex
-  - NotebookIndexItem
-* NotebookForm
-* SearchIndex
+* ReservationsIndex
+  - ReservationsIndexItem
+* ReservationDetail
+  - ReservationInfo
+  - HostInfo
+  - PropertyPhotos
 
 ### Stores
-* Notebook
+* Reservations
 
 ### Actions
-* ApiActions.receiveAllNotebooks -> triggered by ApiUtil
-* ApiActions.receiveSingleNotebook
-* ApiActions.deleteNotebook
-* NotebookActions.fetchAllNotebooks -> triggers ApiUtil
-* NotebookActions.fetchSingleNotebook
-* NotebookActions.createNotebook
-* NotebookActions.editNotebook
-* NotebookActions.destroyNotebook
+* ApiActions.receiveAllReservations
+* ApiActions.receiveSingleReservation
+* ApiActions.deleteReservation
+* ReservationActions.fetchAllReservations
+* ReservationActions.fetchSingleReservation
+* ReservationActions.createReservation
+* ReservationActions.destroyReservation
 
 ### ApiUtil
-* ApiUtil.fetchAllNotebooks
-* ApiUtil.fetchSingleNotebook
-* ApiUtil.createNotebook
-* ApiUtil.editNotebook
-* ApiUtil.destroyNotebook
+* ApiUtil.fetchAllReservations
+* ApiUtil.fetchSingleReservation
+* ApiUtil.createReservation
+* ApiUtil.destroyReservation
 
 ## Gems/Libraries

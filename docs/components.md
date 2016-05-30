@@ -14,33 +14,37 @@
   * `ReviewIndex`
     * `ReviewIndexItem`
 
-  * `PropertyFilter`
-  * `PropertyIndex`
-    * `PropertyIndexItem`
-  * `Map`
+  * `PropertySearch`
+    * `PropertyFilter`
+    * `PropertyIndex`
+      * `PropertyIndexItem`
+    * `Map`
 
-  * `PropertyMainPhoto`
-  * `PropertyInfo`
-  * `AddReservation`
-  * `TheSpaceInfo`
-  * `AmenityIndex`
-    * `AmenityIndexItem`
-  * `MorePropertyInfo`
-  * `PhotoIndex`
-    * `PhotoIndexItem`
-    * `AddPhoto`
+  * `PropertyDetail`
+    * `PropertyMainPhoto`
+    * `PropertyInfo`
+    * `AddReservation`
+    * `TheSpaceInfo`
+    * `AmenityIndex`
+      * `AmenityIndexItem`
+    * `MorePropertyInfo`
+    * `PhotoIndex`
+      * `PhotoIndexItem`
+      * `AddPhoto`
 
   * `AdminNavBar`
 
-  * `UserPhoto`
-  * `EditUserInfo`
+  * `UserDetail`
+    * `UserPhoto`
+    * `EditUserInfo`
 
   * `ReservationsIndex`
     * `ReservationsIndexItem`
 
-  * `ReservationInfo`
-  * `HostInfo`
-  * `PropertyPhotos`
+  * `ReservationDetail`
+    * `ReservationInfo`
+    * `HostInfo`
+    * `PropertyPhotos`
 
   * `ReviewsSelector`
     * `ReviewType`

@@ -1,38 +1,51 @@
-# Phase 2: Flux Architecture and Note CRUD (2 days)
+# Phase 2: Properties
 
 ## Rails
 ### Models
+* Property
 
 ### Controllers
+* Api::PropertiesController (index, create, show, update, destroy)
 
 ### Views
 
 ## Flux
 ### Views (React Components)
-* NotesIndex
-  - NotesIndexItem
-* NoteForm
+* PropertySearch
+  - PropertyFilter
+  - PropertyIndex
+    - PropertyIndexItem
+  - Map
+* PropertyDetail
+  - PropertyMainPhoto
+  - PropertyInfo
+  - AddReservation
+  - TheSpaceInfo
+  - AmenityIndex
+    - AmenityIndexItem
+  - MorePropertyInfo
+  - PhotoIndex
+    - PhotoIndexItem
+    - AddPhoto
 
 ### Stores
-* Note
+* Properties
 
 ### Actions
-* ApiActions.receiveAllNotes -> triggered by ApiUtil
-* ApiActions.receiveSingleNote
-* ApiActions.deleteNote
-* NoteActions.fetchAllNotes -> triggers ApiUtil
-* NoteActions.fetchSingleNote 
-* NoteActions.createNote
-* NoteActions.editNote 
-* NoteActions.destroyNote
+* ApiActions.receiveAllProperties
+* ApiActions.receiveSingleProperty
+* ApiActions.deleteProperty
+* PropertyActions.fetchAllProperties
+* PropertyActions.fetchSingleProperty
+* PropertyActions.createProperty
+* PropertyActions.editProperty
+* PropertyActions.destroyProperty
 
 ### ApiUtil
-* ApiUtil.fetchAllNotes
-* ApiUtil.fetchSingleNote
-* ApiUtil.createNote
-* ApiUtil.editNote
-* ApiUtil.destroyNote
+* ApiUtil.fetchAllProperties
+* ApiUtil.fetchSingleProperty
+* ApiUtil.createProperty
+* ApiUtil.editProperty
+* ApiUtil.destroyProperty
 
 ## Gems/Libraries
-* Flux Dispatcher (npm)
-* Twitter Bootstrap
