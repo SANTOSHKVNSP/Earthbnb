@@ -13,3 +13,42 @@
  *= require_tree .
  *= require_self
  */
+
+ html, body, section, article, h1, h2, p, strong, em, a {
+  margin: 0;
+  border: 0;
+  padding: 0;
+  outline: 0;
+
+  box-sizing: inherit;
+  font: inherit;
+  text-align: inherit;
+  text-decoration: inherit;
+  color: inherit;
+
+  background: transparent;
+}
+
+h1 {
+  font-size: 36px;
+}
+
+.sign-up-form {
+  border: 1px solid black;
+  display: block;
+  width: 450px;
+  text-align: center;
+  margin: auto;
+}
+
+.sign-up-form input {
+  margin: 2px;
+  padding: 5px;
+  width: 200px;
+}
+
+.sign-up-form button {
+  background-color: red;
+  color: white;
+  width: 210px;
+}
