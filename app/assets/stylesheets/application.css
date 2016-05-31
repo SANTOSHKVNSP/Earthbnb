@@ -27,10 +27,17 @@
   color: inherit;
 
   background: transparent;
+
+  font-size: 12px;
+  font-family: arial;
 }
 
 h1 {
   font-size: 36px;
+}
+
+button {
+  margin: 10px;
 }
 
 .sign-up-form {
@@ -39,20 +46,26 @@ h1 {
   width: 450px;
   text-align: center;
   margin: auto;
+  padding-top: 20px;
 }
 
 .sign-up-form input {
   margin: 2px;
-  padding: 5px;
-  width: 200px;
+  padding: 10px;
+  width: 388px;
 }
 
 .sign-up-form button {
   background-color: red;
   color: white;
-  width: 210px;
+  width: 412px;
+  border: none;
 }
 
 .errors {
   border: 1px solid red;
+}
+
+.error-message {
+  color: red;
 }

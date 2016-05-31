@@ -10,8 +10,10 @@ var SignUpForm = React.createClass({
       password: "",
       name: "",
       species: "",
-      errors: "",
-      textboxClass: "no-errors"
+      nameErrors: [],
+      speciesErrors: [],
+      emailErrors: [],
+      passwordErrors: []
     });
   },
 
@@ -25,8 +27,10 @@ var SignUpForm = React.createClass({
 
   handleErrors: function() {
     this.setState({
-      errors: ErrorsStore.all(),
-      textboxClass: "errors"
+      nameErrors: ErrorsStore.nameErrors(),
+      speciesErrors: ErrorsStore.speciesErrors(),
+      emailErrors: ErrorsStore.emailErrors(),
+      passwordErrors: ErrorsStore.passwordErrors()
     });
   },
 
@@ -49,7 +53,6 @@ var SignUpForm = React.createClass({
   },
 
   speciesChanged: function(event) {
-    console.log("!");
     this.setState({
       species: event.target.value
     });
@@ -65,29 +68,57 @@ var SignUpForm = React.createClass({
     });
   },
 
-  renderNameError: function() {
-    if(this.state.errors !== ""){
-      return(<div>there are errors!</div>);
-    }
+  renderNameErrors: function() {
+    return this.state.nameErrors.map(function(nameError) {
+      return(<div className="error-message">{nameError}</div>);
+    });
+  },
+
+  renderSpeciesErrors: function() {
+    return this.state.speciesErrors.map(function(speciesError) {
+      return(<div className="error-message">{speciesError}</div>);
+    });
+  },
+
+  renderEmailErrors: function() {
+    return this.state.emailErrors.map(function(emailError) {
+      return(<div className="error-message">{emailError}</div>);
+    });
+  },
+
+  renderPasswordErrors: function() {
+    return this.state.passwordErrors.map(function(passwordError) {
+      return(<div className="error-message">{passwordError}</div>);
+    });
   },
 
   render: function () {
+
+    var nameClass = this.state.nameErrors.length > 0 ? "errors" : "no-errors";
+    var speciesClass = this.state.speciesErrors.length > 0 ? "errors" : "no-errors";
+    var emailClass = this.state.emailErrors.length > 0 ? "errors" : "no-errors";
+    var passwordClass = this.state.passwordErrors.length > 0 ? "errors" : "no-errors";
+
     return(
       <div className={"sign-up-form"}>
-        Sign Up<br />
+        Sign up<br />
 
-        {this.renderNameError()}
+        {this.renderNameErrors()}
+        <input type="text" className={nameClass} placeholder="Name" value={this.state.name} onChange={this.nameChanged}/><br />
 
-        <input type="text" className={this.state.textboxClass} placeholder="Name" value={this.state.name} onChange={this.nameChanged}/><br />
-
-        <select className={this.state.textboxClass} onChange={this.speciesChanged}>
+        {this.renderSpeciesErrors()}
+        <select className={speciesClass} onChange={this.speciesChanged}>
           <option value="">I am a...</option>
           <option value="Martian">Martian</option>
           <option value="Klingon">Klingon</option>
         </select><br />
 
-        <input type="text" className={this.state.textboxClass} placeholder="Email" value={this.state.email} onChange={this.emailChanged}/><br />
-        <input type="text" className={this.state.textboxClass} placeholder="Password" value={this.state.password} onChange={this.passwordChanged}/><br />
+        {this.renderEmailErrors()}
+        <input type="text" className={emailClass} placeholder="Email" value={this.state.email} onChange={this.emailChanged}/><br />
+
+        {this.renderPasswordErrors()}
+        <input type="text" className={passwordClass} placeholder="Password" value={this.state.password} onChange={this.passwordChanged}/><br />
+
         <button onClick={this.handleSubmit}>Sign Up</button>
       </div>
     );

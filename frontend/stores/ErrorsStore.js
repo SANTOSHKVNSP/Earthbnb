@@ -13,6 +13,38 @@ ErrorsStore.all = function() {
   return _errors;
 };
 
+ErrorsStore.nameErrors = function () {
+  var nameErrors = [];
+   if (_errors.indexOf("Name can't be blank") > -1){
+     nameErrors.push("Name is required.");
+   }
+   return nameErrors;
+};
+
+ErrorsStore.speciesErrors = function () {
+  var speciesErrors = [];
+   if (_errors.indexOf("Species can't be blank") > -1){
+     speciesErrors.push("Please select your species.");
+   }
+   return speciesErrors;
+};
+
+ErrorsStore.emailErrors = function () {
+  var emailErrors = [];
+   if (_errors.indexOf("Email can't be blank") > -1){
+     emailErrors.push("Email is required.");
+   }
+   return emailErrors;
+};
+
+ErrorsStore.passwordErrors = function () {
+  var passwordErrors = [];
+   if (_errors.indexOf("Password is too short (minimum is 6 characters)") > -1){
+     passwordErrors.push("Password must be at least 6 characters.");
+   }
+   return passwordErrors;
+};
+
 ErrorsStore.__onDispatch = function(payload) {
   switch(payload.actionType){
     case "ERRORS_RECEIVED":
