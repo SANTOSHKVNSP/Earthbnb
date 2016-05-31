@@ -1,4 +1,4 @@
-var ServerActions = require('../actions/serverActions.js');
+var ServerActions = require('../actions/ServerActions.js');
 
 module.exports = {
   createUser: function(user) {

@@ -1,4 +1,4 @@
-var AppDispatcher = require('../dispatcher/dispatcher.js');
+var AppDispatcher = require('../dispatcher/Dispatcher.js');
 
 var ServerActions = {
   receiveErrors: function (errors) {
