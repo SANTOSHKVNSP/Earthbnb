@@ -1,4 +1,4 @@
-// var ServerActions = require('../actions/serverActions.js');
+var ServerActions = require('../actions/serverActions.js');
 
 module.exports = {
   createUser: function(user) {
@@ -17,7 +17,7 @@ module.exports = {
         console.log("success!");
       },
       error: function (response) {
-        console.log(response);
+        ServerActions.receiveErrors(response);
       }
     });
   }

@@ -1,5 +1,8 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
+
+var ErrorsStore = require('./stores/ErrorsStore.js');
+
 var SignUpForm = require('./components/SignUpForm.jsx');
 
 var App = React.createClass({

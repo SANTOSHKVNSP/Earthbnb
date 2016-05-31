@@ -52,3 +52,7 @@ h1 {
   color: white;
   width: 210px;
 }
+
+.errors {
+  border: 1px solid red;
+}

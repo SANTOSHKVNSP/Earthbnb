@@ -1,8 +1,6 @@
 class Api::UsersController < ApplicationController
   def create
-    p "start of create"
     @user = User.new(user_params)
-    p "user instantiated"
     if @user.save
       render json: {message: "woo!"}
     else
