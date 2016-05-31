@@ -10,8 +10,7 @@ module.exports = {
           name: user.name,
           species: user.species,
           email: user.email,
-          password: user.password,
-          location: "New York City"
+          password: user.password
         }
       },
       success: function (response) {
