@@ -9,8 +9,8 @@ class Api::SessionsController < ApplicationController
       render json: {message: "Email does not exist"}, status: 422
     else
       if User.check_password(user, params[:user][:password])
-        # login_user!(user)
-        render json: {message: "woo!"}
+        login_user!(user)
+        render json: {user: user}
       else
         render json: {message: "Password incorrect"}, status: 422
       end
@@ -18,6 +18,8 @@ class Api::SessionsController < ApplicationController
   end
 
   def destroy
+    logout_user!
+    render json: {}
   end
 
 end

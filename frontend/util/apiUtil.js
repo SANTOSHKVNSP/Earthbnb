@@ -3,7 +3,7 @@ var ServerActions = require('../actions/ServerActions.js');
 module.exports = {
   createUser: function(user) {
     $.ajax({
-      url: 'api/users',
+      url: 'api/user',
       type: "POST",
       data: {
         user:{
@@ -32,11 +32,29 @@ module.exports = {
         }
       },
       success: function (response) {
-        console.log("success!");
+        ServerActions.receiveUser(response);
       },
       error: function (response) {
-        console.log("fail!");
         ServerActions.receiveLoginError(response);
+      }
+    });
+  },
+  fetchUser: function() {
+    $.ajax({
+      url: 'api/user',
+      type: "GET",
+      success: function (response) {
+        ServerActions.receiveUser(response);
+      }
+    });
+  },
+  logoutUser: function() {
+    $.ajax({
+      url: 'api/session',
+      type: "DELETE",
+      success: function (response) {
+        console.log("logged out!");
+        ServerActions.logoutUser();
       }
     });
   }

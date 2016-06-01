@@ -37,6 +37,9 @@ ErrorsStore.emailErrors = function () {
    if (_errors.indexOf("Email has already been taken") > -1){
      emailErrors.push("An account with this email already exists.");
    }
+   if (_errors.indexOf("Email does not exist") > -1){
+     emailErrors.push("An account with this email does not exist.");
+   }
    return emailErrors;
 };
 
@@ -44,6 +47,9 @@ ErrorsStore.passwordErrors = function () {
   var passwordErrors = [];
    if (_errors.indexOf("Password is too short (minimum is 6 characters)") > -1){
      passwordErrors.push("Password must be at least 6 characters.");
+   }
+   if (_errors.indexOf("Password incorrect") > -1){
+     passwordErrors.push("The password is incorrect.");
    }
    return passwordErrors;
 };

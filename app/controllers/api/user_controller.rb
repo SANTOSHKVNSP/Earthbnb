@@ -1,4 +1,4 @@
-class Api::UsersController < ApplicationController
+class Api::UserController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
@@ -9,6 +9,7 @@ class Api::UsersController < ApplicationController
   end
 
   def show
+    render json: {user: current_user}
   end
 
   def update

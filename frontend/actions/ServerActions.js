@@ -1,18 +1,33 @@
 var AppDispatcher = require('../dispatcher/Dispatcher.js');
 
 var ServerActions = {
-  receiveErrors: function (errors) {
-    var errorsString = errors.responseText
-      .replace(/\[/g, "")
-      .replace(/\]/g, "")
-      .replace(/"/g, "");
+  receiveErrors: function (response) {
+    var errorsArray = response.responseText
+    .replace(/\[/g, "")
+    .replace(/\]/g, "")
+    .replace(/"/g, "")
+    .split(",");
     AppDispatcher.dispatch({
       actionType: "ERRORS_RECEIVED",
-      errors: errorsString.split(",")
+      errors: errorsArray
     });
   },
-  receiveLoginError: function (error) {
-    console.log(error);
+  receiveLoginError: function (response) {
+    AppDispatcher.dispatch({
+      actionType: "ERRORS_RECEIVED",
+      errors: [JSON.parse(response.responseText).message]
+    });
+  },
+  receiveUser: function (user) {
+    AppDispatcher.dispatch({
+      actionType: "USER_RECEIVED",
+      user: user
+    });
+  },
+  logoutUser: function () {
+    AppDispatcher.dispatch({
+      actionType: "USER_LOGGED_OUT"
+    });
   }
 };
 

@@ -32,10 +32,30 @@
   font-family: arial;
 }
 
+.group:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
 h1 {
   font-size: 36px;
 }
 
+.nav-bar {
+
+}
+
+.nav-bar-button {
+  float: right;
+  display: block;
+  width: 90px;
+  height: 12px;
+  border-left: 1px solid black;
+  text-align: center;
+  padding-top: 26px;
+  padding-bottom: 26px;
+}
 
 .sign-up-form {
   border: 1px solid black;
