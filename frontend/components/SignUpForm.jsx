@@ -69,6 +69,7 @@ var SignUpForm = React.createClass({
       this.redirectAfterSignup
     );
   },
+
   redirectAfterSignup: function () {
     this.context.router.push("/");
   },

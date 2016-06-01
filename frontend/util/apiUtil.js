@@ -63,7 +63,6 @@ module.exports = {
       url: 'api/session',
       type: "DELETE",
       success: function (response) {
-        console.log("logged out!");
         ServerActions.logoutUser();
       }
     });

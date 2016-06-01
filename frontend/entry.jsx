@@ -13,6 +13,7 @@ var NavBar = require('./components/NavBar.jsx');
 var PropertySearch = require('./components/PropertySearch.jsx');
 var SignUpForm = require('./components/SignUpForm.jsx');
 var LogInForm = require('./components/LogInForm.jsx');
+var AdminNavBar = require('./components/AdminNavBar.jsx');
 
 var App = React.createClass({
   render: function () {
@@ -30,6 +31,7 @@ var routes = (
     <IndexRoute component={PropertySearch} />
     <Route path="/signup" component={SignUpForm}/>
     <Route path="/login" component={LogInForm}/>
+    <Route path="/users/edit" component={AdminNavBar}/>
   </Route>
 );
 

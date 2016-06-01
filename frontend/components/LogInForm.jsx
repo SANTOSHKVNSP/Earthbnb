@@ -50,6 +50,14 @@ var LogInForm = React.createClass({
     );
   },
 
+  handleGuestLogIn: function(event) {
+    event.preventDefault();
+    ClientActions.createSession(
+      {email: "guest@guest.com", password: "guestpassword"},
+      this.redirectAfterLogin
+    );
+  },
+
   redirectAfterLogin: function () {
     this.context.router.push("/");
   },
@@ -59,7 +67,6 @@ var LogInForm = React.createClass({
       return(<div key={index} className="error-message">{emailError}</div>);
     });
   },
-
   renderPasswordErrors: function() {
     return this.state.passwordErrors.map(function(passwordError, index) {
       return(<div key={index} className="error-message">{passwordError}</div>);
@@ -72,7 +79,7 @@ var LogInForm = React.createClass({
     var passwordClass = this.state.passwordErrors.length > 0 ? "errors" : "no-errors";
 
     return(
-      <div className={"sign-up-form"}>
+      <div className="sign-up-form">
         Log in<br />
 
         {this.renderEmailErrors()}
@@ -82,6 +89,7 @@ var LogInForm = React.createClass({
         <input type="text" className={passwordClass} placeholder="Password" value={this.state.password} onChange={this.passwordChanged}/><br />
 
         <button onClick={this.handleSubmit}>Log In</button>
+        <button onClick={this.handleGuestLogIn}>Guest Log In</button>
       </div>
     );
   }

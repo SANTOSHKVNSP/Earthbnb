@@ -1,4 +1,4 @@
- html, body, section, article, h1, h2, p, strong, em, a, select, ul, li {
+ html, body, section, article, h1, h2, p, strong, em, a, select, ul, li, input {
   margin: 0;
   border: 0;
   padding: 0;
@@ -15,12 +15,22 @@
   font-size: 14px;
   font-weight: 400;
   font-family: 'Nunito', sans-serif;
+
+  list-style-type: none;
 }
 
 .group:after {
   content: "";
   display: block;
   clear: both;
+}
+
+input {
+  border: solid 1px black;
+  margin: 2px;
+  padding: 10px;
+  text-align: left;
+  border: 1px solid #ccc;
 }
 
 .nav-bar {
@@ -59,7 +69,6 @@
 .user-menu {
   display: none;
   position: absolute;
-  list-style-type: none;
   left: -155px;
   top: 61px;
   border-top: 1px solid #DCE0E0;
@@ -74,6 +83,8 @@
   border-bottom: 1px solid white;
   padding-left: 20px;
   padding-top: 20px;
+  -webkit-transition: padding-left 0.25s, width 0.25s;
+  transition: padding-left 0.25s, width 0.25s;
 }
 
 .user-menu li:hover {
@@ -91,8 +102,6 @@
 }
 
 .sign-up-form input {
-  margin: 2px;
-  padding: 10px;
   width: 388px;
 }
 
@@ -104,11 +113,14 @@
 }
 
 .sign-up-form button {
+  display: block;
   background-color: #FF5A5F;
   color: white;
   width: 412px;
   border: none;
-  margin: 10px;
+  margin: auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
   height: 50px;
   cursor: pointer;
 }
@@ -123,6 +135,29 @@
 
 .error-message {
   color: red;
+}
+
+.admin-nav-bar {
+  background: #484848;
+  height: 29px;
+  color: #B3B3B3;
+  padding-top: 11px;
+  padding-left: 455px;
+}
+
+.admin-nav-bar li {
+  float: left;
+  margin-left: 30px;
+  margin-right: 30px;
+  cursor: pointer;
+}
+
+.on-page {
+  color: #EBEBEB;
+}
+
+.admin-nav-bar li:hover {
+  color: #EBEBEB;
 }
 
 .filler {

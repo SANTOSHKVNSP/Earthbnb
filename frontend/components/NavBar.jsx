@@ -27,10 +27,6 @@ var NavBar = React.createClass({
     });
   },
 
-  handleLogout: function (event) {
-    ClientActions.logoutUser();
-  },
-
   handleLoginClick: function () {
     this.context.router.push({
       pathname: "login"
@@ -41,18 +37,30 @@ var NavBar = React.createClass({
       pathname: "signup"
     });
   },
+  handleEditProfileClick: function () {
+    this.context.router.push("/users/edit");
+  },
+  handleYourListingsClick: function () {
+    this.context.router.push("/users/edit");
+  },
+  handleYourTripsClick: function () {
+    this.context.router.push("/users/edit");
+  },
+  handleLogout: function (event) {
+    ClientActions.logoutUser();
+    this.context.router.push("/");
+  },
 
   render: function () {
     if (this.state.user) {
       return(
         <div className={"nav-bar"}>
-          <button onClick={this.handleLogout}>Log Out</button>
           <div id="user-button" className="nav-bar-button">
             {this.state.user.name}
             <ul className="user-menu">
-              <li>Edit Profile</li>
-              <li>Your Listings</li>
-              <li>Your Trips</li>
+              <li onClick={this.handleEditProfileClick}>Edit Profile</li>
+              <li onClick={this.handleYourListingsClick}>Your Listings</li>
+              <li onClick={this.handleYourTripsClick}>Your Trips</li>
               <li onClick={this.handleLogout}>Log Out</li>
             </ul>
           </div>
@@ -61,7 +69,6 @@ var NavBar = React.createClass({
     } else {
       return(
         <div className={"nav-bar"}>
-          Not logged in
           <div onClick={this.handleLoginClick} id="login-button" className="nav-bar-button">Log In</div>
           <div onClick={this.handleSignUpClick} id="signup-button" className="nav-bar-button">Sign Up</div>
         </div>
