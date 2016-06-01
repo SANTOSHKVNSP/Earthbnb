@@ -1,9 +1,16 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 
+var ReactRouter = require('react-router');
+var Router = ReactRouter.Router;
+var Route = ReactRouter.Route;
+var IndexRoute = ReactRouter.IndexRoute;
+var hashHistory = ReactRouter.hashHistory;
+
 var ErrorsStore = require('./stores/ErrorsStore.js');
 
 var NavBar = require('./components/NavBar.jsx');
+var PropertySearch = require('./components/PropertySearch.jsx');
 var SignUpForm = require('./components/SignUpForm.jsx');
 var LogInForm = require('./components/LogInForm.jsx');
 
@@ -12,18 +19,25 @@ var App = React.createClass({
     return(
       <div>
         <NavBar />
-        <SignUpForm />
-        <LogInForm />
+        {this.props.children}
       </div>
     );
   }
 });
 
+var routes = (
+  <Route path="/" component={App}>
+    <IndexRoute component={PropertySearch} />
+    <Route path="/signup" component={SignUpForm}/>
+    <Route path="/login" component={LogInForm}/>
+  </Route>
+);
+
 document.addEventListener(
   "DOMContentLoaded",
   function(){
     ReactDOM.render(
-      <App />,
+      <Router history={hashHistory} routes={routes} />,
       document.getElementById("content")
     );
   }

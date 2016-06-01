@@ -1,7 +1,8 @@
 var ServerActions = require('../actions/ServerActions.js');
 
 module.exports = {
-  createUser: function(user) {
+
+  createUser: function(user, callback) {
     $.ajax({
       url: 'api/user',
       type: "POST",
@@ -14,14 +15,18 @@ module.exports = {
         }
       },
       success: function (response) {
-        console.log("success!");
+        ServerActions.receiveUser(response);
+        if (callback) {
+          callback();
+        }
       },
       error: function (response) {
         ServerActions.receiveErrors(response);
       }
     });
   },
-  createSession: function(loginInfo) {
+
+  createSession: function(loginInfo, callback) {
     $.ajax({
       url: 'api/session',
       type: "POST",
@@ -33,12 +38,16 @@ module.exports = {
       },
       success: function (response) {
         ServerActions.receiveUser(response);
+        if (callback) {
+          callback();
+        }
       },
       error: function (response) {
         ServerActions.receiveLoginError(response);
       }
     });
   },
+
   fetchUser: function() {
     $.ajax({
       url: 'api/user',
@@ -48,6 +57,7 @@ module.exports = {
       }
     });
   },
+
   logoutUser: function() {
     $.ajax({
       url: 'api/session',

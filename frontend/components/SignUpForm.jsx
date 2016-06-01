@@ -4,6 +4,8 @@ var ErrorsStore = require('../stores/ErrorsStore.js');
 
 var SignUpForm = React.createClass({
 
+  contextTypes: {router: React.PropTypes.object.isRequired},
+
   getInitialState: function() {
     return({
       email: "",
@@ -39,19 +41,16 @@ var SignUpForm = React.createClass({
       email: event.target.value
     });
   },
-
   passwordChanged: function(event) {
     this.setState({
       password: event.target.value
     });
   },
-
   nameChanged: function(event) {
     this.setState({
       name: event.target.value
     });
   },
-
   speciesChanged: function(event) {
     this.setState({
       species: event.target.value
@@ -60,12 +59,18 @@ var SignUpForm = React.createClass({
 
   handleSubmit: function(event) {
     event.preventDefault();
-    ClientActions.createUser({
-      email: this.state.email,
-      password: this.state.password,
-      name: this.state.name,
-      species: this.state.species
-    });
+    ClientActions.createUser(
+      {
+        email: this.state.email,
+        password: this.state.password,
+        name: this.state.name,
+        species: this.state.species
+      },
+      this.redirectAfterSignup
+    );
+  },
+  redirectAfterSignup: function () {
+    this.context.router.push("/");
   },
 
   renderNameErrors: function() {
@@ -73,19 +78,16 @@ var SignUpForm = React.createClass({
       return(<div key={index} className="error-message">{nameError}</div>);
     });
   },
-
   renderSpeciesErrors: function() {
     return this.state.speciesErrors.map(function(speciesError, index) {
       return(<div key={index} className="error-message">{speciesError}</div>);
     });
   },
-
   renderEmailErrors: function() {
     return this.state.emailErrors.map(function(emailError, index) {
       return(<div key={index} className="error-message">{emailError}</div>);
     });
   },
-
   renderPasswordErrors: function() {
     return this.state.passwordErrors.map(function(passwordError, index) {
       return(<div key={index} className="error-message">{passwordError}</div>);

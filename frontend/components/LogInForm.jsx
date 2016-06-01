@@ -4,6 +4,8 @@ var ErrorsStore = require('../stores/ErrorsStore.js');
 
 var LogInForm = React.createClass({
 
+  contextTypes: {router: React.PropTypes.object.isRequired},
+
   getInitialState: function() {
     return({
       email: "",
@@ -42,10 +44,14 @@ var LogInForm = React.createClass({
 
   handleSubmit: function(event) {
     event.preventDefault();
-    ClientActions.createSession({
-      email: this.state.email,
-      password: this.state.password
-    });
+    ClientActions.createSession(
+      {email: this.state.email, password: this.state.password},
+      this.redirectAfterLogin
+    );
+  },
+
+  redirectAfterLogin: function () {
+    this.context.router.push("/");
   },
 
   renderEmailErrors: function() {

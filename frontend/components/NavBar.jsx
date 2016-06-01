@@ -4,6 +4,8 @@ var UserStore = require('../stores/UserStore.js');
 
 var NavBar = React.createClass({
 
+  contextTypes: {router: React.PropTypes.object.isRequired},
+
   getInitialState: function() {
     return({
       user: ""
@@ -29,20 +31,31 @@ var NavBar = React.createClass({
     ClientActions.logoutUser();
   },
 
+  handleLoginClick: function () {
+    this.context.router.push({
+      pathname: "login"
+    });
+  },
+  handleSignUpClick: function () {
+    this.context.router.push({
+      pathname: "signup"
+    });
+  },
+
   render: function () {
     if (this.state.user) {
       return(
         <div className={"nav-bar"}>
-          Logged in as {this.state.user.name} <br />
           <button onClick={this.handleLogout}>Log Out</button>
+          <div id="user-button" className="nav-bar-button">{this.state.user.name}</div>
         </div>
       );
     } else {
       return(
         <div className={"nav-bar"}>
           Not logged in
-          <div className="nav-bar-button">Log In</div>
-          <div className="nav-bar-button">Sign Up</div>
+          <div onClick={this.handleLoginClick} id="login-button" className="nav-bar-button">Log In</div>
+          <div onClick={this.handleSignUpClick} id="signup-button" className="nav-bar-button">Sign Up</div>
         </div>
       );
     }
