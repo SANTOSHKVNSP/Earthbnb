@@ -47,7 +47,15 @@ var NavBar = React.createClass({
       return(
         <div className={"nav-bar"}>
           <button onClick={this.handleLogout}>Log Out</button>
-          <div id="user-button" className="nav-bar-button">{this.state.user.name}</div>
+          <div id="user-button" className="nav-bar-button">
+            {this.state.user.name}
+            <ul className="user-menu">
+              <li>Edit Profile</li>
+              <li>Your Listings</li>
+              <li>Your Trips</li>
+              <li onClick={this.handleLogout}>Log Out</li>
+            </ul>
+          </div>
         </div>
       );
     } else {

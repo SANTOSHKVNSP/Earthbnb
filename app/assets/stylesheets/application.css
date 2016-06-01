@@ -1,4 +1,4 @@
- html, body, section, article, h1, h2, p, strong, em, a, select {
+ html, body, section, article, h1, h2, p, strong, em, a, select, ul, li {
   margin: 0;
   border: 0;
   padding: 0;
@@ -25,7 +25,6 @@
 
 .nav-bar {
   height: 61.5px;
-  // border-bottom: 1px solid #DCE0E0;
 }
 
 .nav-bar-button {
@@ -45,11 +44,41 @@
 }
 
 #signup-button {
-  width: 86px;
+  width: 87px;
 }
 
 #user-button {
   width: 126px;
+  position: relative;
+}
+
+#user-button:hover .user-menu {
+  display: block;
+}
+
+.user-menu {
+  display: none;
+  position: absolute;
+  list-style-type: none;
+  left: -155px;
+  top: 61px;
+  border-top: 1px solid #DCE0E0;
+  text-align: left;
+}
+
+.user-menu li {
+  float: none;
+  width: 261px;
+  height: 34px;
+  background: white;
+  border-bottom: 1px solid white;
+  padding-left: 20px;
+  padding-top: 20px;
+}
+
+.user-menu li:hover {
+  width: 251px;
+  padding-left: 30px;
 }
 
 .sign-up-form {
