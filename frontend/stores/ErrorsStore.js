@@ -34,6 +34,9 @@ ErrorsStore.emailErrors = function () {
    if (_errors.indexOf("Email can't be blank") > -1){
      emailErrors.push("Email is required.");
    }
+   if (_errors.indexOf("Email has already been taken") > -1){
+     emailErrors.push("An account with this email already exists.");
+   }
    return emailErrors;
 };
 

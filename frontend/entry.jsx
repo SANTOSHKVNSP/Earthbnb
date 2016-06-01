@@ -3,13 +3,17 @@ var ReactDOM = require('react-dom');
 
 var ErrorsStore = require('./stores/ErrorsStore.js');
 
+var NavBar = require('./components/NavBar.jsx');
 var SignUpForm = require('./components/SignUpForm.jsx');
+var LogInForm = require('./components/LogInForm.jsx');
 
 var App = React.createClass({
   render: function () {
     return(
       <div>
-      I'm the app!
+        <NavBar />
+        <SignUpForm />
+        <LogInForm />
       </div>
     );
   }
@@ -19,7 +23,7 @@ document.addEventListener(
   "DOMContentLoaded",
   function(){
     ReactDOM.render(
-      <SignUpForm />,
+      <App />,
       document.getElementById("content")
     );
   }

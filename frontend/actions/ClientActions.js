@@ -1,7 +1,8 @@
 var ApiUtil = require('../util/apiUtil.js');
 
 var ClientActions = {
-  createUser: ApiUtil.createUser
+  createUser: ApiUtil.createUser,
+  createSession: ApiUtil.createSession
 };
 
 module.exports = ClientActions;

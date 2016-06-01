@@ -20,5 +20,24 @@ module.exports = {
         ServerActions.receiveErrors(response);
       }
     });
+  },
+  createSession: function(loginInfo) {
+    $.ajax({
+      url: 'api/session',
+      type: "POST",
+      data: {
+        user: {
+          email: loginInfo.email,
+          password: loginInfo.password
+        }
+      },
+      success: function (response) {
+        console.log("success!");
+      },
+      error: function (response) {
+        console.log("fail!");
+        ServerActions.receiveLoginError(response);
+      }
+    });
   }
 };

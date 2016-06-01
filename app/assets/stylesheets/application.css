@@ -14,7 +14,7 @@
  *= require_self
  */
 
- html, body, section, article, h1, h2, p, strong, em, a {
+ html, body, section, article, h1, h2, p, strong, em, a, select {
   margin: 0;
   border: 0;
   padding: 0;
@@ -36,9 +36,6 @@ h1 {
   font-size: 36px;
 }
 
-button {
-  margin: 10px;
-}
 
 .sign-up-form {
   border: 1px solid black;
@@ -55,11 +52,21 @@ button {
   width: 388px;
 }
 
+.sign-up-form select {
+  margin: 2px;
+  width: 410px;
+  height: 36px;
+  border: 1px solid #ccc;
+  // color: #A4A4A4;
+}
+
 .sign-up-form button {
   background-color: red;
   color: white;
   width: 412px;
   border: none;
+  margin: 10px;
+  height: 50px;
 }
 
 .errors {

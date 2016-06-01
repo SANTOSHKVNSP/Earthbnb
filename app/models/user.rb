@@ -8,6 +8,23 @@ class User < ActiveRecord::Base
   validates :password_digest, :name, :species, presence: true
   validates :password, length: {minimum: 6, allow_nil: true}
 
+  def self.find_by_email_address(email)
+    user = User.find_by_email(email)
+    if user.nil?
+      return nil
+    else
+      return user
+    end
+  end
+
+  def self.check_password(user, password)
+    user.is_password?(password) ? true : false
+  end
+
+  def is_password?(password)
+    BCrypt::Password.new(self.password_digest).is_password?(password)
+  end
+
   def password=(password)
     @password = password
     self.password_digest = BCrypt::Password.create(password)

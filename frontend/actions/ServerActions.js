@@ -10,6 +10,9 @@ var ServerActions = {
       actionType: "ERRORS_RECEIVED",
       errors: errorsString.split(",")
     });
+  },
+  receiveLoginError: function (error) {
+    console.log(error);
   }
 };
 
