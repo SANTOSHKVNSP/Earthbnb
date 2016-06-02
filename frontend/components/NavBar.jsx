@@ -1,3 +1,5 @@
+var additionalErrorHeight = 21;
+
 var React = require('react');
 var Modal = require('react-modal');
 
@@ -5,6 +7,7 @@ var SignUpForm = require('./SignUpForm.jsx');
 var LogInForm = require('./LogInForm.jsx');
 var ClientActions = require('../actions/ClientActions.js');
 var UserStore = require('../stores/UserStore.js');
+var ErrorsStore = require('../stores/ErrorsStore.js');
 
 var ModalStyles = require('./ModalStyles.js');
 
@@ -16,12 +19,14 @@ var NavBar = React.createClass({
     return({
       user: "",
       modalOpen: false,
-      whichModal: ""
+      whichModal: "",
+      numberOfErrors: 0
     });
   },
 
   componentDidMount: function () {
     this.userListener = UserStore.addListener(this.getUser);
+    this.errorsListener = ErrorsStore.addListener(this.getNumberOfErrors);
     ClientActions.fetchUser();
   },
 
@@ -29,30 +34,21 @@ var NavBar = React.createClass({
     this.userListener.remove();
   },
 
-  onModalClose: function () {
-    this.setState({modalOpen: false});
-  },
-
   getUser: function () {
     this.setState({
       user: UserStore.user()
     });
   },
-
-  handleLoginClick: function () {
-    this.context.router.push({
-      pathname: "login"
-    });
-  },
-  handleSignUpClick: function () {
-    this.setState({modalOpen: true});
-    // this.context.router.push({
-    //   pathname: "signup"
-    // });
+  getNumberOfErrors: function () {
+    this.setState({numberOfErrors: ErrorsStore.all().length});
   },
 
   handleModalOpen: function (which, width) {
     this.setState({modalOpen: true, whichModal: which, modalWidth: width});
+  },
+  handleModalClose: function () {
+    this.setState({modalOpen: false});
+    ClientActions.clearErrors();
   },
 
   handleEditProfileClick: function () {
@@ -66,6 +62,7 @@ var NavBar = React.createClass({
   },
   handleLogout: function (event) {
     ClientActions.logoutUser();
+    this.setState({modalOpen: false});
     this.context.router.push("/");
   },
 
@@ -75,16 +72,18 @@ var NavBar = React.createClass({
     if (this.state.whichModal === "Log In") {
       component = <LogInForm />;
       ModalStyles.content.width = '452px';
-      ModalStyles.content.height = '261px';
+      ModalStyles.content.height = (261 + (additionalErrorHeight * this.state.numberOfErrors)) + 'px';
     } else {
       component = <SignUpForm />;
       ModalStyles.content.width = '452px';
-      ModalStyles.content.height = '288px';
+      ModalStyles.content.height = (288 + (additionalErrorHeight * this.state.numberOfErrors)) + 'px';
+      // ModalStyles.content.height = 288 + 'px';
     }
 
     if (this.state.user) {
       return(
         <div className={"nav-bar"}>
+          <span>Errors: {this.state.numberOfErrors}</span>
           <div id="user-button" className="nav-bar-button">
             {this.state.user.name}
             <ul className="user-menu">
@@ -99,10 +98,11 @@ var NavBar = React.createClass({
     } else {
       return(
         <div className={"nav-bar"}>
+          <span>Errors: {this.state.numberOfErrors}</span>
           <div onClick={this.handleModalOpen.bind(this, "Log In")} id="login-button" className="nav-bar-button">Log In</div>
           <div onClick={this.handleModalOpen.bind(this, "Sign Up")} id="signup-button" className="nav-bar-button">Sign Up</div>
 
-          <Modal isOpen={this.state.modalOpen} onRequestClose={this.onModalClose} style={ModalStyles}>
+          <Modal isOpen={this.state.modalOpen} onRequestClose={this.handleModalClose} style={ModalStyles}>
             {component}
           </Modal>
 

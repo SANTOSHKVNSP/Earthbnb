@@ -49,6 +49,7 @@ var LogInForm = React.createClass({
       {email: this.state.email, password: this.state.password},
       this.redirectAfterLogin
     );
+    ClientActions.clearErrors();
   },
 
   handleGuestLogIn: function(event) {
@@ -57,6 +58,7 @@ var LogInForm = React.createClass({
       {email: "guest@guest.com", password: "guestpassword"},
       this.redirectAfterLogin
     );
+    ClientActions.clearErrors();
   },
 
   redirectAfterLogin: function () {

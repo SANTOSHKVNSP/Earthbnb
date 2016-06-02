@@ -1,4 +1,4 @@
- html, body, section, article, h1, h2, p, strong, em, a, select, ul, li, input {
+ html, body, section, article, h1, h2, p, strong, em, a, select, ul, li, input, textarea, button {
   margin: 0;
   border: 0;
   padding: 0;
@@ -25,12 +25,27 @@
   clear: both;
 }
 
-input {
-  border: solid 1px black;
+input, textarea {
   margin: 2px;
   padding: 10px;
   text-align: left;
   border: 1px solid #ccc;
+  border-radius:2px;
+}
+
+button {
+  display: block;
+  border: none;
+  cursor: pointer;
+  color: white;
+  background-color: #FF5A5F;
+  text-align: center;
+  font-size: 16px;
+  border-radius:2px;
+}
+
+button:hover {
+  background-color: #FF8E91;
 }
 
 .nav-bar {
@@ -114,20 +129,11 @@ input {
 }
 
 .sign-up-form button {
-  display: block;
-  background-color: #FF5A5F;
-  color: white;
   width: 412px;
-  border: none;
   margin: auto;
   margin-top: 10px;
   margin-bottom: 10px;
   height: 50px;
-  cursor: pointer;
-}
-
-.sign-up-form button:hover {
-  background-color: #FF8E91;
 }
 
 .errors {
@@ -136,6 +142,10 @@ input {
 
 .error-message {
   color: red;
+  padding-top: 5px;
+  height: 16px;
+  text-align: left;
+  padding-left: 22px;
 }
 
 .admin-nav-bar {
@@ -159,6 +169,54 @@ input {
 
 .admin-nav-bar li:hover {
   color: #EBEBEB;
+}
+
+.edit-profile {
+  width: 742px;
+  /*margin: auto;*/
+  margin-left: 709px;
+  color: #6B6C6B;
+  text-align: right;
+}
+
+.edit-profile header {
+  background: #EDEFED;
+  height: 16px;
+  margin-top: 24px;
+  border-top: solid 1px #DCE0E0;
+  border-left: solid 1px #DCE0E0;
+  border-right: solid 1px #DCE0E0;
+  padding-top: 13px;
+  padding-bottom: 17px;
+  padding-left: 20px;
+  font-size: 16px;
+  text-align: left;
+}
+
+.edit-profile form {
+  padding: 18px 18px 0 18px;
+  border: solid 1px #DCE0E0;
+}
+
+.edit-profile form input, textarea {
+  width: 500px;
+  margin-left: 15px;
+  margin-bottom: 22px;
+}
+
+.edit-profile form input {
+  height: 14px;
+}
+
+.edit-profile form textarea {
+  vertical-align: -114px;
+}
+
+.edit-profile button {
+  width: 92px;
+  margin-top: 22px;
+  margin-bottom: 22px;
+  height: 42px;
 }
 
 .filler {

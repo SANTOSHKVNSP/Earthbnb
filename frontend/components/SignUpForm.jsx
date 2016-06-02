@@ -68,6 +68,7 @@ var SignUpForm = React.createClass({
       },
       this.redirectAfterSignup
     );
+    ClientActions.clearErrors();
   },
 
   redirectAfterSignup: function () {

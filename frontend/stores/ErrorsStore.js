@@ -13,6 +13,10 @@ ErrorsStore.all = function() {
   return _errors;
 };
 
+ErrorsStore.empty = function() {
+  _errors = [];
+};
+
 ErrorsStore.nameErrors = function () {
   var nameErrors = [];
    if (_errors.indexOf("Name can't be blank") > -1){
@@ -58,6 +62,9 @@ ErrorsStore.__onDispatch = function(payload) {
   switch(payload.actionType){
     case "ERRORS_RECEIVED":
       this.resetErrors(payload.errors);
+      break;
+    case "CLEAR_ERRORS":
+      this.empty();
       break;
   }
   this.__emitChange();

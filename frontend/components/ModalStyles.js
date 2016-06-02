@@ -4,7 +4,7 @@ module.exports = {
   },
   content: {
     background: 'transparent',
-    padding: '0',
-    margin: 'auto'
+    padding: 0,
+    margin: 'auto',
   }
 };
