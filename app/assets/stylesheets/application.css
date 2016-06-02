@@ -1,4 +1,4 @@
- html, body, section, article, h1, h2, p, strong, em, a, select, ul, li, input, textarea, button {
+ html, body, section, article, h1, h2, p, strong, em, a, select, ul, li, input, textarea, button, img {
   margin: 0;
   border: 0;
   padding: 0;
@@ -13,7 +13,7 @@
   background: transparent;
 
   font-size: 14px;
-  font-weight: 400;
+  font-weight: 300;
   font-family: 'Nunito', sans-serif;
 
   list-style-type: none;
@@ -25,11 +25,24 @@
   clear: both;
 }
 
+p {
+  text-align: left;
+}
+
+a {
+  cursor: pointer;
+  color: #FE6C70;
+}
+
+a:hover {
+  text-decoration: underline
+}
+
 input, textarea {
   margin: 2px;
   padding: 10px;
   text-align: left;
-  border: 1px solid #ccc;
+  border: 1px solid #C4C4C4;
   border-radius:2px;
 }
 
@@ -48,20 +61,33 @@ button:hover {
   background-color: #FF8E91;
 }
 
+.white-button {
+  background: transparent;
+  font-weight: 400;
+  font-size: 14px;
+  border: 1px solid #C4C4C4;
+  color: #484848;
+}
+
+.white-button:hover {
+  border: 1px solid #7A7A7A;
+  background-color: transparent;
+}
+
 .nav-bar {
-  height: 61.5px;
+  height: 60.5px;
+  border-bottom: 1px solid #DCE0E0;
 }
 
 .nav-bar-button {
   float: right;
   display: block;
-  height: 14px;
+  height: 13px;
   border-left: 1px solid #DCE0E0;
   text-align: center;
-  padding-top: 23.75px;
-  padding-bottom: 23.75px;
+  padding-top: 20.75px;
+  padding-bottom: 26.75px;
   cursor: pointer;
-  color: gray;
 }
 
 #login-button {
@@ -75,6 +101,7 @@ button:hover {
 #user-button {
   width: 126px;
   position: relative;
+  color: #484848;
 }
 
 #user-button:hover .user-menu {
@@ -88,6 +115,7 @@ button:hover {
   top: 61px;
   border-top: 1px solid #DCE0E0;
   text-align: left;
+  color: #484848;
 }
 
 .user-menu li {
@@ -95,7 +123,8 @@ button:hover {
   width: 261px;
   height: 34px;
   background: white;
-  border-bottom: 1px solid white;
+  /*border-bottom: 1px solid #DCE0E0;*/
+  border-left: 1px solid #DCE0E0;
   padding-left: 20px;
   padding-top: 20px;
   -webkit-transition: padding-left 0.25s, width 0.25s;
@@ -172,8 +201,8 @@ button:hover {
 }
 
 .edit-profile {
+  position: relative;
   width: 742px;
-  /*margin: auto;*/
   margin-left: 709px;
   color: #6B6C6B;
   text-align: right;
@@ -191,6 +220,7 @@ button:hover {
   padding-left: 20px;
   font-size: 16px;
   text-align: left;
+  color: #484848
 }
 
 .edit-profile form {
@@ -209,14 +239,84 @@ button:hover {
 }
 
 .edit-profile form textarea {
-  vertical-align: -114px;
+  vertical-align: -109px;
 }
 
 .edit-profile button {
   width: 92px;
+  height: 42px;
   margin-top: 22px;
   margin-bottom: 22px;
-  height: 42px;
+}
+
+.edit-profile .white-button {
+  position: absolute;
+  left: -250px;
+  top: -22px;
+  width: 230px;
+  height: 34px;
+}
+
+.edit-profile p {
+  margin-bottom: 22px;
+  margin-left: 180px;
+}
+
+.edit-profile img {
+  display: inline-block;
+  width: 230px;
+  height: 230px;
+  background: red;
+}
+
+.edit-profile-pic-text {
+  vertical-align: top;
+  display: inline-block;
+  width: 455px;
+  margin-left: 18px;
+  text-align: left;
+}
+
+.edit-profile img {
+  margin-bottom: 16px;
+}
+
+.show-profile {
+  margin: auto;
+  margin-top: 24px;
+  width: 996px;
+  color: #484848;
+}
+
+.show-profile img {
+  display: inline-block;
+  width: 230px;
+  height: 230px;
+  background: red;
+}
+
+.show-profile article {
+  display: inline-block;
+  vertical-align: top;
+  margin-left: 24px;
+  width: 600px;
+}
+
+.show-profile header {
+  font-size: 42px;
+  font-family: 'Lato', sans-serif;
+  margin-bottom: 11px;
+}
+
+.show-profile a {
+  display: inline-block;
+  margin-bottom: 44px;
+}
+
+.location {
+  font-size: 16px;
+  font-weight: 400;
+  margin-bottom: 34px;
 }
 
 .filler {

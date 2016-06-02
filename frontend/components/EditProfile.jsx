@@ -4,6 +4,8 @@ var UserStore = require('../stores/UserStore.js');
 
 var EditProfile = React.createClass({
 
+  contextTypes: {router: React.PropTypes.object.isRequired},
+
   getInitialState: function () {
     return({
       name: "",
@@ -28,8 +30,9 @@ var EditProfile = React.createClass({
       name: user.name,
       email: user.email,
       species: user.species,
-      bio: user.bio,
-      location: user.location
+      bio: user.bio ? user.bio : "",
+      location: user.location ? user.location : "",
+      id: user.id
     });
   },
 
@@ -47,6 +50,22 @@ var EditProfile = React.createClass({
   },
   changeBio: function (event) {
     this.setState({bio: event.target.value});
+  },
+
+  handleSubmit: function () {
+    var userData = {
+      name: this.state.name,
+      species: this.state.species,
+      email: this.state.email,
+      location: this.state.location,
+      bio: this.state.bio
+    };
+    ClientActions.updateUser(userData);
+    this.context.router.push("/users/" + this.state.id);
+  },
+
+  handleViewProfileClick: function () {
+    this.context.router.push("/users/" + this.state.id);
   },
 
   render: function () {
@@ -73,8 +92,22 @@ var EditProfile = React.createClass({
           <label>
             Describe Yourself<textarea rows="5" cols="20" onChange={this.changeBio} value={this.state.bio} />
           </label><br />
+          <p>Earthbnb is built on relationships. Help other people get to know you.</p>
+          <p>Tell them about the things you like: What are 5 things you can’t live without? Share your favorite travel destinations, books, movies, shows, music, food.</p>
+          <p>Tell them what it’s like to have you as a guest or host: What’s your style of traveling? Of Airbnb hosting?</p>
+          <p>Tell them about you: Do you have a life motto?</p>
         </form>
-        <button>Save</button>
+
+        <header className="edit-profile-header">Profile Photo</header>
+        <form>
+          <img className="profile-pic" src="http://upload.wikimedia.org/wikipedia/commons/c/ce/Transparent.gif" />
+          <div className="edit-profile-pic-text">
+            Clear frontal face photos are an important way for hosts and guests to learn about each other. It’s not much fun to host a landscape! Please upload a photo that clearly shows your face.
+          </div>
+        </form>
+
+        <button onClick={this.handleSubmit}>Save</button>
+        <button onClick={this.handleViewProfileClick} className="white-button">View Profile</button>
       </div>
     );
   }

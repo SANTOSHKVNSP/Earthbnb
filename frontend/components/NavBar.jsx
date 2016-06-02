@@ -72,18 +72,16 @@ var NavBar = React.createClass({
     if (this.state.whichModal === "Log In") {
       component = <LogInForm />;
       ModalStyles.content.width = '452px';
-      ModalStyles.content.height = (261 + (additionalErrorHeight * this.state.numberOfErrors)) + 'px';
+      ModalStyles.content.height = (258 + (additionalErrorHeight * this.state.numberOfErrors)) + 'px';
     } else {
       component = <SignUpForm />;
       ModalStyles.content.width = '452px';
-      ModalStyles.content.height = (288 + (additionalErrorHeight * this.state.numberOfErrors)) + 'px';
-      // ModalStyles.content.height = 288 + 'px';
+      ModalStyles.content.height = (284 + (additionalErrorHeight * this.state.numberOfErrors)) + 'px';
     }
 
     if (this.state.user) {
       return(
         <div className={"nav-bar"}>
-          <span>Errors: {this.state.numberOfErrors}</span>
           <div id="user-button" className="nav-bar-button">
             {this.state.user.name}
             <ul className="user-menu">

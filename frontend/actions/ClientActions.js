@@ -6,6 +6,8 @@ var ClientActions = {
   createSession: ApiUtil.createSession,
   fetchUser: ApiUtil.fetchUser,
   logoutUser: ApiUtil.logoutUser,
+  updateUser: ApiUtil.updateUser,
+  fetchUsers: ApiUtil.fetchUsers,
 
   clearErrors: function () {
     AppDispatcher.dispatch({

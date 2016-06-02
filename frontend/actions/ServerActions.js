@@ -28,7 +28,13 @@ var ServerActions = {
     AppDispatcher.dispatch({
       actionType: "USER_LOGGED_OUT"
     });
-  }
+  },
+  receiveUsers: function (response) {
+    AppDispatcher.dispatch({
+      actionType: "USERS_RECEIVED",
+      users: response.users
+    });
+  },
 };
 
 module.exports = ServerActions;

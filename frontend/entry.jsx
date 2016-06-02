@@ -16,6 +16,7 @@ var SignUpForm = require('./components/SignUpForm.jsx');
 var LogInForm = require('./components/LogInForm.jsx');
 var AdminNavBar = require('./components/AdminNavBar.jsx');
 var EditProfile = require('./components/EditProfile.jsx');
+var ShowProfile = require('./components/ShowProfile.jsx');
 
 var App = React.createClass({
   render: function () {
@@ -36,6 +37,7 @@ var routes = (
     <Route path="/user" component={AdminNavBar}>
       <Route path="/user/edit" component={EditProfile}/>
     </Route>
+    <Route path="/users/:userId" component={ShowProfile}/>
   </Route>
 );
 

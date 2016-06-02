@@ -13,7 +13,6 @@ var AdminNavBar = React.createClass({
   },
 
   componentDidMount: function () {
-    console.log(this.props.location.pathname);
     switch(this.props.location.pathname){
       case "/user/edit":
         this.setState({ProfileClass: "on-page"});

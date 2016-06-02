@@ -66,5 +66,29 @@ module.exports = {
         ServerActions.logoutUser();
       }
     });
+  },
+
+  updateUser: function(userData) {
+    $.ajax({
+      url: 'api/user',
+      type: "PATCH",
+      data: {user: userData},
+      success: function (response) {
+        ServerActions.receiveUser(response);
+      },
+      error: function (response) {
+        ServerActions.receiveErrors(response);
+      }
+    });
+  },
+
+  fetchUsers: function() {
+    $.ajax({
+      url: 'api/users',
+      type: "GET",
+      success: function (response) {
+        ServerActions.receiveUsers(response);
+      }
+    });
   }
 };
