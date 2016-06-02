@@ -93,12 +93,13 @@ input {
 }
 
 .sign-up-form {
-  border: 1px solid black;
   display: block;
   width: 450px;
   text-align: center;
   margin: auto;
   padding-top: 20px;
+  background: white;
+  border: solid 1px transparent;
 }
 
 .sign-up-form input {

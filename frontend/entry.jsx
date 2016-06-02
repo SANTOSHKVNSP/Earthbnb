@@ -1,5 +1,6 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
+var Modal = require('react-modal');
 
 var ReactRouter = require('react-router');
 var Router = ReactRouter.Router;
@@ -14,6 +15,7 @@ var PropertySearch = require('./components/PropertySearch.jsx');
 var SignUpForm = require('./components/SignUpForm.jsx');
 var LogInForm = require('./components/LogInForm.jsx');
 var AdminNavBar = require('./components/AdminNavBar.jsx');
+var EditProfile = require('./components/EditProfile.jsx');
 
 var App = React.createClass({
   render: function () {
@@ -31,16 +33,16 @@ var routes = (
     <IndexRoute component={PropertySearch} />
     <Route path="/signup" component={SignUpForm}/>
     <Route path="/login" component={LogInForm}/>
-    <Route path="/users/edit" component={AdminNavBar}/>
+    <Route path="/user" component={AdminNavBar}>
+      <Route path="/user/edit" component={EditProfile}/>
+    </Route>
   </Route>
 );
 
-document.addEventListener(
-  "DOMContentLoaded",
-  function(){
-    ReactDOM.render(
-      <Router history={hashHistory} routes={routes} />,
-      document.getElementById("content")
-    );
-  }
-);
+document.addEventListener("DOMContentLoaded", function(){
+  Modal.setAppElement(document.body);
+  ReactDOM.render(
+    <Router history={hashHistory} routes={routes} />,
+    document.getElementById("content")
+  );
+});

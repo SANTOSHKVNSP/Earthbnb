@@ -1,6 +1,12 @@
 var React = require('react');
+var Modal = require('react-modal');
+
+var SignUpForm = require('./SignUpForm.jsx');
+var LogInForm = require('./LogInForm.jsx');
 var ClientActions = require('../actions/ClientActions.js');
 var UserStore = require('../stores/UserStore.js');
+
+var ModalStyles = require('./ModalStyles.js');
 
 var NavBar = React.createClass({
 
@@ -8,7 +14,9 @@ var NavBar = React.createClass({
 
   getInitialState: function() {
     return({
-      user: ""
+      user: "",
+      modalOpen: false,
+      whichModal: ""
     });
   },
 
@@ -19,6 +27,10 @@ var NavBar = React.createClass({
 
   componentWillUnmount: function () {
     this.userListener.remove();
+  },
+
+  onModalClose: function () {
+    this.setState({modalOpen: false});
   },
 
   getUser: function () {
@@ -33,18 +45,24 @@ var NavBar = React.createClass({
     });
   },
   handleSignUpClick: function () {
-    this.context.router.push({
-      pathname: "signup"
-    });
+    this.setState({modalOpen: true});
+    // this.context.router.push({
+    //   pathname: "signup"
+    // });
   },
+
+  handleModalOpen: function (which, width) {
+    this.setState({modalOpen: true, whichModal: which, modalWidth: width});
+  },
+
   handleEditProfileClick: function () {
-    this.context.router.push("/users/edit");
+    this.context.router.push("/user/edit");
   },
   handleYourListingsClick: function () {
-    this.context.router.push("/users/edit");
+    this.context.router.push("/user/listings");
   },
   handleYourTripsClick: function () {
-    this.context.router.push("/users/edit");
+    this.context.router.push("/user/trips");
   },
   handleLogout: function (event) {
     ClientActions.logoutUser();
@@ -52,6 +70,18 @@ var NavBar = React.createClass({
   },
 
   render: function () {
+
+    var component;
+    if (this.state.whichModal === "Log In") {
+      component = <LogInForm />;
+      ModalStyles.content.width = '452px';
+      ModalStyles.content.height = '261px';
+    } else {
+      component = <SignUpForm />;
+      ModalStyles.content.width = '452px';
+      ModalStyles.content.height = '288px';
+    }
+
     if (this.state.user) {
       return(
         <div className={"nav-bar"}>
@@ -69,8 +99,13 @@ var NavBar = React.createClass({
     } else {
       return(
         <div className={"nav-bar"}>
-          <div onClick={this.handleLoginClick} id="login-button" className="nav-bar-button">Log In</div>
-          <div onClick={this.handleSignUpClick} id="signup-button" className="nav-bar-button">Sign Up</div>
+          <div onClick={this.handleModalOpen.bind(this, "Log In")} id="login-button" className="nav-bar-button">Log In</div>
+          <div onClick={this.handleModalOpen.bind(this, "Sign Up")} id="signup-button" className="nav-bar-button">Sign Up</div>
+
+          <Modal isOpen={this.state.modalOpen} onRequestClose={this.onModalClose} style={ModalStyles}>
+            {component}
+          </Modal>
+
         </div>
       );
     }

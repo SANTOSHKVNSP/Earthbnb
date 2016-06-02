@@ -15,8 +15,7 @@ var AdminNavBar = React.createClass({
   componentDidMount: function () {
     console.log(this.props.location.pathname);
     switch(this.props.location.pathname){
-      case "/users/edit":
-      console.log("here");
+      case "/user/edit":
         this.setState({ProfileClass: "on-page"});
         break;
     }
@@ -24,13 +23,16 @@ var AdminNavBar = React.createClass({
 
   render: function () {
     return(
-      <nav className={"admin-nav-bar"}>
-        <ul className="group">
-          <li className={this.state.ProfileClass}>Profile</li>
-          <li className={this.state.ListingClass}>Your Listings</li>
-          <li className={this.state.TripsClass}>Your Trips</li>
-        </ul>
-      </nav>
+      <div>
+        <nav className={"admin-nav-bar"}>
+          <ul className="group">
+            <li className={this.state.ProfileClass}>Profile</li>
+            <li className={this.state.ListingClass}>Your Listings</li>
+            <li className={this.state.TripsClass}>Your Trips</li>
+          </ul>
+        </nav>
+        {this.props.children}
+      </div>
     );
   }
 });

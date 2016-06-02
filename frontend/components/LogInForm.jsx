@@ -1,4 +1,5 @@
 var React = require('react');
+
 var ClientActions = require('../actions/ClientActions.js');
 var ErrorsStore = require('../stores/ErrorsStore.js');
 
