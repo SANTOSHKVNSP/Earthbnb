@@ -68,6 +68,10 @@ var EditProfile = React.createClass({
     this.context.router.push("/users/" + this.state.id);
   },
 
+  handleUploadClick: function () {
+    console.log("click!");
+  },
+
   render: function () {
     return(
       <div className="edit-profile">
@@ -103,11 +107,12 @@ var EditProfile = React.createClass({
           <img className="profile-pic" src="http://upload.wikimedia.org/wikipedia/commons/c/ce/Transparent.gif" />
           <div className="edit-profile-pic-text">
             Clear frontal face photos are an important way for hosts and guests to learn about each other. It’s not much fun to host a landscape! Please upload a photo that clearly shows your face.
+            <button onClick={this.handleUploadClick} id="upload-button" className="white-button">Upload a file from<br />your computer</button>
           </div>
         </form>
 
-        <button onClick={this.handleSubmit}>Save</button>
-        <button onClick={this.handleViewProfileClick} className="white-button">View Profile</button>
+        <button onClick={this.handleSubmit} id="save-profile-button">Save</button>
+        <button onClick={this.handleViewProfileClick} className="white-button" id="view-profile-button">View Profile</button>
       </div>
     );
   }

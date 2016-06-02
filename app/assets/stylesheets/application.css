@@ -242,21 +242,6 @@ button:hover {
   vertical-align: -109px;
 }
 
-.edit-profile button {
-  width: 92px;
-  height: 42px;
-  margin-top: 22px;
-  margin-bottom: 22px;
-}
-
-.edit-profile .white-button {
-  position: absolute;
-  left: -250px;
-  top: -22px;
-  width: 230px;
-  height: 34px;
-}
-
 .edit-profile p {
   margin-bottom: 22px;
   margin-left: 180px;
@@ -275,6 +260,29 @@ button:hover {
   width: 455px;
   margin-left: 18px;
   text-align: left;
+}
+
+#upload-button {
+  width: 230px;
+  margin-top: 20px;
+  font-size: 16px;
+  padding: 13px 0;
+}
+
+#save-profile-button {
+  width: 92px;
+  height: 42px;
+  margin-top: 22px;
+  margin-bottom: 22px;
+}
+
+#view-profile-button {
+  position: absolute;
+  left: -250px;
+  top: -22px;
+  width: 230px;
+  height: 34px;
+  margin-top: 22px;
 }
 
 .edit-profile img {
