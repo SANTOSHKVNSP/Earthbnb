@@ -11,6 +11,7 @@ UserStore.user = function() {
 
 UserStore.setUser = function(serverResponse) {
   _user = serverResponse.user;
+  debugger
 };
 
 UserStore.__onDispatch = function(payload) {

@@ -2,7 +2,7 @@
 
 [Heroku link][heroku] **NB:** This should be a link to your production site
 
-[heroku]: http://www.earthbnb.herokuapp.com
+[heroku]: http://earthbnb.herokuapp.com
 
 ## Minimum Viable Product
 

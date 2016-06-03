@@ -10,8 +10,11 @@ class Api::UserController < ApplicationController
   end
 
   def show
-    @user = current_user
-    # render json: {user: current_user}
+    if current_user
+      @user = current_user
+    else
+      render json: {}
+    end
   end
 
   def update
