@@ -19,7 +19,6 @@ var ServerActions = {
     });
   },
   receiveUser: function (user) {
-    console.log("receive user");
     AppDispatcher.dispatch({
       actionType: "USER_RECEIVED",
       user: user

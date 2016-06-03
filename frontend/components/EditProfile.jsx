@@ -14,7 +14,8 @@ var EditProfile = React.createClass({
       bio: "",
       location: "",
       imageFile: null,
-      imageUrl: null
+      imageUrl: null,
+      saving: false
     });
   },
 
@@ -69,6 +70,8 @@ var EditProfile = React.createClass({
   },
 
   handleSubmit: function () {
+    this.setState({saving: true});
+    this.render();
     var formData = new FormData();
     formData.append("user[name]", this.state.name);
     formData.append("user[email]", this.state.email);
@@ -79,7 +82,10 @@ var EditProfile = React.createClass({
     if (this.state.imageFile) {
       formData.append("user[image]", this.state.imageFile);
     }
-    ClientActions.updateUser(formData);
+    ClientActions.updateUser(formData, this.redirectAfterUpdate);
+  },
+
+  redirectAfterUpdate: function () {
     this.context.router.push("/users/" + this.state.id);
   },
 
@@ -87,11 +93,11 @@ var EditProfile = React.createClass({
     this.context.router.push("/users/" + this.state.id);
   },
 
-  handleUploadClick: function () {
-
-  },
-
   render: function () {
+
+    var saveButtonClass = this.state.saving ? "save-profile-button-disabled" : "save-profile-button";
+    var saveButtonText = this.state.saving ? "Saving..." : "Save";
+
     return(
       <div className="edit-profile">
         <header className="edit-profile-header">Required</header>
@@ -130,7 +136,7 @@ var EditProfile = React.createClass({
           </div>
         </form>
 
-        <button onClick={this.handleSubmit} id="save-profile-button">Save</button>
+        <button onClick={this.handleSubmit} id={saveButtonClass}>{saveButtonText}</button>
         <button onClick={this.handleViewProfileClick} className="white-button" id="view-profile-button">View Profile</button>
       </div>
     );

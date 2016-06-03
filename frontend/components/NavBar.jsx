@@ -36,17 +36,12 @@ var NavBar = React.createClass({
   },
 
   getUser: function () {
-    console.log("getUser triggered");
     var user = UserStore.user();
     this.setState({
       user: user
     });
     if (user) {
-      console.log("user: " + user.name);
-      console.log("userImage: " + user.image_url);
       this.setState({userImage: user.image_url});
-    } else {
-      console.log("user: none");
     }
   },
   getNumberOfErrors: function () {
@@ -77,7 +72,6 @@ var NavBar = React.createClass({
   },
 
   render: function () {
-    console.log("nav bar rendered");
 
     var component;
     if (this.state.whichModal === "Log In") {

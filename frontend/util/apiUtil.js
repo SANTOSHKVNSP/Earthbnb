@@ -68,7 +68,7 @@ module.exports = {
     });
   },
 
-  updateUser: function(formData) {
+  updateUser: function(formData, callback) {
     $.ajax({
       url: 'api/user',
       type: "PATCH",
@@ -78,6 +78,9 @@ module.exports = {
       data: formData,
       success: function (response) {
         ServerActions.receiveUser(response);
+        if (callback) {
+          callback();
+        }
       },
       error: function (response) {
         ServerActions.receiveErrors(response);

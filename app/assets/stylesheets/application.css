@@ -273,7 +273,7 @@ button:hover {
   display: inline-block;
   width: 230px;
   height: 230px;
-  background: red;
+  background: gray;
 }
 
 .edit-profile-pic-text {
@@ -334,6 +334,15 @@ button:hover {
   margin-bottom: 22px;
 }
 
+#save-profile-button-disabled {
+  width: 92px;
+  height: 42px;
+  margin-top: 22px;
+  margin-bottom: 22px;
+  background-color: #FF8E91;
+  cursor: auto;
+}
+
 #view-profile-button {
   position: absolute;
   left: -250px;
@@ -359,7 +368,7 @@ button:hover {
   display: inline-block;
   width: 230px;
   height: 230px;
-  background: red;
+  background: gray;
 }
 
 .show-profile article {
