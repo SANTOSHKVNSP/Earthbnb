@@ -92,6 +92,7 @@ var EditProfile = React.createClass({
   },
 
   redirectAfterUpdate: function () {
+    ClientActions.clearErrors();
     this.context.router.push("/users/" + this.state.id);
   },
 
@@ -105,7 +106,7 @@ var EditProfile = React.createClass({
       speciesErrors: ErrorsStore.speciesErrors(),
       emailErrors: ErrorsStore.emailErrors()
     }, function () {
-      if (this.state.nameErrors.length === 0 && this.state.emailErrors.length === 0 && this.state.speciesErrors.length === 0) {
+      if (ErrorsStore.all().length > 0 && this.state.nameErrors.length === 0 && this.state.emailErrors.length === 0 && this.state.speciesErrors.length === 0) {
         alert("This photo could not be uploaded. Please select another.");
       } else {
         window.scroll(0, 0);

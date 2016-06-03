@@ -41,7 +41,8 @@ var NavBar = React.createClass({
       user: user
     });
     if (user) {
-      this.setState({userImage: user.image_url});
+      this.setState({userImage: user.image_url}, function () {
+      });
     }
   },
   getNumberOfErrors: function () {
