@@ -97,7 +97,6 @@ var EditProfile = React.createClass({
 
   rerenderIfFail: function () {
     this.setState({saving: false});
-    window.scroll(0, 0);
   },
 
   getErrors: function () {
@@ -105,6 +104,12 @@ var EditProfile = React.createClass({
       nameErrors: ErrorsStore.nameErrors(),
       speciesErrors: ErrorsStore.speciesErrors(),
       emailErrors: ErrorsStore.emailErrors()
+    }, function () {
+      if (this.state.nameErrors.length === 0 && this.state.emailErrors.length === 0 && this.state.speciesErrors.length === 0) {
+        alert("This photo could not be uploaded. Please select another.");
+      } else {
+        window.scroll(0, 0);
+      }
     });
   },
 
