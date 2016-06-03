@@ -89,7 +89,7 @@ var LogInForm = React.createClass({
         <input type="text" className={emailClass} placeholder="Email address" value={this.state.email} onChange={this.emailChanged}/><br />
 
         {this.renderPasswordErrors()}
-        <input type="text" className={passwordClass} placeholder="Password" value={this.state.password} onChange={this.passwordChanged}/><br />
+        <input type="password" className={passwordClass} placeholder="Password" value={this.state.password} onChange={this.passwordChanged}/><br />
 
         <button onClick={this.handleSubmit}>Log In</button>
         <button onClick={this.handleGuestLogIn}>Guest Log In</button>
