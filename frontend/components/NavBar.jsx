@@ -20,7 +20,8 @@ var NavBar = React.createClass({
       user: "",
       modalOpen: false,
       whichModal: "",
-      numberOfErrors: 0
+      numberOfErrors: 0,
+      userImage: ""
     });
   },
 
@@ -35,9 +36,13 @@ var NavBar = React.createClass({
   },
 
   getUser: function () {
+    var user = UserStore.user();
     this.setState({
-      user: UserStore.user()
+      user: user
     });
+    if (user) {
+      this.setState({userImage: user.image_url});
+    }
   },
   getNumberOfErrors: function () {
     this.setState({numberOfErrors: ErrorsStore.all().length});
@@ -84,6 +89,7 @@ var NavBar = React.createClass({
         <div className={"nav-bar"}>
           <div id="user-button" className="nav-bar-button">
             {this.state.user.name}
+            <img src={this.state.userImage} />
             <ul className="user-menu">
               <li onClick={this.handleEditProfileClick}>Edit Profile</li>
               <li onClick={this.handleYourListingsClick}>Your Listings</li>

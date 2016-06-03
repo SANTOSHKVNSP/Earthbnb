@@ -75,7 +75,7 @@ button:hover {
 }
 
 .nav-bar {
-  height: 60.5px;
+  height: 61px;
   border-bottom: 1px solid #DCE0E0;
 }
 
@@ -99,13 +99,25 @@ button:hover {
 }
 
 #user-button {
-  width: 126px;
+  width: 107px;
   position: relative;
+  padding-top: 16px;
+  height: 19.5px;
   color: #484848;
+  padding-left: 19px;
+  text-align: left;
 }
 
 #user-button:hover .user-menu {
   display: block;
+}
+
+#user-button img {
+  width: 30px;
+  height: 30px;
+  background: gray;
+  vertical-align: -11px;
+  margin-left: 10px;
 }
 
 .user-menu {
@@ -333,6 +345,7 @@ button:hover {
   margin-top: 24px;
   width: 996px;
   color: #484848;
+  background: #F5F5F5;
 }
 
 .show-profile img {
