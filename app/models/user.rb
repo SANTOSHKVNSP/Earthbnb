@@ -8,6 +8,9 @@ class User < ActiveRecord::Base
   validates :password_digest, :name, :species, presence: true
   validates :password, length: {minimum: 6, allow_nil: true}
 
+  has_attached_file :image, default_url: "camber.jpg"
+  validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
+
   def self.find_by_email_address(email)
     user = User.find_by_email(email)
     if user.nil?

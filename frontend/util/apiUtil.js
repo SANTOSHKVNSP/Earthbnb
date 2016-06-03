@@ -69,10 +69,14 @@ module.exports = {
   },
 
   updateUser: function(userData) {
+    console.log(userData);
     $.ajax({
       url: 'api/user',
       type: "PATCH",
+      dataType: "json",
       data: {user: userData},
+      // contentType: false,
+      // processData: false,
       success: function (response) {
         ServerActions.receiveUser(response);
       },

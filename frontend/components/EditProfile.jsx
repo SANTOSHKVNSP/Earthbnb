@@ -12,7 +12,9 @@ var EditProfile = React.createClass({
       email: "",
       species: "",
       bio: "",
-      location: ""
+      location: "",
+      imageFile: null,
+      imageUrl: null
     });
   },
 
@@ -51,6 +53,18 @@ var EditProfile = React.createClass({
   changeBio: function (event) {
     this.setState({bio: event.target.value});
   },
+  updateFile: function (event) {
+    var file = event.currentTarget.files[0];
+    var fileReader = new FileReader();
+    fileReader.onloadend = function () {
+      this.setState({ imageFile: file, imageUrl: fileReader.result });
+    }.bind(this);
+
+    if (file) {
+      fileReader.readAsDataURL(file);
+      console.log("done");
+    }
+  },
 
   handleSubmit: function () {
     var userData = {
@@ -68,9 +82,17 @@ var EditProfile = React.createClass({
     this.context.router.push("/users/" + this.state.id);
   },
 
-  handleUploadClick: function () {
-    console.log("click!");
-  },
+  // handleUploadClick: function (event) {
+  //   var file = event.currentTarget.files[0];
+  //   var fileReader = new FileReader();
+  //   fileReader.onloadend = function () {
+  //     this.setState({ imageFile: file, imageUrl: fileReader.result });
+  //   }.bind(this);
+  //
+  //   if (file) {
+  //     fileReader.readAsDataURL(file);
+  //   }
+  // },
 
   render: function () {
     return(
@@ -104,9 +126,10 @@ var EditProfile = React.createClass({
 
         <header className="edit-profile-header">Profile Photo</header>
         <form>
-          <img className="profile-pic" src="http://upload.wikimedia.org/wikipedia/commons/c/ce/Transparent.gif" />
+          <img className="profile-pic" src={this.state.imageUrl} />
           <div className="edit-profile-pic-text">
             Clear frontal face photos are an important way for hosts and guests to learn about each other. It’s not much fun to host a landscape! Please upload a photo that clearly shows your face.
+            <input type="file" onChange={this.updateFile} />
             <button onClick={this.handleUploadClick} id="upload-button" className="white-button">Upload a file from<br />your computer</button>
           </div>
         </form>

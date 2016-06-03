@@ -38,7 +38,8 @@ var ShowProfile = React.createClass({
         name: user.name,
         bio: user.bio,
         location: user.location,
-        species: user.species
+        species: user.species,
+        image_url: user.image_url
       });
     }
   },
@@ -61,7 +62,7 @@ var ShowProfile = React.createClass({
   render: function () {
     return(
       <div className="show-profile">
-        <img className="profile-pic" src="http://upload.wikimedia.org/wikipedia/commons/c/ce/Transparent.gif"/>
+        <img className="profile-pic" src={this.state.image_url}/>
         <article>
           <header>
             Hey, I'm {this.state.name}!

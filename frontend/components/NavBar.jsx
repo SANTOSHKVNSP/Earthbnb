@@ -96,7 +96,6 @@ var NavBar = React.createClass({
     } else {
       return(
         <div className={"nav-bar"}>
-          <span>Errors: {this.state.numberOfErrors}</span>
           <div onClick={this.handleModalOpen.bind(this, "Log In")} id="login-button" className="nav-bar-button">Log In</div>
           <div onClick={this.handleModalOpen.bind(this, "Sign Up")} id="signup-button" className="nav-bar-button">Sign Up</div>
 

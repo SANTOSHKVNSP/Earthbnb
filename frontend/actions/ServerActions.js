@@ -32,7 +32,7 @@ var ServerActions = {
   receiveUsers: function (response) {
     AppDispatcher.dispatch({
       actionType: "USERS_RECEIVED",
-      users: response.users
+      users: response
     });
   },
 };
