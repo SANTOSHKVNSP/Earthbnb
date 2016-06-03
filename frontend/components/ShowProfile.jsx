@@ -14,7 +14,8 @@ var ShowProfile = React.createClass({
       species: "",
       bio: "",
       location: "",
-      currentUser: null
+      currentUser: null,
+      imageUrl: ""
     });
   },
 
@@ -39,7 +40,7 @@ var ShowProfile = React.createClass({
         bio: user.bio,
         location: user.location,
         species: user.species,
-        image_url: user.image_url
+        imageUrl: user.image_url
       });
     }
   },
@@ -62,7 +63,7 @@ var ShowProfile = React.createClass({
   render: function () {
     return(
       <div className="show-profile">
-        <img className="profile-pic" src={this.state.image_url}/>
+        <img className="profile-pic" src={this.state.imageUrl}/>
         <article>
           <header>
             Hey, I'm {this.state.name}!

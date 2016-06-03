@@ -8,11 +8,11 @@
 
 Earthbnb is a web application inspired by Airbnb, but aimed at aliens instead of humans. It will be built using Ruby on Rails and React.js.  By the end of Week 9, this app will, at a minimum, satisfy the following criteria:
 
-- [ ] New account creation, login, and guest/demo login
+- [x] New account creation, login, and guest/demo login
 - [ ] Smooth, bug-free navigation
 - [ ] Adequate seed data to demonstrate the site's features
 - [ ] The minimally necessary features for an Airbnb-inspired site: user profiles with property listings, reservations, and reviews
-- [ ] Hosting on Heroku
+- [x] Hosting on Heroku
 - [ ] CSS styling that is satisfactorily visually appealing
 - [ ] A production README, replacing this README (**NB**: check out the [sample production README](https://github.com/appacademy/sample-project-proposal/blob/master/docs/production_readme.md) -- you'll write this later)
 
@@ -50,19 +50,17 @@ progress. Put an x between the brackets for a checkmark: [x] -->
 
 **Objective:** Functioning rails project with Authentication and user profile info
 
-- [ ] create new project
-- [ ] create `User` model
-- [ ] authentication
-- [ ] user signup/signin pages
-- [ ] setup Webpack & Flux scaffold
-- [ ] setup `APIUtil` to interact with the API
-- [ ] test out API interaction in the console.
+- [x] create new project
+- [x] create `User` model
+- [x] authentication
+- [x] user signup/signin pages
+- [x] setup Webpack & Flux scaffold
+- [x] setup `APIUtil` to interact with the API
+- [x] test out API interaction in the console.
 - [ ] seed the database with a small amount of user data
-- [ ] setup React Router
+- [x] setup React Router
 - [ ] public user profile page
 - [ ] update API for users (`UsersController`)
-- [ ] create `Species` model
-- [ ] populate the species database
 - implement each user component, building out the flux loop as needed.
   - [ ] `UserDetail`
   - [ ] `UserPhoto`

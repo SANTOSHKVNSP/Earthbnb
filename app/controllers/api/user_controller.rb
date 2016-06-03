@@ -10,10 +10,13 @@ class Api::UserController < ApplicationController
   end
 
   def show
-    render json: {user: current_user}
+    @user = current_user
+    # render json: {user: current_user}
   end
 
   def update
+    p "params:"
+    p params
     if current_user.update(user_params)
       render json: {user: current_user}
     else

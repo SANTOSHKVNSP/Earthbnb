@@ -44,7 +44,7 @@ var routes = (
 document.addEventListener("DOMContentLoaded", function(){
   Modal.setAppElement(document.body);
   ReactDOM.render(
-    <Router history={hashHistory} routes={routes} />,
+    <Router onUpdate={function () {window.scrollTo(0, 0);}} history={hashHistory} routes={routes} />,
     document.getElementById("content")
   );
 });

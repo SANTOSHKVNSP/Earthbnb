@@ -28,14 +28,17 @@ var EditProfile = React.createClass({
 
   getUser: function () {
     user = UserStore.user();
-    this.setState({
-      name: user.name,
-      email: user.email,
-      species: user.species,
-      bio: user.bio ? user.bio : "",
-      location: user.location ? user.location : "",
-      id: user.id
-    });
+    if (user) {
+      this.setState({
+        name: user.name,
+        email: user.email,
+        species: user.species,
+        bio: user.bio ? user.bio : "",
+        location: user.location ? user.location : "",
+        id: user.id,
+        imageUrl: user.image_url
+      });
+    }
   },
 
   changeName: function (event) {
@@ -62,37 +65,34 @@ var EditProfile = React.createClass({
 
     if (file) {
       fileReader.readAsDataURL(file);
-      console.log("done");
     }
   },
 
   handleSubmit: function () {
-    var userData = {
-      name: this.state.name,
-      species: this.state.species,
-      email: this.state.email,
-      location: this.state.location,
-      bio: this.state.bio
-    };
-    ClientActions.updateUser(userData);
+    var formData = new FormData();
+    formData.append("user[name]", this.state.name);
+    formData.append("user[email]", this.state.email);
+    formData.append("user[species]", this.state.species);
+    formData.append("user[location]", this.state.location);
+    formData.append("user[bio]", this.state.bio);
+
+    if (this.state.imageFile) {
+      formData.append("user[image]", this.state.imageFile);
+    }
+    // var userData = {
+    //   name: this.state.name,
+    //   species: this.state.species,
+    //   email: this.state.email,
+    //   location: this.state.location,
+    //   bio: this.state.bio
+    // };
+    ClientActions.updateUser(formData);
     this.context.router.push("/users/" + this.state.id);
   },
 
   handleViewProfileClick: function () {
     this.context.router.push("/users/" + this.state.id);
   },
-
-  // handleUploadClick: function (event) {
-  //   var file = event.currentTarget.files[0];
-  //   var fileReader = new FileReader();
-  //   fileReader.onloadend = function () {
-  //     this.setState({ imageFile: file, imageUrl: fileReader.result });
-  //   }.bind(this);
-  //
-  //   if (file) {
-  //     fileReader.readAsDataURL(file);
-  //   }
-  // },
 
   render: function () {
     return(

@@ -206,7 +206,7 @@ button:hover {
 .edit-profile {
   position: relative;
   width: 742px;
-  margin-left: calc(50% - 371px + 250px); /*half of edit profile plus width & margin of View Profile button*/
+  margin-left: calc(50% - 371px + 125px); /*half of edit-profile plus half of (width + margin) of View Profile button*/
   color: #6B6C6B;
   text-align: right;
 }

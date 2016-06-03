@@ -68,15 +68,14 @@ module.exports = {
     });
   },
 
-  updateUser: function(userData) {
-    console.log(userData);
+  updateUser: function(formData) {
     $.ajax({
       url: 'api/user',
       type: "PATCH",
       dataType: "json",
-      data: {user: userData},
-      // contentType: false,
-      // processData: false,
+      contentType: false,
+      processData: false,
+      data: formData,
       success: function (response) {
         ServerActions.receiveUser(response);
       },
