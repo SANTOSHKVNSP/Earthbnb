@@ -75,8 +75,8 @@ var EditProfile = React.createClass({
   },
 
   handleSubmit: function () {
-    // this.setState({saving: true});
-    // this.render();
+    this.setState({saving: true});
+    this.render();
     var formData = new FormData();
     formData.append("user[name]", this.state.name);
     formData.append("user[email]", this.state.email);
@@ -95,15 +95,16 @@ var EditProfile = React.createClass({
   },
 
   rerenderIfFail: function () {
-    // this.setState({saving: false});
+    this.setState({saving: false});
   },
 
   getErrors: function () {
-    // this.setState({
-    //   nameErrors: ErrorsStore.nameErrors(),
-    //   speciesErrors: ErrorsStore.speciesErrors(),
-    //   emailErrors: ErrorsStore.emailErrors()
-    // });
+    this.setState({
+      nameErrors: ErrorsStore.nameErrors(),
+      speciesErrors: ErrorsStore.speciesErrors(),
+      emailErrors: ErrorsStore.emailErrors()
+    });
+    console.log(this.state.emailErrors);
   },
 
   handleViewProfileClick: function () {
