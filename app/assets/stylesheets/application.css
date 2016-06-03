@@ -265,11 +265,47 @@ button:hover {
   text-align: left;
 }
 
-#upload-button {
+#upload-button-container {
+  position: relative;
+  background: transparent;
+  font-weight: 400;
+  font-size: 16px;
+  border: 1px solid #C4C4C4;
+  color: #484848;
   width: 230px;
   margin-top: 20px;
-  font-size: 16px;
+  height: 68px;
+  overflow: hidden;
+  border-radius: 2px;
+}
+
+#upload-button-container:hover {
+  border: 1px solid #7A7A7A;
+}
+
+#upload-button-container input {
+  position: absolute;
+  z-index: 100;
+  margin: 0;
+  border: 0;
+  display: block;
+  width: 230px;
+  height: 68px;
+  opacity: 0;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+#upload-button {
+  position: absolute;
+  z-index: 0;
   padding: 13px 0;
+  text-align: center;
+  font-weight: 400;
+  font-size: 16px;
+  color: #484848;
+  width: 230px;
+  height: 68px;
 }
 
 #save-profile-button {

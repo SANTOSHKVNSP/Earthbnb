@@ -15,12 +15,10 @@ class Api::UserController < ApplicationController
   end
 
   def update
-    p "params:"
-    p params
     if current_user.update(user_params)
       render json: {user: current_user}
     else
-      render json: @user.errors.full_messages, status: 422
+      render json: current_user.errors.full_messages, status: 422
     end
   end
 

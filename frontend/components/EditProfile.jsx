@@ -57,6 +57,7 @@ var EditProfile = React.createClass({
     this.setState({bio: event.target.value});
   },
   updateFile: function (event) {
+    console.log("click");
     var file = event.currentTarget.files[0];
     var fileReader = new FileReader();
     fileReader.onloadend = function () {
@@ -79,19 +80,16 @@ var EditProfile = React.createClass({
     if (this.state.imageFile) {
       formData.append("user[image]", this.state.imageFile);
     }
-    // var userData = {
-    //   name: this.state.name,
-    //   species: this.state.species,
-    //   email: this.state.email,
-    //   location: this.state.location,
-    //   bio: this.state.bio
-    // };
     ClientActions.updateUser(formData);
     this.context.router.push("/users/" + this.state.id);
   },
 
   handleViewProfileClick: function () {
     this.context.router.push("/users/" + this.state.id);
+  },
+
+  handleUploadClick: function () {
+
   },
 
   render: function () {
@@ -129,8 +127,7 @@ var EditProfile = React.createClass({
           <img className="profile-pic" src={this.state.imageUrl} />
           <div className="edit-profile-pic-text">
             Clear frontal face photos are an important way for hosts and guests to learn about each other. It’s not much fun to host a landscape! Please upload a photo that clearly shows your face.
-            <input type="file" onChange={this.updateFile} />
-            <button onClick={this.handleUploadClick} id="upload-button" className="white-button">Upload a file from<br />your computer</button>
+            <div id="upload-button-container"><input type="file" onChange={this.updateFile} /><div id="upload-button">Upload a file from<br />your computer</div></div>
           </div>
         </form>
 

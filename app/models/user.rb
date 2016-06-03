@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
 
   has_attached_file :image, default_url: "alien.jpg"
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
+  # validates_attachment_content_type :image, content_type: { content_type: ["image/jpeg", "image/jpg", "image/gif", "image/png"] }
 
   def self.find_by_email_address(email)
     user = User.find_by_email(email)
