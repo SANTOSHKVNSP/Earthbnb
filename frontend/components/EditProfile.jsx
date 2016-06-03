@@ -30,6 +30,7 @@ var EditProfile = React.createClass({
   },
   componentWillUnmount: function () {
     this.listener.remove();
+    this.errorsListener.remove();
   },
 
   getUser: function () {
@@ -96,6 +97,7 @@ var EditProfile = React.createClass({
 
   rerenderIfFail: function () {
     this.setState({saving: false});
+    window.scroll(0, 0);
   },
 
   getErrors: function () {
@@ -104,14 +106,33 @@ var EditProfile = React.createClass({
       speciesErrors: ErrorsStore.speciesErrors(),
       emailErrors: ErrorsStore.emailErrors()
     });
-    console.log(this.state.emailErrors);
   },
 
   handleViewProfileClick: function () {
     this.context.router.push("/users/" + this.state.id);
   },
 
+  renderNameErrors: function() {
+    return this.state.nameErrors.map(function(nameError, index) {
+      return(<div key={index} className="error-message-update">{nameError}</div>);
+    });
+  },
+  renderSpeciesErrors: function() {
+    return this.state.speciesErrors.map(function(speciesError, index) {
+      return(<div key={index} className="error-message-update">{speciesError}</div>);
+    });
+  },
+  renderEmailErrors: function() {
+    return this.state.emailErrors.map(function(emailError, index) {
+      return(<div key={index} className="error-message-update">{emailError}</div>);
+    });
+  },
+
   render: function () {
+
+    var nameClass = this.state.nameErrors.length > 0 ? "errors" : "no-errors";
+    var speciesClass = this.state.speciesErrors.length > 0 ? "errors" : "no-errors";
+    var emailClass = this.state.emailErrors.length > 0 ? "errors" : "no-errors";
 
     var saveButtonClass = this.state.saving ? "save-profile-button-disabled" : "save-profile-button";
     var saveButtonText = this.state.saving ? "Saving..." : "Save";
@@ -120,14 +141,19 @@ var EditProfile = React.createClass({
       <div className="edit-profile">
         <header className="edit-profile-header">Required</header>
         <form>
+          {this.renderNameErrors()}
           <label>
-            Name<input type="text" onChange={this.changeName} value={this.state.name} />
+            Name<input type="text" className={nameClass} onChange={this.changeName} value={this.state.name} />
           </label><br />
+
+          {this.renderEmailErrors()}
           <label>
-            Email Address<input type="text" onChange={this.changeEmail} value={this.state.email} />
+            Email Address<input type="text" className={emailClass} onChange={this.changeEmail} value={this.state.email} />
           </label><br />
+
+          {this.renderSpeciesErrors()}
           <label>
-            I Am A<input type="text" onChange={this.changeSpecies} value={this.state.species} />
+            I Am A<input type="text" className={speciesClass} onChange={this.changeSpecies} value={this.state.species} />
           </label>
         </form>
 

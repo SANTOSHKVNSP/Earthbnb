@@ -198,6 +198,14 @@ button:hover {
   padding-left: 22px;
 }
 
+.error-message-update {
+  color: red;
+  height: 16px;
+  text-align: left;
+  padding-left: 180px;
+  padding-bottom: 2px;
+}
+
 .admin-nav-bar {
   background: #484848;
   height: 29px;
