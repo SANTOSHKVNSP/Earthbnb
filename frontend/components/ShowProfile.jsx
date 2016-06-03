@@ -10,7 +10,6 @@ var ShowProfile = React.createClass({
   getInitialState: function () {
     return({
       name: "",
-      email: "",
       species: "",
       bio: "",
       location: "",
@@ -21,8 +20,9 @@ var ShowProfile = React.createClass({
 
   componentDidMount: function () {
     this.usersListener = UsersStore.addListener(this.getUser);
-    this.userListener = UserStore.addListener(this.getCurrentUser);
     ClientActions.fetchUsers();
+    this.userListener = UserStore.addListener(this.getCurrentUser);
+    ClientActions.fetchUser();
   },
   componentWillReceiveProps: function () {
     ClientActions.fetchUsers();

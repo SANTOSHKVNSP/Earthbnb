@@ -1,6 +1,7 @@
 var React = require('react');
 var ClientActions = require('../actions/ClientActions.js');
 var UserStore = require('../stores/UserStore.js');
+var ErrorsStore = require('../stores/ErrorsStore.js');
 
 var EditProfile = React.createClass({
 
@@ -15,12 +16,16 @@ var EditProfile = React.createClass({
       location: "",
       imageFile: null,
       imageUrl: null,
-      saving: false
+      saving: false,
+      nameErrors: [],
+      speciesErrors: [],
+      emailErrors: []
     });
   },
 
   componentDidMount: function () {
     this.listener = UserStore.addListener(this.getUser);
+    this.errorsListener = ErrorsStore.addListener(this.getErrors);
     ClientActions.fetchUser();
   },
   componentWillUnmount: function () {
@@ -70,8 +75,8 @@ var EditProfile = React.createClass({
   },
 
   handleSubmit: function () {
-    this.setState({saving: true});
-    this.render();
+    // this.setState({saving: true});
+    // this.render();
     var formData = new FormData();
     formData.append("user[name]", this.state.name);
     formData.append("user[email]", this.state.email);
@@ -82,11 +87,23 @@ var EditProfile = React.createClass({
     if (this.state.imageFile) {
       formData.append("user[image]", this.state.imageFile);
     }
-    ClientActions.updateUser(formData, this.redirectAfterUpdate);
+    ClientActions.updateUser(formData, this.redirectAfterUpdate, this.rerenderIfFail);
   },
 
   redirectAfterUpdate: function () {
     this.context.router.push("/users/" + this.state.id);
+  },
+
+  rerenderIfFail: function () {
+    // this.setState({saving: false});
+  },
+
+  getErrors: function () {
+    // this.setState({
+    //   nameErrors: ErrorsStore.nameErrors(),
+    //   speciesErrors: ErrorsStore.speciesErrors(),
+    //   emailErrors: ErrorsStore.emailErrors()
+    // });
   },
 
   handleViewProfileClick: function () {

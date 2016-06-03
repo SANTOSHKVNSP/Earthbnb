@@ -62,12 +62,13 @@ ErrorsStore.__onDispatch = function(payload) {
   switch(payload.actionType){
     case "ERRORS_RECEIVED":
       this.resetErrors(payload.errors);
+      this.__emitChange();
       break;
     case "CLEAR_ERRORS":
       this.empty();
+      this.__emitChange();
       break;
   }
-  this.__emitChange();
 };
 
 module.exports = ErrorsStore;

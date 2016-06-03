@@ -17,12 +17,13 @@ UserStore.__onDispatch = function(payload) {
   switch(payload.actionType){
     case "USER_RECEIVED":
       this.setUser(payload.user);
+      this.__emitChange();
       break;
     case "USER_LOGGED_OUT":
       _user = null;
+      this.__emitChange();
       break;
   }
-  this.__emitChange();
 };
 
 module.exports = UserStore;

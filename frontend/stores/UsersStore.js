@@ -19,9 +19,9 @@ UsersStore.__onDispatch = function(payload) {
   switch(payload.actionType){
     case "USERS_RECEIVED":
       this.setUsers(payload.users);
+      this.__emitChange();
       break;
   }
-  this.__emitChange();
 };
 
 module.exports = UsersStore;
