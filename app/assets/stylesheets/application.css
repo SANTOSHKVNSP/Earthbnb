@@ -25,6 +25,10 @@
   clear: both;
 }
 
+body {
+  background-color: #F5F5F5;
+}
+
 p {
   text-align: left;
 }
@@ -62,7 +66,7 @@ button:hover {
 }
 
 .white-button {
-  background: transparent;
+  background: white;
   font-weight: 400;
   font-size: 14px;
   border: 1px solid #C4C4C4;
@@ -70,11 +74,12 @@ button:hover {
 }
 
 .white-button:hover {
+  background: white;
   border: 1px solid #7A7A7A;
-  background-color: transparent;
 }
 
 .nav-bar {
+  background: white;
   height: 61px;
   border-bottom: 1px solid #DCE0E0;
 }
@@ -239,6 +244,7 @@ button:hover {
 }
 
 .edit-profile form {
+  background: white;
   padding: 18px 18px 0 18px;
   border: solid 1px #DCE0E0;
 }

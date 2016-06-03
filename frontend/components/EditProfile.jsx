@@ -57,7 +57,6 @@ var EditProfile = React.createClass({
     this.setState({bio: event.target.value});
   },
   updateFile: function (event) {
-    console.log("click");
     var file = event.currentTarget.files[0];
     var fileReader = new FileReader();
     fileReader.onloadend = function () {
