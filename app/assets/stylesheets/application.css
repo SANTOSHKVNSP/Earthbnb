@@ -29,7 +29,20 @@ body { background-color: #F5F5F5; }
 p { text-align: left; }
 
 a { cursor: pointer; color: #FE6C70; }
-a:hover { text-decoration: underline }
+a:hover { text-decoration: underline; }
+
+h {
+  font-family: 'Lato', sans-serif;
+}
+
+h1 {
+  font-size: 42px;
+  margin-bottom: 11px;
+}
+
+h2 {
+  font-size: 24px;
+}
 
 input, textarea {
   margin: 2px;
@@ -300,6 +313,9 @@ button:hover {
   color: #B3B3B3;
   padding-top: 11px;
   padding-left: 455px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
 }
 
 .admin-nav-bar li {
@@ -474,12 +490,6 @@ button:hover {
   width: 600px;
 }
 
-.show-profile header {
-  font-size: 42px;
-  font-family: 'Lato', sans-serif;
-  margin-bottom: 11px;
-}
-
 .show-profile a {
   display: inline-block;
   margin-bottom: 44px;
@@ -489,6 +499,37 @@ button:hover {
   font-size: 16px;
   font-weight: 400;
   margin-bottom: 34px;
+}
+
+.add-listing-container {
+  background: white;
+}
+
+.add-listing {
+  width: 850px;
+  padding-top: 25px;
+  margin: auto;
+  color: #484848;
+}
+
+.add-listing h1 {
+  margin-bottom: 30px;
+}
+
+.add-listing h2 {
+  margin-bottom: 30px;
+}
+
+.add-listing input {
+  background: white;
+  font-size: 18px;
+  height: 42px;
+  width: 460px;
+}
+
+.map {
+  width: 500px;
+  height: 500px;
 }
 
 .filler {

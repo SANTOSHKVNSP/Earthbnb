@@ -65,9 +65,7 @@ var ShowProfile = React.createClass({
       <div className="show-profile">
         <img className="profile-pic" src={this.state.imageUrl}/>
         <article>
-          <header>
-            Hey, I'm {this.state.name}!
-          </header>
+          <h1>Hey, I'm {this.state.name}!</h1>
           <div className="location">{this.state.location}</div>
           {this.editLink()}
           {this.state.bio}

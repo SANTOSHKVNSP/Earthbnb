@@ -16,6 +16,8 @@ var PropertySearch = require('./components/PropertySearch.jsx');
 var AdminNavBar = require('./components/AdminNavBar.jsx');
 var EditProfile = require('./components/EditProfile.jsx');
 var ShowProfile = require('./components/ShowProfile.jsx');
+var ListingsIndex = require('./components/ListingsIndex.jsx');
+var AddListing = require('./components/AddListing.jsx');
 
 var App = React.createClass({
 
@@ -43,9 +45,11 @@ var routes = (
   <Route path="/" component={App}>
     <IndexRoute component={SlideShow} />
     <Route path="/user" component={AdminNavBar}>
-      <Route path="/user/edit" component={EditProfile}/>
+      <Route path="/user/edit" component={EditProfile} />
+      <Route path="/user/listings" component={ListingsIndex} />
     </Route>
-    <Route path="/users/:userId" component={ShowProfile}/>
+    <Route path="/add-a-listing" component={AddListing} />
+    <Route path="/users/:userId" component={ShowProfile} />
   </Route>
 );
 
