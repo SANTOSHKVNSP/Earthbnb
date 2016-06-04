@@ -221,6 +221,14 @@ button:hover {
   cursor: pointer;
 }
 
+#species-select-box img {
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  top: 6.5px;
+  left: 375px;
+}
+
 #species-dropdown {
   background: blue;
   position: absolute;
