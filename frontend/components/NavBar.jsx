@@ -82,7 +82,7 @@ var NavBar = React.createClass({
     } else {
       component = <SignUpForm />;
       ModalStyles.content.width = '452px';
-      ModalStyles.content.height = (284 + (additionalErrorHeight * this.state.numberOfErrors)) + 'px';
+      ModalStyles.content.height = (286 + (additionalErrorHeight * this.state.numberOfErrors)) + 'px';
     }
 
     if (this.state.user) {

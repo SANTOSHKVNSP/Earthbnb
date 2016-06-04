@@ -186,8 +186,68 @@ button:hover {
   height: 50px;
 }
 
+#species-select-box {
+  display: inline-block;
+  position: relative;
+  margin: 2px;
+  padding: 10px;
+  text-align: left;
+  border-radius:2px;
+  width: 388px;
+  height: 18px;
+  -webkit-user-select: none; /* Chrome/Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none;
+  cursor: pointer;
+}
+
+#species-dropdown {
+  background: blue;
+  position: absolute;
+  z-index: 1;
+  left: -1px;
+  top: 38px;
+  border: 1px solid #C4C4C4;
+  text-align: left;
+  color: #484848;
+}
+
+.drop-down-visible {
+  display: block;
+}
+
+.drop-down-invisible {
+  display: none;
+}
+
+#species-dropdown li {
+  padding: 10px;
+  float: none;
+  width: 388px;
+  height: 20px;
+  background: white;
+  margin: 0;
+  cursor: pointer;
+}
+
+#species-dropdown li:hover {
+  background: yellow;
+}
+
 .errors {
   border: 1px solid red;
+}
+
+.no-errors {
+  border: 1px solid #C4C4C4;
+}
+
+.blackText {
+  color: black;
+}
+
+.grayText {
+  color: #A9A9AE;;
 }
 
 .error-message {
