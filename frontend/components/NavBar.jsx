@@ -68,6 +68,7 @@ var NavBar = React.createClass({
   },
   handleLogout: function (event) {
     ClientActions.logoutUser();
+    ClientActions.clearErrors();
     this.setState({modalOpen: false});
     this.context.router.push("/");
   },
