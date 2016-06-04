@@ -10,30 +10,38 @@ var hashHistory = ReactRouter.hashHistory;
 
 var ErrorsStore = require('./stores/ErrorsStore.js');
 
+var SlideShow = require('./components/SlideShow.jsx');
 var NavBar = require('./components/NavBar.jsx');
 var PropertySearch = require('./components/PropertySearch.jsx');
-var SignUpForm = require('./components/SignUpForm.jsx');
-var LogInForm = require('./components/LogInForm.jsx');
 var AdminNavBar = require('./components/AdminNavBar.jsx');
 var EditProfile = require('./components/EditProfile.jsx');
 var ShowProfile = require('./components/ShowProfile.jsx');
 
 var App = React.createClass({
+
+  contextTypes: {router: React.PropTypes.object.isRequired},
+
   render: function () {
-    return(
-      <div>
-        <NavBar />
-        {this.props.children}
-      </div>
-    );
+    if (this.props.location.pathname === "/") {
+      return(
+        <div>
+          {this.props.children}
+        </div>
+      );
+    } else {
+      return(
+        <div>
+          <NavBar />
+          {this.props.children}
+        </div>
+      );
+    }
   }
 });
 
 var routes = (
   <Route path="/" component={App}>
-    <IndexRoute component={PropertySearch} />
-    <Route path="/signup" component={SignUpForm}/>
-    <Route path="/login" component={LogInForm}/>
+    <IndexRoute component={SlideShow} />
     <Route path="/user" component={AdminNavBar}>
       <Route path="/user/edit" component={EditProfile}/>
     </Route>

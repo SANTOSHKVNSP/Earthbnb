@@ -93,6 +93,15 @@ var SignUpForm = React.createClass({
     ClientActions.clearErrors();
   },
 
+  handleGuestLogIn: function(event) {
+    event.preventDefault();
+    ClientActions.createSession(
+      {email: "guest@guest.com", password: "guestpassword"},
+      this.redirectAfterLogin
+    );
+    ClientActions.clearErrors();
+  },
+
   redirectAfterSignup: function () {
     this.context.router.push("/");
   },
@@ -139,6 +148,7 @@ var SignUpForm = React.createClass({
         {this.renderSpeciesErrors()}
         <div id="species-select-box" className={speciesClasses} onClick={this.handleSpeciesBoxClick}>
           {speciesBoxText}
+          <img src={window.dropDownButtonUrl} />
           <ul id="species-dropdown" className={dropdownClass}>
             <li onClick={this.handleSelect1}>{species1}</li>
             <li onClick={this.handleSelect2}>{species2}</li>
@@ -153,16 +163,10 @@ var SignUpForm = React.createClass({
         <input type="password" className={passwordClass} placeholder="Password" value={this.state.password} onChange={this.passwordChanged}/><br />
 
         <button onClick={this.handleSubmit}>Sign Up</button>
+        <button onClick={this.handleGuestLogIn}>Guest Log In</button>
       </div>
     );
   }
 });
 
 module.exports = SignUpForm;
-
-
-// <select className={speciesClass} onChange={this.speciesChanged}>
-//   <option value="">I am a...</option>
-//   <option value="Martian">Martian</option>
-//   <option value="Klingon">Klingon</option>
-// </select><br />

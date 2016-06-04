@@ -25,22 +25,11 @@
   clear: both;
 }
 
-body {
-  background-color: #F5F5F5;
-}
+body { background-color: #F5F5F5; }
+p { text-align: left; }
 
-p {
-  text-align: left;
-}
-
-a {
-  cursor: pointer;
-  color: #FE6C70;
-}
-
-a:hover {
-  text-decoration: underline
-}
+a { cursor: pointer; color: #FE6C70; }
+a:hover { text-decoration: underline }
 
 input, textarea {
   margin: 2px;
@@ -78,21 +67,53 @@ button:hover {
   border: 1px solid #7A7A7A;
 }
 
+.slide-show {
+  display: block;
+  background: black;
+  width: 100%;
+  height: 600px;
+}
+
 .nav-bar {
   background: white;
   height: 61px;
-  border-bottom: 1px solid #DCE0E0;
+  color: #484848;
+  border-color: #DCE0E0;
+  border-style: solid;
+  border-width: 0px;
+  border-bottom-width: 1px;
+}
+
+.transparent {
+  background: transparent;
+  color: white;
+  border-color: transparent;
 }
 
 .nav-bar-button {
   float: right;
   display: block;
   height: 13px;
-  border-left: 1px solid #DCE0E0;
   text-align: center;
   padding-top: 20.75px;
   padding-bottom: 26.75px;
+  border-color: inherit;
+  border-style: solid;
+  border-width: 0px;
+  border-left-width: 1px;
   cursor: pointer;
+}
+
+#logo-container {
+  float: left;
+  display: block;
+  height: 13px;
+  padding: 16px 16px 31.5px 16px;
+  cursor: pointer;
+}
+
+#logo {
+  height: 25px;
 }
 
 #login-button {
@@ -108,7 +129,6 @@ button:hover {
   position: relative;
   padding-top: 16px;
   height: 19.5px;
-  color: #484848;
   padding-left: 19px;
   text-align: left;
 }

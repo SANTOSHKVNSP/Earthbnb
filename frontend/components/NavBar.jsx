@@ -57,6 +57,9 @@ var NavBar = React.createClass({
     ClientActions.clearErrors();
   },
 
+  handleLogoClick: function () {
+    this.context.router.push("/");
+  },
   handleEditProfileClick: function () {
     this.context.router.push("/user/edit");
   },
@@ -75,6 +78,16 @@ var NavBar = React.createClass({
 
   render: function () {
 
+    var navBarClasses;
+    var whichLogo;
+    if (this.props.background === "transparent") {
+      navBarClasses = "nav-bar transparent";
+      whichLogo = window.whiteLogoUrl;
+    } else {
+      navBarClasses = "nav-bar";
+      whichLogo = window.pinkLogoUrl;
+    }
+
     var component;
     if (this.state.whichModal === "Log In") {
       component = <LogInForm />;
@@ -83,12 +96,15 @@ var NavBar = React.createClass({
     } else {
       component = <SignUpForm />;
       ModalStyles.content.width = '452px';
-      ModalStyles.content.height = (286 + (additionalErrorHeight * this.state.numberOfErrors)) + 'px';
+      ModalStyles.content.height = (346 + (additionalErrorHeight * this.state.numberOfErrors)) + 'px';
     }
 
     if (this.state.user) {
       return(
-        <div className={"nav-bar"}>
+        <div className={navBarClasses}>
+          <div id="logo-container" onClick={this.handleLogoClick}>
+            <img id="logo" src={whichLogo} />
+          </div>
           <div id="user-button" className="nav-bar-button">
             {this.state.user.name}
             <img src={this.state.userImage} />
@@ -103,7 +119,10 @@ var NavBar = React.createClass({
       );
     } else {
       return(
-        <div className={"nav-bar"}>
+        <div className={navBarClasses}>
+          <div id="logo-container" onClick={this.handleLogoClick}>
+            <img id="logo" src={whichLogo} />
+          </div>
           <div onClick={this.handleModalOpen.bind(this, "Log In")} id="login-button" className="nav-bar-button">Log In</div>
           <div onClick={this.handleModalOpen.bind(this, "Sign Up")} id="signup-button" className="nav-bar-button">Sign Up</div>
 
