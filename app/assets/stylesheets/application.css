@@ -224,7 +224,7 @@ button:hover {
   height: 50px;
 }
 
-#species-select-box {
+#select-box {
   display: inline-block;
   position: relative;
   margin: 2px;
@@ -239,7 +239,7 @@ button:hover {
   cursor: pointer;
 }
 
-#species-select-box img {
+#select-box img {
   position: absolute;
   width: 25px;
   height: 25px;
@@ -247,8 +247,7 @@ button:hover {
   left: 375px;
 }
 
-#species-dropdown {
-  background: blue;
+#select-box-dropdown {
   position: absolute;
   z-index: 1;
   left: -1px;
@@ -266,7 +265,7 @@ button:hover {
   display: none;
 }
 
-#species-dropdown li {
+#select-box-dropdown li {
   padding: 10px;
   float: none;
   width: 388px;
@@ -276,7 +275,7 @@ button:hover {
   cursor: pointer;
 }
 
-#species-dropdown li:hover {
+#select-box-dropdown li:hover {
   background: yellow;
 }
 
@@ -551,6 +550,32 @@ button:hover {
 
 .add-listing form {
   margin-bottom: 60px;
+}
+
+.add-listing #select-box {
+  font-size: 18px;
+  padding-top: 20px;
+  height: 32px;
+  width: 460px;
+  margin-bottom: 24px;
+}
+
+.add-listing #select-box img {
+  width: 35px;
+  height: 35px;
+  top: 13px;
+  left: 435px;
+}
+
+.add-listing #select-box-dropdown {
+  top: 62px;
+}
+
+.add-listing #select-box-dropdown > li {
+  width: 460px;
+  height: 32px;
+  font-size: 18px;
+  padding-top: 20px;
 }
 
 .map {

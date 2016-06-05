@@ -146,10 +146,10 @@ var SignUpForm = React.createClass({
         <input type="text" className={nameClass} placeholder="Name" value={this.state.name} onChange={this.nameChanged}/><br />
 
         {this.renderSpeciesErrors()}
-        <div id="species-select-box" className={speciesClasses} onClick={this.handleSpeciesBoxClick}>
+        <div id="select-box" className={speciesClasses} onClick={this.handleSpeciesBoxClick}>
           {speciesBoxText}
           <img src={window.dropDownButtonUrl} />
-          <ul id="species-dropdown" className={dropdownClass}>
+          <ul id="select-box-dropdown" className={dropdownClass}>
             <li onClick={this.handleSelect1}>{species1}</li>
             <li onClick={this.handleSelect2}>{species2}</li>
             <li onClick={this.handleSelect3}>{species3}</li>

@@ -10,6 +10,7 @@ var AddListing = React.createClass({
     return({
       saving: false,
       autoCompleteInput: "",
+      showingPropertyTypeDropDown: false,
       address: "",
       city: "",
       state: "",
@@ -114,6 +115,22 @@ var AddListing = React.createClass({
   handleAptChange: function (event) {
     this.setState({apt: event.target.value});
   },
+  handlePropertyTypeBoxClick: function(event) {
+    if (this.state.showingPropertyTypeDropDown) {
+      this.setState({showingPropertyTypeDropDown: false});
+    } else {
+      this.setState({showingPropertyTypeDropDown: true});
+    }
+  },
+  handleSelect1: function(event) {
+    this.setState({species: species1});
+  },
+  handleSelect2: function(event) {
+    this.setState({species: species2});
+  },
+  handleSelect3: function(event) {
+    this.setState({species: species3});
+  },
   handleTitleChange: function (event) {
     this.setState({title: event.target.value});
   },
@@ -200,6 +217,7 @@ var AddListing = React.createClass({
 
       var saveButtonClass = this.state.saving ? "save-profile-button-disabled" : "save-profile-button";
       var saveButtonText = this.state.saving ? "Saving..." : "Save";
+      var dropdownClass = this.state.showingPropertyTypeDropDown ? "drop-down-visible" : "drop-down-invisible";
 
       return(
         <div className="add-listing-container">
@@ -234,6 +252,15 @@ var AddListing = React.createClass({
             </form>
             <h2>What kind of place are you listing?</h2>
             <form>
+              <div id="select-box" className={"no-errors"} onClick={this.handlePropertyTypeBoxClick}>
+                {this.state.propertyTypeId}
+                <img src={window.dropDownButtonUrl} />
+                <ul id="select-box-dropdown" className={dropdownClass}>
+                  <li onClick={this.handleSelect1}>"one"</li>
+                  <li onClick={this.handleSelect2}>"two"</li>
+                  <li onClick={this.handleSelect3}>"three"</li>
+                </ul>
+              </div><br />
             </form>
             <h2>How many guests can your place accomodate?</h2>
             <form>
