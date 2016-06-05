@@ -33,6 +33,7 @@ var NavBar = React.createClass({
 
   componentWillUnmount: function () {
     this.userListener.remove();
+    this.errorsListener.remove();
   },
 
   getUser: function () {
@@ -92,11 +93,11 @@ var NavBar = React.createClass({
     if (this.state.whichModal === "Log In") {
       component = <LogInForm />;
       ModalStyles.content.width = '452px';
-      ModalStyles.content.height = (258 + (additionalErrorHeight * this.state.numberOfErrors)) + 'px';
+      ModalStyles.content.height = (252 + (additionalErrorHeight * this.state.numberOfErrors)) + 'px';
     } else {
       component = <SignUpForm />;
       ModalStyles.content.width = '452px';
-      ModalStyles.content.height = (346 + (additionalErrorHeight * this.state.numberOfErrors)) + 'px';
+      ModalStyles.content.height = (338 + (additionalErrorHeight * this.state.numberOfErrors)) + 'px';
     }
 
     if (this.state.user) {

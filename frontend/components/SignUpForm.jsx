@@ -96,7 +96,7 @@ var SignUpForm = React.createClass({
   handleGuestLogIn: function(event) {
     event.preventDefault();
     ClientActions.createSession(
-      {email: "guest@guest.com", password: "guestpassword"},
+      {email: "guest@guest.com", password: "password"},
       this.redirectAfterLogin
     );
     ClientActions.clearErrors();
