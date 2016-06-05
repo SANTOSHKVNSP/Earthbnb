@@ -11,6 +11,8 @@ var ClientActions = {
 
   createProperty: ApiUtil.createProperty,
 
+  fetchPropertyTypes: ApiUtil.fetchPropertyTypes,
+
   clearErrors: function () {
     AppDispatcher.dispatch({
       actionType: "CLEAR_ERRORS"

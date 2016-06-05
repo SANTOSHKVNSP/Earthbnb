@@ -35,6 +35,12 @@ var ServerActions = {
       users: response
     });
   },
+  receivePropertyTypes: function (response) {
+    AppDispatcher.dispatch({
+      actionType: "PROPERTY_TYPES_RECEIVED",
+      propertyTypes: response
+    });
+  },
 };
 
 module.exports = ServerActions;

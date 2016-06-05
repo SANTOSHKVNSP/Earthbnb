@@ -101,6 +101,16 @@ module.exports = {
     });
   },
 
+  fetchPropertyTypes: function () {
+    $.ajax({
+      url: 'api/property_types',
+      type: "GET",
+      success: function (response) {
+        ServerActions.receivePropertyTypes(response);
+      }
+    });
+  },
+
   createProperty: function(formData, successCallback, failureCallback) {
     $.ajax({
       url: 'api/properties',

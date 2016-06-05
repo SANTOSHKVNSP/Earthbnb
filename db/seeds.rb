@@ -14,3 +14,12 @@ User.create(
   location: 'New York, New York, United States',
   bio: "I'm just a guest on this site."
 )
+
+PropertyType.create([
+  { description: 'Apartment' },
+  { description: 'House' },
+  { description: 'Palace' },
+  { description: 'Subterranean Fortress' },
+  { description: 'Pyramid' },
+  { description: 'Dyson sphere' },
+])

@@ -9,6 +9,8 @@ var IndexRoute = ReactRouter.IndexRoute;
 var hashHistory = ReactRouter.hashHistory;
 
 var ErrorsStore = require('./stores/ErrorsStore.js');
+var PropertyTypeStore = require('./stores/PropertyTypeStore.js');
+var ClientActions = require('./actions/ClientActions.js');
 
 var SlideShow = require('./components/SlideShow.jsx');
 var NavBar = require('./components/NavBar.jsx');
@@ -22,6 +24,10 @@ var AddListing = require('./components/AddListing.jsx');
 var App = React.createClass({
 
   contextTypes: {router: React.PropTypes.object.isRequired},
+
+  componentDidMount: function () {
+    ClientActions.fetchPropertyTypes();
+  },
 
   render: function () {
     if (this.props.location.pathname === "/") {

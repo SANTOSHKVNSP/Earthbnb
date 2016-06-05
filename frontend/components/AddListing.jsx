@@ -1,6 +1,7 @@
 var React = require('react');
 var ClientActions = require('../actions/ClientActions.js');
 var UserStore = require('../stores/UserStore.js');
+var PropertyTypeStore = require('../stores/PropertyTypeStore.js')
 
 var AddListing = React.createClass({
 
@@ -20,7 +21,7 @@ var AddListing = React.createClass({
       title: "",
       description: "",
       houseRules: "",
-      propertyTypeId: 0,
+      propertyTypeId: 1,
       beds: 0,
       bedrooms: 0,
       bathrooms: 0,
@@ -55,8 +56,6 @@ var AddListing = React.createClass({
   fillInAddress: function () {
     // Get the place details from the autocomplete object.
     var place = autocomplete.getPlace();
-    console.log(place);
-
     var street_number = "", street = "", city = "", state = "", zip = "", country = "";
     for (var i = 0; i < place.address_components.length; i++) {
       var addressType = place.address_components[i].types[0];
@@ -122,14 +121,8 @@ var AddListing = React.createClass({
       this.setState({showingPropertyTypeDropDown: true});
     }
   },
-  handleSelect1: function(event) {
-    this.setState({species: species1});
-  },
-  handleSelect2: function(event) {
-    this.setState({species: species2});
-  },
-  handleSelect3: function(event) {
-    this.setState({species: species3});
+  handleSelect: function(event) {
+    this.setState({propertyTypeId: event.target.value});
   },
   handleTitleChange: function (event) {
     this.setState({title: event.target.value});
@@ -198,6 +191,9 @@ var AddListing = React.createClass({
   },
 
   render: function () {
+
+    var PropertyTypes = PropertyTypeStore.all();
+
     if (this.state.address === "" &&
         this.state.city === "" &&
         this.state.state === "" &&
@@ -253,12 +249,12 @@ var AddListing = React.createClass({
             <h2>What kind of place are you listing?</h2>
             <form>
               <div id="select-box" className={"no-errors"} onClick={this.handlePropertyTypeBoxClick}>
-                {this.state.propertyTypeId}
+                {PropertyTypes[this.state.propertyTypeId - 1].description}
                 <img src={window.dropDownButtonUrl} />
                 <ul id="select-box-dropdown" className={dropdownClass}>
-                  <li onClick={this.handleSelect1}>"one"</li>
-                  <li onClick={this.handleSelect2}>"two"</li>
-                  <li onClick={this.handleSelect3}>"three"</li>
+                  {PropertyTypes.map(function (type, index) {
+                    return(<li onClick={this.handleSelect} value={index + 1} key={index}>{type.description}</li>)
+                  }.bind(this))}
                 </ul>
               </div><br />
             </form>
