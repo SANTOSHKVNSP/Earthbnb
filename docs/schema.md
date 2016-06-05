@@ -78,12 +78,6 @@ column name | data type | details
 id          | integer   | not null, primary key
 desc        | string    | not null
 
-## species
-column name | data type | details
-------------|-----------|-----------------------
-id          | integer   | not null, primary key
-name        | string    | not null
-
 ## users
 column name     | data type | details
 ----------------|-----------|-----------------------

@@ -9,6 +9,8 @@ var ClientActions = {
   updateUser: ApiUtil.updateUser,
   fetchUsers: ApiUtil.fetchUsers,
 
+  createProperty: ApiUtil.createProperty,
+
   clearErrors: function () {
     AppDispatcher.dispatch({
       actionType: "CLEAR_ERRORS"

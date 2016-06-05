@@ -99,5 +99,28 @@ module.exports = {
         ServerActions.receiveUsers(response);
       }
     });
-  }
+  },
+
+  createProperty: function(formData, successCallback, failureCallback) {
+    $.ajax({
+      url: 'api/properties',
+      type: "POST",
+      contentType: false,
+      processData: false,
+      data: formData,
+      success: function (response) {
+        ServerActions.receiveUser(response);
+        if (successCallback) {
+          successCallback();
+        }
+      },
+      error: function (response) {
+        ServerActions.receiveErrors(response);
+        if (failureCallback) {
+          failureCallback();
+        }
+      }
+    });
+  },
+
 };
