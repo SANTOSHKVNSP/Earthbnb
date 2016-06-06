@@ -12,6 +12,7 @@ var AddListing = React.createClass({
       saving: false,
       autoCompleteInput: "",
       showingPropertyTypeDropDown: false,
+      showingCurrencyDropDown: false,
       address: "",
       city: "",
       state: "",
@@ -29,7 +30,7 @@ var AddListing = React.createClass({
       lat: 0,
       lon: 0,
       price: 0,
-      currency: "",
+      currency: "Buckazoids",
       user: null
     });
   },
@@ -124,6 +125,16 @@ var AddListing = React.createClass({
   handleSelect: function(event) {
     this.setState({propertyTypeId: event.target.value});
   },
+  handleCurrencyBoxClick: function(event) {
+    if (this.state.showingCurrencyDropDown) {
+      this.setState({showingCurrencyDropDown: false});
+    } else {
+      this.setState({showingCurrencyDropDown: true});
+    }
+  },
+  handleCurrencySelect: function(event) {
+    this.setState({currency: ["Buckazoids", "Plutonium Shards", "Sheep"][event.target.value]});
+  },
   handleTitleChange: function (event) {
     this.setState({title: event.target.value});
   },
@@ -214,6 +225,7 @@ var AddListing = React.createClass({
       var saveButtonClass = this.state.saving ? "save-profile-button-disabled" : "save-profile-button";
       var saveButtonText = this.state.saving ? "Saving..." : "Save";
       var dropdownClass = this.state.showingPropertyTypeDropDown ? "drop-down-visible" : "drop-down-invisible";
+      var currencyDropDownClass = this.state.showingCurrencyDropDown ? "drop-down-visible" : "drop-down-invisible";
 
       return(
         <div className="add-listing-container">
@@ -299,7 +311,15 @@ var AddListing = React.createClass({
               </label><br />
               <label>
                 <h3>Currency</h3>
-                <input onChange={this.handleCurrencyChange} value={this.state.currency}></input>
+                <div id="select-box" className={"no-errors"} onClick={this.handleCurrencyBoxClick}>
+                  {this.state.currency}
+                  <img src={window.dropDownButtonUrl} />
+                  <ul id="select-box-dropdown" className={currencyDropDownClass}>
+                    {["Buckazoids", "Plutonium Shards", "Sheep"].map(function (type, index) {
+                      return(<li onClick={this.handleCurrencySelect} value={index} key={index}>{type}</li>)
+                    }.bind(this))}
+                  </ul>
+                </div><br />
               </label><br />
             </form>
             <h2>Name your place</h2>
