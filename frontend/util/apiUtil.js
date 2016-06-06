@@ -111,6 +111,16 @@ module.exports = {
     });
   },
 
+  fetchUserProperties: function (id) {
+    $.ajax({
+      url: 'api/properties?user=' + id,
+      type: "GET",
+      success: function (response) {
+        ServerActions.receiveProperties(response);
+      }
+    });
+  },
+
   createProperty: function(formData, successCallback, failureCallback) {
     $.ajax({
       url: 'api/properties',
@@ -119,7 +129,6 @@ module.exports = {
       processData: false,
       data: formData,
       success: function (response) {
-        ServerActions.receiveUser(response);
         if (successCallback) {
           successCallback();
         }

@@ -9,6 +9,11 @@ class Api::PropertiesController < ApplicationController
   end
 
   def index
+    if (params[:user])
+      render json: Property.where(user_id: params[:user])
+    else
+      render json: Property.all
+    end
   end
 
   def show

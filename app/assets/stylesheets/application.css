@@ -532,6 +532,54 @@ button:hover {
   margin-bottom: 24px;
 }
 
+.increment-box {
+  position: relative;
+  background: white;
+  font-size: 18px;
+  height: 42px;
+  width: 210px;
+  margin: 2px;
+  margin-bottom: 24px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 20px;
+  text-align: left;
+  border: 1px solid #C4C4C4;
+  border-radius:2px;
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none;   /* Chrome/Safari/Opera */
+  -khtml-user-select: none;    /* Konqueror */
+  -moz-user-select: none;      /* Firefox */
+  -ms-user-select: none;
+}
+
+.increment-icon {
+  position: absolute;
+  padding: 0 0 0 0;
+  top: 15px;
+  font-size: 36px;
+  border: inherit;
+  display: block;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  line-height: 0.65;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.plus {
+  left: 180px;
+}
+.plus:after {
+  content: "+";
+}
+.minus {
+  left: 140px;
+}
+.minus:after {
+  content: "-";
+}
+
 .add-listing .short {
   width: 210px;
 }

@@ -1,7 +1,7 @@
 var React = require('react');
 var ClientActions = require('../actions/ClientActions.js');
 var UserStore = require('../stores/UserStore.js');
-var PropertyTypeStore = require('../stores/PropertyTypeStore.js')
+var PropertyTypeStore = require('../stores/PropertyTypeStore.js');
 
 var AddListing = React.createClass({
 
@@ -31,12 +31,13 @@ var AddListing = React.createClass({
       lon: 0,
       price: 0,
       currency: "Buckazoids",
-      user: null
+      user_id: null
     });
   },
 
   componentDidMount: function(){
     this.userListener = UserStore.addListener(this.getUser);
+    ClientActions.fetchUser();
 
     // Create the autocomplete object, restricting the search to geographical
     // location types.
@@ -51,7 +52,7 @@ var AddListing = React.createClass({
   },
 
   getUser: function () {
-    this.setState({user: UserStore.user})
+    this.setState({user_id: UserStore.user().id});
   },
 
   fillInAddress: function () {
@@ -144,17 +145,37 @@ var AddListing = React.createClass({
   handleRulesChange: function (event) {
     this.setState({houseRules: event.target.value});
   },
-  handleBedsChange: function (event) {
-    this.setState({beds: event.target.value});
+  addBed: function () {
+    this.setState({beds: this.state.beds + 1});
   },
-  handleBedroomsChange: function (event) {
-    this.setState({bedrooms: event.target.value});
+  subtractBed: function () {
+    if (this.state.beds > 0) {
+      this.setState({beds: this.state.beds - 1});
+    }
   },
-  handleBathroomsChange: function (event) {
-    this.setState({bathrooms: event.target.value});
+  addBedroom: function () {
+    this.setState({bedrooms: this.state.bedrooms + 1});
   },
-  handleAccomodatesChange: function (event) {
-    this.setState({accommodates: event.target.value});
+  subtractBedroom: function () {
+    if (this.state.bedrooms > 0) {
+      this.setState({bedrooms: this.state.bedrooms - 1});
+    }
+  },
+  addBathroom: function () {
+    this.setState({bathrooms: this.state.bathrooms + 1});
+  },
+  subtractBathroom: function () {
+    if (this.state.bathrooms > 0) {
+      this.setState({bathrooms: this.state.bathrooms - 1});
+    }
+  },
+  addAccomodates: function () {
+    this.setState({accommodates: this.state.accommodates + 1});
+  },
+  subtractAccomodates: function () {
+    if (this.state.accommodates > 0) {
+      this.setState({accommodates: this.state.accommodates - 1});
+    }
   },
   handlePriceChange: function (event) {
     this.setState({price: event.target.value});
@@ -167,7 +188,7 @@ var AddListing = React.createClass({
     this.setState({saving: true});
     this.render();
     var formData = new FormData();
-    formData.append("property[user_id]", this.state.user);
+    formData.append("property[user_id]", this.state.user_id);
     formData.append("property[address]", this.state.address);
     formData.append("property[apt]", this.state.apt);
     formData.append("property[city]", this.state.city);
@@ -189,7 +210,7 @@ var AddListing = React.createClass({
     // if (this.state.imageFile) {
     //   formData.append("user[image]", this.state.imageFile);
     // }
-    ClientActions.createProperty(formData, this.redirectAfterUpdate, this.rerenderIfFail)
+    ClientActions.createProperty(formData, this.redirectAfterUpdate, this.rerenderIfFail);
   },
 
   redirectAfterUpdate: function () {
@@ -265,28 +286,40 @@ var AddListing = React.createClass({
                 <img src={window.dropDownButtonUrl} />
                 <ul id="select-box-dropdown" className={dropdownClass}>
                   {PropertyTypes.map(function (type, index) {
-                    return(<li onClick={this.handleSelect} value={index + 1} key={index}>{type.description}</li>)
+                    return(<li onClick={this.handleSelect} value={index + 1} key={index}>{type.description}</li>);
                   }.bind(this))}
                 </ul>
               </div><br />
             </form>
-            <h2>How many guests can your place accomodate?</h2>
+            <h2>How many guests can your place accommodate?</h2>
             <form>
               <label>
                 <h3>Bedrooms</h3>
-                <input className="short" onChange={this.handleBedroomsChange} value={this.state.bedrooms}></input>
+                <div className="increment-box">{this.state.bedrooms}
+                  <div onClick={this.subtractBedroom} className="increment-icon minus"></div>
+                  <div onClick={this.addBedroom} className="increment-icon plus"></div>
+                </div>
               </label><br />
               <label>
                 <h3>Beds</h3>
-                <input className="short" onChange={this.handleBedsChange} value={this.state.beds}></input>
+                <div className="increment-box">{this.state.beds}
+                  <div onClick={this.subtractBed} className="increment-icon minus"></div>
+                  <div onClick={this.addBed} className="increment-icon plus"></div>
+                </div>
               </label><br />
               <label>
                 <h3>Bathrooms</h3>
-                <input className="short" onChange={this.handleBathroomsChange} value={this.state.bathrooms}></input>
+                <div className="increment-box">{this.state.bathrooms}
+                  <div onClick={this.subtractBathroom} className="increment-icon minus"></div>
+                  <div onClick={this.addBathroom} className="increment-icon plus"></div>
+                </div>
               </label><br />
               <label>
                 <h3>Accomodates</h3>
-                <input className="short" onChange={this.handleAccomodatesChange} value={this.state.accommodates}></input>
+                <div className="increment-box">{this.state.accommodates}
+                  <div onClick={this.subtractAccomodates} className="increment-icon minus"></div>
+                  <div onClick={this.addAccomodates} className="increment-icon plus"></div>
+                </div>
               </label><br />
             </form>
             <h2>What amenities do you offer?</h2>
@@ -316,7 +349,7 @@ var AddListing = React.createClass({
                   <img src={window.dropDownButtonUrl} />
                   <ul id="select-box-dropdown" className={currencyDropDownClass}>
                     {["Buckazoids", "Plutonium Shards", "Sheep"].map(function (type, index) {
-                      return(<li onClick={this.handleCurrencySelect} value={index} key={index}>{type}</li>)
+                      return(<li onClick={this.handleCurrencySelect} value={index} key={index}>{type}</li>);
                     }.bind(this))}
                   </ul>
                 </div><br />

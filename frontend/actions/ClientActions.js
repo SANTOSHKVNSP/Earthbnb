@@ -11,6 +11,8 @@ var ClientActions = {
 
   createProperty: ApiUtil.createProperty,
 
+  fetchUserProperties: ApiUtil.fetchUserProperties,
+
   fetchPropertyTypes: ApiUtil.fetchPropertyTypes,
 
   clearErrors: function () {
