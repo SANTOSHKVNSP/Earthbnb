@@ -1,3 +1,5 @@
+require 'byebug'
+
 class Api::PropertiesController < ApplicationController
   def create
     @property = Property.new(property_params)
@@ -10,7 +12,8 @@ class Api::PropertiesController < ApplicationController
 
   def index
     if (params[:user])
-      render json: Property.where(user_id: params[:user])
+      # render json: Property.where(user_id: params[:user])
+      @properties = Property.where(user_id: params[:user])
     else
       render json: Property.all
     end
@@ -31,6 +34,6 @@ class Api::PropertiesController < ApplicationController
     params.require(:property).permit(
       :user_id, :address, :apt, :city, :state, :zip, :country,
       :lat, :lon, :property_type_id, :bedrooms, :beds, :bathrooms, :accommodates,
-      :description, :title, :house_rules, :price, :currency)
+      :description, :title, :house_rules, :price, :currency, :image)
   end
 end

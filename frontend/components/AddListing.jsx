@@ -31,7 +31,9 @@ var AddListing = React.createClass({
       lon: 0,
       price: 0,
       currency: "Buckazoids",
-      user_id: null
+      user_id: null,
+      imageFile: null,
+      imageUrl: null,
     });
   },
 
@@ -184,6 +186,18 @@ var AddListing = React.createClass({
     this.setState({currency: event.target.value});
   },
 
+  updateFile: function (event) {
+    var file = event.currentTarget.files[0];
+    var fileReader = new FileReader();
+    fileReader.onloadend = function () {
+      this.setState({ imageFile: file, imageUrl: fileReader.result });
+    }.bind(this);
+
+    if (file) {
+      fileReader.readAsDataURL(file);
+    }
+  },
+
   handleSubmit: function () {
     this.setState({saving: true});
     this.render();
@@ -207,9 +221,9 @@ var AddListing = React.createClass({
     formData.append("property[bathrooms]", this.state.bathrooms);
     formData.append("property[price]", this.state.price);
     formData.append("property[currency]", this.state.currency);
-    // if (this.state.imageFile) {
-    //   formData.append("user[image]", this.state.imageFile);
-    // }
+    if (this.state.imageFile) {
+      formData.append("property[image]", this.state.imageFile);
+    }
     ClientActions.createProperty(formData, this.redirectAfterUpdate, this.rerenderIfFail);
   },
 
@@ -247,6 +261,7 @@ var AddListing = React.createClass({
       var saveButtonText = this.state.saving ? "Saving..." : "Save";
       var dropdownClass = this.state.showingPropertyTypeDropDown ? "drop-down-visible" : "drop-down-invisible";
       var currencyDropDownClass = this.state.showingCurrencyDropDown ? "drop-down-visible" : "drop-down-invisible";
+      var coverPhoto = this.state.imageUrl ? this.state.imageUrl : window.placeholderImage;
 
       return(
         <div className="add-listing-container">
@@ -327,6 +342,8 @@ var AddListing = React.createClass({
             </form>
             <h2>Add a cover photo</h2>
             <form>
+              <img className="profile-pic" src={coverPhoto} />
+              <div id="upload-button-container"><input type="file" onChange={this.updateFile} /><div id="upload-button">Upload a file from<br />your computer</div></div>
             </form>
             <h2>Add a description</h2>
             <form>

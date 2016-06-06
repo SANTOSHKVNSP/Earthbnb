@@ -4,7 +4,12 @@ var ListingsIndexItem = React.createClass({
   render: function () {
     return(
       <li className="listing-index-item">
-        {this.props.listing.title}
+        <header>
+          {this.props.listing.title}
+        </header>
+        <form>
+          <img className="listing-index-item-pic" src={this.props.listing.image_url} />
+        </form>
       </li>
     );
   }

@@ -125,6 +125,7 @@ module.exports = {
     $.ajax({
       url: 'api/properties',
       type: "POST",
+      dataType: "json",
       contentType: false,
       processData: false,
       data: formData,

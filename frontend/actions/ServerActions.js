@@ -42,6 +42,7 @@ var ServerActions = {
     });
   },
   receiveProperties: function (response) {
+    console.log(response);
     AppDispatcher.dispatch({
       actionType: "PROPERTIES_RECEIVED",
       properties: response
