@@ -4,6 +4,8 @@ var PropertiesStore = require('../stores/PropertiesStore.js');
 var UserStore = require('../stores/UserStore.js');
 var ClientActions = require('../actions/ClientActions.js');
 
+var ListingsIndexItem = require('./ListingsIndexItem.jsx');
+
 var ListingsIndex = React.createClass({
 
   contextTypes: {router: React.PropTypes.object.isRequired},
@@ -42,10 +44,14 @@ var ListingsIndex = React.createClass({
   render: function () {
 
     return(
-      <div>
-        {this.state.listings.length}
+      <ul className="listing-index">
+        {this.state.listings.map(function (listing, index) {
+          return(
+            <ListingsIndexItem key={index} listing={listing} />
+          );
+        })}
         <button onClick={this.handleAddNewListingClick} className="white-button">Add New Listing</button>
-      </div>
+      </ul>
     );
   }
 

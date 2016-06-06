@@ -337,7 +337,7 @@ button:hover {
   color: #EBEBEB;
 }
 
-.edit-profile {
+.edit-profile, .listing-index {
   position: relative;
   width: 742px;
   margin-left: calc(50% - 371px + 125px); /*half of edit-profile plus half of (width + margin) of View Profile button*/
@@ -345,7 +345,7 @@ button:hover {
   text-align: right;
 }
 
-.edit-profile header {
+.edit-profile header, .listing-index header {
   background: #EDEFED;
   height: 16px;
   margin-top: 24px;
@@ -360,7 +360,7 @@ button:hover {
   color: #484848
 }
 
-.edit-profile form {
+.edit-profile form, .listing-index form {
   background: white;
   padding: 18px 18px 0 18px;
   border: solid 1px #DCE0E0;
@@ -624,6 +624,22 @@ button:hover {
   height: 32px;
   font-size: 18px;
   padding-top: 20px;
+}
+
+.listing-index {
+  position: relative;
+  width: 742px;
+  margin-left: calc(50% - 371px + 125px); /*half of edit-profile plus half of (width + margin) of View Profile button*/
+  color: #6B6C6B;
+  text-align: right;
+  background: yellow;
+}
+
+.listing-index-item {
+  width: 100px;
+  height: 100px;
+  display: block;
+  border: 1px solid blue;
 }
 
 .map {

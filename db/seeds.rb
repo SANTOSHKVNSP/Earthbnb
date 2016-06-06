@@ -6,6 +6,8 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+User.destroy_all
+
 User.create(
   name: 'Guest',
   species: 'Martian',
@@ -14,6 +16,8 @@ User.create(
   location: 'New York, New York, United States',
   bio: "I'm just a guest on this site."
 )
+
+PropertyType.destroy_all
 
 PropertyType.create([
   { description: 'Apartment' },
