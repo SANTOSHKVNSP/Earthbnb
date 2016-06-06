@@ -50,7 +50,7 @@ var ListingsIndex = React.createClass({
             <ListingsIndexItem key={index} listing={listing} />
           );
         })}
-        <button onClick={this.handleAddNewListingClick} className="white-button">Add New Listing</button>
+        <button onClick={this.handleAddNewListingClick} id="add-listing-button" className="white-button">Add New Listing</button>
       </ul>
     );
   }
