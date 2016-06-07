@@ -46,7 +46,7 @@ var ListingsIndex = React.createClass({
       <ul className="listing-index">
         {this.state.listings.map(function (listing, index) {
           return(
-            <ListingsIndexItem key={index} listing={listing} />
+            <ListingsIndexItem key={index} listing={listing} editButton={true} />
           );
         })}
         <button onClick={this.handleAddNewListingClick} id="add-listing-button" className="white-button">Add New Listing</button>

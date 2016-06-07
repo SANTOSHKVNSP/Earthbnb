@@ -2,6 +2,7 @@ var React = require('react');
 var ClientActions = require('../actions/ClientActions.js');
 var UserStore = require('../stores/UserStore.js');
 var PropertyTypeStore = require('../stores/PropertyTypeStore.js');
+var PropertiesStore = require('../stores/PropertiesStore.js');
 
 var AddListing = React.createClass({
 
@@ -41,16 +42,22 @@ var AddListing = React.createClass({
     this.userListener = UserStore.addListener(this.getUser);
     ClientActions.fetchUser();
 
-    // Create the autocomplete object, restricting the search to geographical
-    // location types.
-    autocomplete = new google.maps.places.Autocomplete(
-        /** @type {!HTMLInputElement} */(document.getElementById('autocomplete')),
-        {types: ['geocode']});
-    // When the user selects an address from the dropdown, populate the form.
-    autocomplete.addListener('place_changed', this.fillInAddress);
+    if (this.props.params.listingId) {
+      this.propertyListener = PropertiesStore.addListener(this.getProperty);
+      ClientActions.fetchProperty(this.props.params.listingId)
+    } else {
+      // Create the autocomplete object, restricting the search to geographical
+      // location types.
+      autocomplete = new google.maps.places.Autocomplete(
+          /** @type {!HTMLInputElement} */(document.getElementById('autocomplete')),
+          {types: ['geocode']});
+      // When the user selects an address from the dropdown, populate the form.
+      autocomplete.addListener('place_changed', this.fillInAddress);
+    }
   },
   componentWillUnmount: function () {
     this.userListener.remove();
+    this.propertyListener ? this.propertyListener.remove() : true
   },
 
   getUser: function () {
@@ -58,6 +65,31 @@ var AddListing = React.createClass({
     if (user) {
       this.setState({user_id: user.id});
     }
+  },
+  getProperty: function () {
+    prop = PropertiesStore.only();
+    console.log(prop);
+    this.setState({
+      address: prop.address,
+      city: prop.city,
+      state: prop.state,
+      country: prop.country,
+      zip: prop.zip,
+      lat: prop.lat,
+      lon: prop.lon,
+      beds: prop.beds,
+      bedrooms: prop.bedrooms,
+      bathrooms: prop.bathrooms,
+      accommodates: prop.accommodates,
+      title: prop.title,
+      description: prop.description,
+      propertyTypeId: prop.property_type.id,
+      price: prop.price,
+      currency: prop.currency,
+      houseRules: prop.house_rules,
+      apt: prop.apt,
+      imageUrl: prop.image_url,
+    });
   },
 
   fillInAddress: function () {
@@ -229,7 +261,11 @@ var AddListing = React.createClass({
     if (this.state.imageFile) {
       formData.append("property[image]", this.state.imageFile);
     }
-    ClientActions.createProperty(formData, this.redirectAfterUpdate, this.rerenderIfFail);
+    if (this.props.params.listingId) {
+      ClientActions.updateProperty(this.props.params.listingId, formData, this.redirectAfterUpdate, this.rerenderIfFail);
+    } else {
+      ClientActions.createProperty(formData, this.redirectAfterUpdate, this.rerenderIfFail);
+    }
   },
 
   redirectAfterUpdate: function () {
@@ -241,9 +277,39 @@ var AddListing = React.createClass({
     this.setState({saving: false});
   },
 
-  render: function () {
-
+  renderPropertyTypeDropdown: function () {
     var PropertyTypes = PropertyTypeStore.all();
+    var dropdownClass = this.state.showingPropertyTypeDropDown ? "drop-down-visible" : "drop-down-invisible";
+    if (PropertyTypes.length > 0) {
+      return (
+        <form>
+          <div id="select-box" className={"no-errors"} onClick={this.handlePropertyTypeBoxClick}>
+            {PropertyTypes[this.state.propertyTypeId - 1].description}
+            <img src={window.dropDownButtonUrl} />
+            <ul id="select-box-dropdown" className={dropdownClass}>
+              {PropertyTypes.map(function (type, index) {
+                return(<li onClick={this.handleSelect} value={type.id} key={index}>{type.description}</li>);
+              }.bind(this))}
+            </ul>
+          </div><br />
+        </form>
+      )
+    }
+  },
+
+  renderPageTitle: function () {
+    if (this.props.params.listingId) {
+      return(
+        <h1>Edit Listing</h1>
+      )
+    } else {
+      return(
+        <h1>Add a Listing</h1>
+      )
+    }
+  },
+
+  render: function () {
 
     if (this.state.address === "" &&
         this.state.city === "" &&
@@ -264,14 +330,13 @@ var AddListing = React.createClass({
 
       var saveButtonClass = this.state.saving ? "save-profile-button-disabled" : "save-profile-button";
       var saveButtonText = this.state.saving ? "Saving..." : "Save";
-      var dropdownClass = this.state.showingPropertyTypeDropDown ? "drop-down-visible" : "drop-down-invisible";
       var currencyDropDownClass = this.state.showingCurrencyDropDown ? "drop-down-visible" : "drop-down-invisible";
       var coverPhoto = this.state.imageUrl ? this.state.imageUrl : window.placeholderImage;
 
       return(
         <div className="add-listing-container">
           <section className="add-listing">
-            <h1>Add a Listing</h1>
+            {this.renderPageTitle()}
             <form>
               <h2>{"Where's your place located?"}</h2>
               <label>
@@ -300,17 +365,7 @@ var AddListing = React.createClass({
               </label><br />
             </form>
             <h2>What kind of place are you listing?</h2>
-            <form>
-              <div id="select-box" className={"no-errors"} onClick={this.handlePropertyTypeBoxClick}>
-                {PropertyTypes[this.state.propertyTypeId - 1].description}
-                <img src={window.dropDownButtonUrl} />
-                <ul id="select-box-dropdown" className={dropdownClass}>
-                  {PropertyTypes.map(function (type, index) {
-                    return(<li onClick={this.handleSelect} value={type.id} key={index}>{type.description}</li>);
-                  }.bind(this))}
-                </ul>
-              </div><br />
-            </form>
+            {this.renderPropertyTypeDropdown()}
             <h2>How many guests can your place accommodate?</h2>
             <form>
               <label>
@@ -355,7 +410,7 @@ var AddListing = React.createClass({
               <textarea onChange={this.handleDescriptionChange} value={this.state.description}></textarea>
               <label>
                 <h3>What are the house rules?</h3>
-                  <textarea id="rules" onChange={this.handleRulesChange} value={this.state.rules}></textarea>
+                  <textarea id="rules" onChange={this.handleRulesChange} value={this.state.houseRules}></textarea>
               </label><br />
             </form>
             <h2>Set your price</h2>

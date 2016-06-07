@@ -99,7 +99,7 @@ var ShowProperty = React.createClass({
                 The Space
               </div>
               <div className="column-content">
-                Property type: <strong>{this.state.property_type}</strong><br />
+                Property type: <strong>{this.state.property_type.description}</strong><br />
                 Accommodates: <strong>{this.state.accommodates}</strong><br />
                 Bedrooms: <strong>{this.state.bedrooms}</strong><br />
                 Beds: <strong>{this.state.beds}</strong><br />

@@ -5,7 +5,7 @@ json.property do
   json.title @property.title
   json.description @property.description
   json.house_rules @property.house_rules
-  json.property_type @property.property_type.description
+  json.property_type @property.property_type
   json.price @property.price
   json.currency @property.currency
   json.lat @property.lat

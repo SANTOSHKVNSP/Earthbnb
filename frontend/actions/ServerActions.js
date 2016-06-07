@@ -52,6 +52,12 @@ var ServerActions = {
       actionType: "PROPERTY_RECEIVED",
       property: response.property
     });
+  },
+  removeProperty: function (response) {
+    AppDispatcher.dispatch({
+      actionType: "PROPERTY_REMOVED",
+      property: response
+    });
   }
 };
 

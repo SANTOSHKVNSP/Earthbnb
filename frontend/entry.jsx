@@ -27,6 +27,7 @@ var App = React.createClass({
   contextTypes: {router: React.PropTypes.object.isRequired},
 
   componentDidMount: function () {
+    console.log("app is fetching");
     ClientActions.fetchPropertyTypes();
   },
 
@@ -54,6 +55,7 @@ var routes = (
     <Route path="/user" component={AdminNavBar}>
       <Route path="/user/edit" component={EditProfile} />
       <Route path="/user/listings" component={ListingsIndex} />
+      <Route path="/user/listings/:listingId/edit" component={AddListing} />
     </Route>
     <Route path="/add-a-listing" component={AddListing} />
     <Route path="/users/:userId" component={ShowProfile} />

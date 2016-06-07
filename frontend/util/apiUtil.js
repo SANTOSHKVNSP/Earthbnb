@@ -143,12 +143,46 @@ module.exports = {
     });
   },
 
+  updateProperty: function(id, formData, successCallback, failureCallback) {
+    $.ajax({
+      url: 'api/properties/' + id,
+      type: "PATCH",
+      dataType: "json",
+      contentType: false,
+      processData: false,
+      data: formData,
+      success: function (response) {
+        ServerActions.receiveUser(response);
+        console.log("success!");
+        if (successCallback) {
+          successCallback();
+        }
+      },
+      error: function (response) {
+        ServerActions.receiveErrors(response);
+        if (failureCallback) {
+          failureCallback();
+        }
+      }
+    });
+  },
+
   fetchProperty: function(id) {
     $.ajax({
       url: 'api/properties/' + id,
       type: "GET",
       success: function (response) {
         ServerActions.receiveProperty(response);
+      }
+    });
+  },
+
+  deleteProperty: function(id) {
+    $.ajax({
+      url: 'api/properties/' + id,
+      type: "DELETE",
+      success: function (response) {
+        ServerActions.removeProperty(response);
       }
     });
   }

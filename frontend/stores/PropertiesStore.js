@@ -9,10 +9,18 @@ PropertiesStore.resetProperties = function() {
   _properties = {};
 };
 
+PropertiesStore.removeProperty = function(property) {
+  delete _properties[property.id]
+};
+
 PropertiesStore.all = function() {
   return Object.keys(_properties).map(function (id) {
     return(_properties[id]);
   });
+};
+
+PropertiesStore.only = function() {
+  return(_properties[1]);
 };
 
 PropertiesStore.find = function(id) {
@@ -32,6 +40,7 @@ PropertiesStore.setProperty = function(property) {
 };
 
 PropertiesStore.__onDispatch = function(payload) {
+  console.log(payload);
   switch(payload.actionType){
     case "PROPERTIES_RECEIVED":
       this.setProperties(payload.properties);
@@ -39,6 +48,10 @@ PropertiesStore.__onDispatch = function(payload) {
       break;
     case "PROPERTY_RECEIVED":
       this.setProperty(payload.property);
+      this.__emitChange();
+      break;
+    case "PROPERTY_REMOVED":
+      this.removeProperty(payload.property);
       this.__emitChange();
       break;
   }
