@@ -11,6 +11,7 @@ var ClientActions = {
 
   createProperty: ApiUtil.createProperty,
   fetchUserProperties: ApiUtil.fetchUserProperties,
+  fetchBoundsProperties: ApiUtil.fetchBoundsProperties,
   fetchProperty: ApiUtil.fetchProperty,
   deleteProperty: ApiUtil.deleteProperty,
   updateProperty: ApiUtil.updateProperty,

@@ -57,6 +57,7 @@ var routes = (
       <Route path="/user/listings/:listingId/edit" component={AddListing} />
     </Route>
     <Route path="/add-a-listing" component={AddListing} />
+    <Route path="/search" component={PropertySearch} />
     <Route path="/users/:userId" component={ShowProfile} />
     <Route path="/listings/:listingId" component={ShowProperty} />
   </Route>

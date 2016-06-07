@@ -23,4 +23,13 @@ class Property < ActiveRecord::Base
     primary_key: :id
   )
 
+  def self.in_bounds(bounds)
+    north_east_lat = bounds["northEast"]["lat"].to_f()
+    south_west_lat = bounds["southWest"]["lat"].to_f()
+    north_east_lng = bounds["northEast"]["lng"].to_f()
+    south_west_lng = bounds["southWest"]["lng"].to_f()
+
+    Property.where("lon <= ? AND lon >= ? AND lat <= ? AND lat >= ?", north_east_lng, south_west_lng, north_east_lat, south_west_lat)
+  end
+
 end

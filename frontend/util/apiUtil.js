@@ -121,6 +121,18 @@ module.exports = {
     });
   },
 
+  fetchBoundsProperties: function (boundsObject) {
+    $.ajax({
+      url: 'api/properties',
+      type: "GET",
+      dataType: "json",
+      data: boundsObject,
+      success: function (response) {
+        ServerActions.receiveProperties(response);
+      }
+    });
+  },
+
   createProperty: function(formData, successCallback, failureCallback) {
     $.ajax({
       url: 'api/properties',
