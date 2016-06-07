@@ -47,8 +47,6 @@ var AutoCompleteBox = React.createClass({
         state: place.address_components[6].long_name,
         country: place.address_components[7].long_name,
         zip: place.address_components[8].long_name
-      }, function () {
-        console.log(this.state);
       });
     },
 

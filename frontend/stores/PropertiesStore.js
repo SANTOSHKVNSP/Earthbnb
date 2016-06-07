@@ -40,7 +40,6 @@ PropertiesStore.setProperty = function(property) {
 };
 
 PropertiesStore.__onDispatch = function(payload) {
-  console.log(payload);
   switch(payload.actionType){
     case "PROPERTIES_RECEIVED":
       this.setProperties(payload.properties);

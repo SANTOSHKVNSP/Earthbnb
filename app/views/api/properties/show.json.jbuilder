@@ -21,5 +21,6 @@ json.property do
   json.bathrooms @property.bathrooms
   json.accommodates @property.accommodates
   json.image_url asset_path(@property.image.url(:show))
+  json.index_image_url asset_path(@property.image.url(:index))
   json.user_image_url asset_path(@property.user.image.url(:show))
 end

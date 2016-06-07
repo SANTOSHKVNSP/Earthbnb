@@ -44,7 +44,7 @@ var AddListing = React.createClass({
 
     if (this.props.params.listingId) {
       this.propertyListener = PropertiesStore.addListener(this.getProperty);
-      ClientActions.fetchProperty(this.props.params.listingId)
+      ClientActions.fetchProperty(this.props.params.listingId);
     } else {
       // Create the autocomplete object, restricting the search to geographical
       // location types.
@@ -68,7 +68,6 @@ var AddListing = React.createClass({
   },
   getProperty: function () {
     prop = PropertiesStore.only();
-    console.log(prop);
     this.setState({
       address: prop.address,
       city: prop.city,
@@ -88,7 +87,7 @@ var AddListing = React.createClass({
       currency: prop.currency,
       houseRules: prop.house_rules,
       apt: prop.apt,
-      imageUrl: prop.image_url,
+      imageUrl: prop.index_image_url,
     });
   },
 

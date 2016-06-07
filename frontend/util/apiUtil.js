@@ -153,7 +153,6 @@ module.exports = {
       data: formData,
       success: function (response) {
         ServerActions.receiveUser(response);
-        console.log("success!");
         if (successCallback) {
           successCallback();
         }

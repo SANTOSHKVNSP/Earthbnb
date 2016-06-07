@@ -27,7 +27,6 @@ var App = React.createClass({
   contextTypes: {router: React.PropTypes.object.isRequired},
 
   componentDidMount: function () {
-    console.log("app is fetching");
     ClientActions.fetchPropertyTypes();
   },
 
