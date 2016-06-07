@@ -3,7 +3,6 @@ var React = require('react');
 var PropertiesStore = require('../stores/PropertiesStore.js');
 var UserStore = require('../stores/UserStore.js');
 var ClientActions = require('../actions/ClientActions.js');
-
 var ListingsIndexItem = require('./ListingsIndexItem.jsx');
 
 var ListingsIndex = React.createClass({

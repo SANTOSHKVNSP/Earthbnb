@@ -2,6 +2,8 @@ var React = require('react');
 var ClientActions = require('../actions/ClientActions.js');
 var UsersStore = require('../stores/UsersStore.js');
 var UserStore = require('../stores/UserStore.js');
+var PropertiesStore = require('../stores/PropertiesStore.js');
+var ListingsIndexItem = require('./ListingsIndexItem.jsx');
 
 var ShowProfile = React.createClass({
 
@@ -14,7 +16,8 @@ var ShowProfile = React.createClass({
       bio: "",
       location: "",
       currentUser: null,
-      imageUrl: ""
+      imageUrl: "",
+      properties: []
     });
   },
 
@@ -23,6 +26,7 @@ var ShowProfile = React.createClass({
     ClientActions.fetchUsers();
     this.userListener = UserStore.addListener(this.getCurrentUser);
     ClientActions.fetchUser();
+    this.propertiesListener = PropertiesStore.addListener(this.getProperties);
   },
   componentWillReceiveProps: function () {
     ClientActions.fetchUsers();
@@ -30,6 +34,7 @@ var ShowProfile = React.createClass({
   componentWillUnmount: function () {
     this.usersListener.remove();
     this.userListener.remove();
+    this.propertiesListener.remove();
   },
 
   getUser: function () {
@@ -41,6 +46,8 @@ var ShowProfile = React.createClass({
         location: user.location,
         species: user.species,
         imageUrl: user.image_url
+      }, function () {
+        ClientActions.fetchUserProperties(this.props.params.userId);
       });
     }
   },
@@ -48,6 +55,10 @@ var ShowProfile = React.createClass({
   getCurrentUser: function () {
     var user = UserStore.user();
     this.setState({currentUser: user});
+  },
+
+  getProperties: function () {
+    this.setState({properties: PropertiesStore.all()})
   },
 
   editLink: function () {
@@ -63,15 +74,21 @@ var ShowProfile = React.createClass({
   render: function () {
     return(
       <div className="show-profile">
-        <img className="profile-pic" src={this.state.imageUrl}/>
+        <img id="show-profile-image" className="profile-pic" src={this.state.imageUrl}/>
         <article>
-          <h1>Hey, I'm {this.state.name}!</h1>
+          <h1>{"Hey, I'm "}{this.state.name}!</h1>
           <div className="location">{this.state.location}</div>
           {this.editLink()}
           {this.state.bio}
-          <div className="filler"></div>
-          <div className="filler"></div>
         </article>
+        <ul className="listing-index">
+          <h6 className="profile-listings-header">My Listings <span className="light">({this.state.properties.length})</span></h6>
+          {this.state.properties.map(function (listing, index) {
+            return(
+              <ListingsIndexItem key={index} listing={listing} />
+            );
+          })}
+        </ul>
       </div>
     );
   }

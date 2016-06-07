@@ -8,10 +8,14 @@ class User < ActiveRecord::Base
   validates :password_digest, :name, :species, presence: true
   validates :password, length: {minimum: 6, allow_nil: true}
 
-  has_attached_file :image, default_url: "alien.jpg", :styles => {
-    :nav => "30x30#",
-    :show => "90x90#"
-  }
+  has_attached_file :image,
+    :styles => {
+      :nav => "30x30#",
+      :show => "90x90#",
+      :full => "230x230#"
+    },
+    default_url: "default_alien_:style.jpg"
+
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
 
   def self.find_by_email_address(email)

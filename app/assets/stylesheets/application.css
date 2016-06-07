@@ -1,4 +1,4 @@
- html, body, section, article, h1, h2, h3, p, strong, em, a, select, ul, li, input, textarea, button, img {
+ html, body, section, article, h1, h2, h3, h6, p, strong, em, a, select, ul, li, input, textarea, button, img {
   margin: 0;
   border: 0;
   padding: 0;
@@ -31,13 +31,17 @@ p { text-align: left; }
 a { cursor: pointer; color: #FE6C70; }
 a:hover { text-decoration: underline; }
 
-h1, h2, h3 {
+h1, h2, h3, h6 {
   font-family: 'Lato', sans-serif;
 }
 
 h1 {
   font-size: 42px;
   margin-bottom: 11px;
+}
+
+h6 {
+  font-size: 30px;
 }
 
 h2 {
@@ -440,7 +444,7 @@ button:hover {
 #upload-button {
   position: absolute;
   z-index: 0;
-  padding: 16px 0;
+  padding: 12px 0;
   text-align: center;
   font-weight: 400;
   font-size: 16px;
@@ -453,6 +457,7 @@ button:hover {
   width: 92px;
   height: 42px;
   margin-top: 22px;
+  margin-bottom: 36px;
 }
 
 #save-profile-button-disabled {
@@ -485,7 +490,7 @@ button:hover {
   background: #F5F5F5;
 }
 
-.show-profile img {
+#show-profile-image {
   display: inline-block;
   width: 230px;
   height: 230px;
@@ -502,6 +507,16 @@ button:hover {
 .show-profile a {
   display: inline-block;
   margin-bottom: 44px;
+}
+
+.show-profile h6 {
+  text-align: left;
+  color: #484848;
+}
+
+.show-profile h6 > .light {
+  color: #757575;
+  font-size: 20px;
 }
 
 .location {

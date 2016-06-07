@@ -1,9 +1,12 @@
 class Property < ActiveRecord::Base
 
-  has_attached_file :image, default_url: "property_placeholder_image.png", :styles => {
-    :index => "278x185#",
-    :show => "950x350#"
-  }
+  has_attached_file :image,
+    :styles => {
+      :index => "278x185#",
+      :show => "950x350#"
+    },
+    default_url: "default_property_:style.png"
+
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
 
   belongs_to(

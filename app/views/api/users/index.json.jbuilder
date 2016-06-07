@@ -4,5 +4,5 @@ json.array! @users do |user|
   json.species user.species
   json.bio user.bio
   json.location user.location
-  json.image_url asset_path(user.image.url)
+  json.image_url asset_path(user.image.url(:full))
 end
