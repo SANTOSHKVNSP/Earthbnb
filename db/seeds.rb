@@ -17,6 +17,15 @@ User.create(
   bio: "I'm just a guest on this site."
 )
 
+belushi = User.create(
+  name: 'Belushi',
+  species: 'Martian',
+  email: 'belushi@belushi.com',
+  password: 'password',
+  location: 'Cairo, Egypt',
+  bio: "I’m a trillionaire. But the celestial courts sentenced me to renting out my space as a punishment for manslaughter. Harsh sentence, really."
+)
+
 PropertyType.destroy_all
 
 PropertyType.create([
