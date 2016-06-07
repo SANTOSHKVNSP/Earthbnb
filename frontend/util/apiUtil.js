@@ -143,4 +143,14 @@ module.exports = {
     });
   },
 
+  fetchProperty: function(id) {
+    $.ajax({
+      url: 'api/properties/' + id,
+      type: "GET",
+      success: function (response) {
+        ServerActions.receiveProperty(response);
+      }
+    });
+  }
+
 };

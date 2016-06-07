@@ -20,6 +20,7 @@ var EditProfile = require('./components/EditProfile.jsx');
 var ShowProfile = require('./components/ShowProfile.jsx');
 var ListingsIndex = require('./components/ListingsIndex.jsx');
 var AddListing = require('./components/AddListing.jsx');
+var ShowProperty = require('./components/ShowProperty.jsx');
 
 var App = React.createClass({
 
@@ -56,6 +57,7 @@ var routes = (
     </Route>
     <Route path="/add-a-listing" component={AddListing} />
     <Route path="/users/:userId" component={ShowProfile} />
+    <Route path="/listings/:listingId" component={ShowProperty} />
   </Route>
 );
 

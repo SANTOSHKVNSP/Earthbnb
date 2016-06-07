@@ -342,7 +342,7 @@ var AddListing = React.createClass({
             </form>
             <h2>Add a cover photo</h2>
             <form>
-              <img className="profile-pic" src={coverPhoto} />
+              <img className="property-cover-pic" src={coverPhoto} />
               <div id="upload-button-container"><input type="file" onChange={this.updateFile} /><div id="upload-button">Upload a file from<br />your computer</div></div>
             </form>
             <h2>Add a description</h2>

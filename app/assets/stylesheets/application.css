@@ -630,6 +630,10 @@ button:hover {
   padding-top: 20px;
 }
 
+.property-cover-pic {
+  max-width:600px;
+}
+
 .listing-index {
   position: relative;
   width: 742px;
@@ -647,9 +651,63 @@ button:hover {
   margin-top: 22px;
 }
 
-.listing-index-item-pic {
-  width: 278px;
-  height:
+.listing-index-item > form {
+  padding-bottom: 18px;
+  text-align: left;
+}
+
+.listing-index-item > form:last-child {
+  margin-bottom: 24px;
+}
+
+.show-property {
+  font-size: 16px;
+  color: #484848
+}
+
+.show-property-image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.show-property-column {
+  width: 685px;
+  background: teal;
+  margin: auto;
+}
+
+.show-property-header {
+  background: white;
+  border-bottom: solid 1px black;
+}
+
+.show-property-header-column {
+  width: 685px;
+  height: 170px;
+  margin: auto;
+}
+
+.show-property-header-image-div {
+  display: block;
+  width: 180px;
+  height: 142px;
+  float: left;
+  text-align: center;
+  padding-top: 28px;
+}
+
+.show-property-header-image-div img {
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+.show-property-header-text-div {
+  display: block;
+  width: 505px;
+  height: 142px;
+  float: left;
+  padding-top: 28px;
 }
 
 .map {

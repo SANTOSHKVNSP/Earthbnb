@@ -10,8 +10,8 @@ var ClientActions = {
   fetchUsers: ApiUtil.fetchUsers,
 
   createProperty: ApiUtil.createProperty,
-
   fetchUserProperties: ApiUtil.fetchUserProperties,
+  fetchProperty: ApiUtil.fetchProperty,
 
   fetchPropertyTypes: ApiUtil.fetchPropertyTypes,
 

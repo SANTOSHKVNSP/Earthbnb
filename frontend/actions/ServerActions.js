@@ -42,10 +42,15 @@ var ServerActions = {
     });
   },
   receiveProperties: function (response) {
-    console.log(response);
     AppDispatcher.dispatch({
       actionType: "PROPERTIES_RECEIVED",
       properties: response
+    });
+  },
+  receiveProperty: function (response) {
+    AppDispatcher.dispatch({
+      actionType: "PROPERTY_RECEIVED",
+      property: response.property
     });
   }
 };

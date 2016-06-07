@@ -15,6 +15,10 @@ PropertiesStore.all = function() {
   });
 };
 
+PropertiesStore.find = function(id) {
+  return _properties[id];
+};
+
 PropertiesStore.setProperties = function(properties) {
   this.resetProperties();
   properties.forEach(function(property) {
@@ -22,10 +26,19 @@ PropertiesStore.setProperties = function(properties) {
   });
 };
 
+PropertiesStore.setProperty = function(property) {
+  this.resetProperties();
+  _properties = {1: property};
+};
+
 PropertiesStore.__onDispatch = function(payload) {
   switch(payload.actionType){
     case "PROPERTIES_RECEIVED":
       this.setProperties(payload.properties);
+      this.__emitChange();
+      break;
+    case "PROPERTY_RECEIVED":
+      this.setProperty(payload.property);
       this.__emitChange();
       break;
   }

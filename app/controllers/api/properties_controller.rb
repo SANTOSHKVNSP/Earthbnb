@@ -20,6 +20,7 @@ class Api::PropertiesController < ApplicationController
   end
 
   def show
+    @property = Property.find(params[:id])
   end
 
   def destroy
