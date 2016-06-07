@@ -54,7 +54,10 @@ var AddListing = React.createClass({
   },
 
   getUser: function () {
-    this.setState({user_id: UserStore.user().id});
+    user = UserStore.user();
+    if (user) {
+      this.setState({user_id: user.id});
+    }
   },
 
   fillInAddress: function () {
@@ -93,7 +96,9 @@ var AddListing = React.createClass({
       city: city,
       state: state,
       country: country,
-      zip: zip
+      zip: zip,
+      lat: place.geometry.location.lat(),
+      lon: place.geometry.location.lng()
     });
   },
 

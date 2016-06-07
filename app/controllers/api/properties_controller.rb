@@ -1,5 +1,3 @@
-require 'byebug'
-
 class Api::PropertiesController < ApplicationController
   def create
     @property = Property.new(property_params)
