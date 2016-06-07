@@ -31,7 +31,7 @@ p { text-align: left; }
 a { cursor: pointer; color: #FE6C70; }
 a:hover { text-decoration: underline; }
 
-h {
+h1, h2, h3 {
   font-family: 'Lato', sans-serif;
 }
 
