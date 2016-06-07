@@ -1,3 +1,5 @@
+require 'byebug'
+
 json.property do
   json.user @property.user
   json.title @property.title

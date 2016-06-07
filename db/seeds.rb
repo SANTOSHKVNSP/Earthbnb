@@ -27,3 +27,5 @@ PropertyType.create([
   { description: 'Pyramid' },
   { description: 'Dyson sphere' },
 ])
+
+Property.destroy_all

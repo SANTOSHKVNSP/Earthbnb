@@ -250,7 +250,7 @@ var AddListing = React.createClass({
         <div className="add-listing-container">
           <section className="add-listing">
             <h1>Add a Listing</h1>
-            <h2>Where's your place located?</h2>
+            <h2>{"Where's your place located?"}</h2>
             <input id="autocomplete" onChange={this.handleAutoCompleteInputChange} value={this.state.autoCompleteInput} placeholder="Enter your address" type="text"></input>
           </section>
         </div>
@@ -268,7 +268,7 @@ var AddListing = React.createClass({
           <section className="add-listing">
             <h1>Add a Listing</h1>
             <form>
-              <h2>Where's your place located?</h2>
+              <h2>{"Where's your place located?"}</h2>
               <label>
                 <h3>Country</h3>
                 <input onChange={this.handleCountryChange} value={this.state.country}></input>
@@ -301,7 +301,7 @@ var AddListing = React.createClass({
                 <img src={window.dropDownButtonUrl} />
                 <ul id="select-box-dropdown" className={dropdownClass}>
                   {PropertyTypes.map(function (type, index) {
-                    return(<li onClick={this.handleSelect} value={index + 1} key={index}>{type.description}</li>);
+                    return(<li onClick={this.handleSelect} value={type.id} key={index}>{type.description}</li>);
                   }.bind(this))}
                 </ul>
               </div><br />

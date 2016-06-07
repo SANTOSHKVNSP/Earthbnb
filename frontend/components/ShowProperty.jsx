@@ -24,7 +24,12 @@ var ShowProperty = React.createClass({
       userImageUrl: "",
       lat: 0,
       lon: 0,
-      userName: ""
+      userName: "",
+      userId: null,
+      beds: 0,
+      accommodates: 0,
+      bathrooms: 0,
+      bedrooms: 0
     });
   },
 
@@ -56,8 +61,17 @@ var ShowProperty = React.createClass({
       userImageUrl: prop.user_image_url,
       lat: prop.lat,
       lon: prop.lon,
-      userName: prop.user.name
+      userName: prop.user.name,
+      userId: prop.user.id,
+      beds: prop.beds,
+      accommodates: prop.accommodates,
+      bathrooms: prop.bathrooms,
+      bedrooms: prop.bedrooms
     });
+  },
+
+  redirectToUser: function () {
+    this.context.router.push("/users/" + this.state.userId);
   },
 
   render: function () {
@@ -67,14 +81,48 @@ var ShowProperty = React.createClass({
         <section className="show-property-header">
           <div className="show-property-header-column group">
             <div className="show-property-header-image-div">
-              <img src={this.state.userImageUrl} /><br />
-              {this.state.userName}
+              <img onClick={this.redirectToUser} src={this.state.userImageUrl} /><br />
+              <span onClick={this.redirectToUser}>{this.state.userName}</span>
             </div>
-            <div className="show-property-header-text-div"></div>
+            <div className="show-property-header-text-div">
+              <header>{this.state.title}</header>
+              {this.state.city}, {this.state.state}, {this.state.country}
+            </div>
           </div>
         </section>
         <section className="show-property-column">
-          {this.state.title}
+          <header>About this listing</header>
+          {this.state.description}
+          <ul>
+            <li className="group">
+              <div className="column-header">
+                The Space
+              </div>
+              <div className="column-content">
+                Property type: <strong>{this.state.property_type}</strong><br />
+                Accommodates: <strong>{this.state.accommodates}</strong><br />
+                Bedrooms: <strong>{this.state.bedrooms}</strong><br />
+                Beds: <strong>{this.state.beds}</strong><br />
+                Bathrooms: <strong>{this.state.bathrooms}</strong><br />
+              </div>
+            </li>
+            <li className="group">
+              <div className="column-header">
+                Pricing
+              </div>
+              <div className="column-content">
+                <strong>{this.state.price} {this.state.currency} / night</strong>
+              </div>
+            </li>
+            <li className="group">
+              <div className="column-header">
+                House Rules
+              </div>
+              <div className="column-content">
+                {this.state.houseRules}
+              </div>
+            </li>
+          </ul>
         </section>
       </div>
     );
