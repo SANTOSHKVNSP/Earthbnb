@@ -112,6 +112,17 @@ button:hover {
   border-color: transparent;
 }
 
+.autocomplete-container {
+  display: block;
+  padding-top: 8px;
+  height: 53px;
+  float: left;
+}
+
+.autocomplete-container input {
+  width: 500px;
+}
+
 .nav-bar-button {
   float: right;
   display: block;

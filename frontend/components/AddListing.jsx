@@ -292,7 +292,7 @@ var AddListing = React.createClass({
             </ul>
           </div><br />
         </form>
-      )
+      );
     }
   },
 
@@ -300,11 +300,11 @@ var AddListing = React.createClass({
     if (this.props.params.listingId) {
       return(
         <h1>Edit Listing</h1>
-      )
+      );
     } else {
       return(
         <h1>Add a Listing</h1>
-      )
+      );
     }
   },
 

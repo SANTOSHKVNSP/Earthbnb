@@ -29,6 +29,18 @@ var NavBar = React.createClass({
     this.userListener = UserStore.addListener(this.getUser);
     this.errorsListener = ErrorsStore.addListener(this.getNumberOfErrors);
     ClientActions.fetchUser();
+
+    // Create the autocomplete object, restricting the search to geographical
+    // location types.
+    autocomplete = new google.maps.places.Autocomplete(
+        /** @type {!HTMLInputElement} */(document.getElementById('autocomplete')),
+        {types: ['geocode']});
+    // When the user selects an address from the dropdown, redirect to a search form
+    autocomplete.addListener('place_changed', this.go);
+  },
+
+  go: function () {
+    console.log("go!");
   },
 
   componentWillUnmount: function () {
@@ -77,6 +89,14 @@ var NavBar = React.createClass({
     this.context.router.push("/");
   },
 
+  renderAutoComplete: function () {
+    return(
+      <div className="autocomplete-container">
+        <input id="autocomplete" placeholder="Where to?" type="text"></input>
+      </div>
+    );
+  },
+
   render: function () {
 
     var navBarClasses;
@@ -106,6 +126,7 @@ var NavBar = React.createClass({
           <div id="logo-container" onClick={this.handleLogoClick}>
             <img id="logo" src={whichLogo} />
           </div>
+          {this.renderAutoComplete()}
           <div id="user-button" className="nav-bar-button">
             {this.state.user.name}
             <img src={this.state.userImage} />
@@ -124,6 +145,7 @@ var NavBar = React.createClass({
           <div id="logo-container" onClick={this.handleLogoClick}>
             <img id="logo" src={whichLogo} />
           </div>
+          {this.renderAutoComplete()}
           <div onClick={this.handleModalOpen.bind(this, "Log In")} id="login-button" className="nav-bar-button">Log In</div>
           <div onClick={this.handleModalOpen.bind(this, "Sign Up")} id="signup-button" className="nav-bar-button">Sign Up</div>
 
