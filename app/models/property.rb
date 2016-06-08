@@ -3,7 +3,8 @@ class Property < ActiveRecord::Base
   has_attached_file :image,
     :styles => {
       :index => "278x185#",
-      :show => "950x350#"
+      :show => "950x350#",
+      :map => "540x360#"
     },
     default_url: "default_property_:style.png"
 

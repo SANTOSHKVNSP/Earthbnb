@@ -1,6 +1,7 @@
 var React = require('react');
 var PropertyStore = require('../stores/PropertiesStore.js');
 var ClientActions = require('../actions/ClientActions.js');
+var PropertySearchResult = require('./PropertySearchResult.jsx');
 
 var PropertySearchResults = React.createClass({
 
@@ -24,14 +25,14 @@ var PropertySearchResults = React.createClass({
     this.listener.remove();
   },
 
+
   render: function () {
     return (
       <ul className="search-results">
         {Object.keys(this.state.properties).map(function (key) {
+          console.log(this.state.properties[key]);
           return (
-            <li key={key}>
-              {this.state.properties[key].title}
-            </li>
+            <PropertySearchResult key={key} property={this.state.properties[key]} />
           );
         }.bind(this))}
       </ul>
@@ -40,3 +41,10 @@ var PropertySearchResults = React.createClass({
 });
 
 module.exports = PropertySearchResults;
+
+// <li key={key} className="search-result">
+//   <img onClick={this.gotoProperty} src={this.state.properties[key].full_image_url} />
+//   <div className="search-result-info">
+//     <span onClick={this.gotoProperty}>{this.state.properties[key].title}</span>
+//   </div>
+// </li>
