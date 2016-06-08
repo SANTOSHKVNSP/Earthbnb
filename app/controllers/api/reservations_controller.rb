@@ -1,11 +1,15 @@
 class Api::ReservationsController < ApplicationController
 
   def create
-    @reservation = Reservation.new(reservation_params)
-    if @reservation.save
-      render json: @reservation
+    if Property.find(params["reservation"]["property_id"].to_i).user_id == current_user.id
+      render text: "You cannot book your own property", status: 422
     else
-      render json: @reservation.errors.full_messages, status: 422
+      @reservation = Reservation.new(reservation_params)
+      if @reservation.save
+        render json: @reservation
+      else
+        render json: @reservation.errors.full_messages, status: 422
+      end
     end
   end
 

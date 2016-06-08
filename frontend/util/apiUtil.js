@@ -199,7 +199,6 @@ module.exports = {
   },
 
   createReservation: function(reservation, successCallback, failureCallback) {
-    console.log("got here");
     $.ajax({
       url: 'api/reservations',
       type: "POST",
@@ -213,14 +212,12 @@ module.exports = {
         }
       },
       success: function (response) {
-        console.log(response);
         // ServerActions.receiveReservation(response);
         if (successCallback) {
           successCallback();
         }
       },
       error: function (response) {
-        console.log(response);
         ServerActions.receiveErrors(response);
         if (failureCallback) {
           failureCallback();

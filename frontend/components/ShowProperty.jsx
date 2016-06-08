@@ -1,6 +1,8 @@
 var React = require('react');
 var ClientActions = require('../actions/ClientActions.js');
 var PropertiesStore = require('../stores/PropertiesStore.js');
+var UserStore = require('../stores/UserStore.js');
+var ErrorsStore = require('../stores/ErrorsStore.js')
 
 var ShowProperty = React.createClass({
 
@@ -29,17 +31,21 @@ var ShowProperty = React.createClass({
       beds: 0,
       accommodates: 0,
       bathrooms: 0,
-      bedrooms: 0
+      bedrooms: 0,
+      checkInErrors: [],
+      checkOutErrors: []
     });
   },
 
   componentDidMount: function () {
     this.propertiesListener = PropertiesStore.addListener(this.getProperty);
+    this.errorsListener = ErrorsStore.addListener(this.getErrors);
     ClientActions.fetchProperty(this.props.params.listingId);
   },
 
   componentWillUnmount: function () {
     this.propertiesListener.remove();
+    this.errorsListener.remove();
   },
 
   getProperty: function () {
@@ -100,9 +106,8 @@ var ShowProperty = React.createClass({
       document.getElementById("check-out-input").focus();
     } else {
       this.setState({booking: true});
-      console.log("send it up!");
       ClientActions.createReservation({
-        user_id: 1,
+        user_id: UserStore.user().id,
         property_id: this.props.params.listingId,
         check_in: this.state.check_in,
         check_out: this.state.check_out,
@@ -115,7 +120,24 @@ var ShowProperty = React.createClass({
   },
   renderErrors: function () {
     this.setState({booking: false});
-    console.log("render errors");
+  },
+
+  getErrors: function () {
+    this.setState({
+      checkInErrors: ErrorsStore.checkInErrors(),
+      checkOutErrors: ErrorsStore.checkOutErrors()
+    });
+  },
+
+  renderCheckInErrors: function() {
+    return this.state.checkInErrors.map(function(checkInError, index) {
+      return(<div key={index} className="error-message-book">{checkInError}</div>);
+    });
+  },
+  renderCheckOutErrors: function() {
+    return this.state.checkOutErrors.map(function(checkOutError, index) {
+      return(<div key={index} className="error-message-book">{checkOutError}</div>);
+    });
   },
 
   renderBookDiv: function () {
@@ -125,14 +147,18 @@ var ShowProperty = React.createClass({
       guestsArray.push(i);
     }
 
+    var checkInClass = this.state.checkInErrors.length > 0 ? "errors" : "no-errors";
+    var checkOutClass = this.state.checkOutErrors.length > 0 ? "errors" : "no-errors";
     var addBookingButtonClass = this.state.booking ? "booking-button-waiting" : "booking-button-not-waiting";
 
     return(
       <div className="book">
         <header>{this.state.price} {this.state.currency} Per Night</header>
         <div className="book-body">
-          Check in <input id="check-in-input" onChange={this.handleCheckIn} type="date" disabled={this.state.booking} /><br />
-          Check out <input id="check-out-input" onChange={this.handleCheckOut} type="date" disabled={this.state.booking} /><br />
+          {this.renderCheckInErrors()}
+          {this.renderCheckOutErrors()}
+          Check in <input id="check-in-input" className={checkInClass} onChange={this.handleCheckIn} type="date" disabled={this.state.booking} /><br />
+          Check out <input id="check-out-input" className={checkOutClass} onChange={this.handleCheckOut} type="date" disabled={this.state.booking} /><br />
           Guests
           <select onChange={this.handleGuestsChange} defaultValue={1} disabled={this.state.booking}>
             {guestsArray.map(function (num) {

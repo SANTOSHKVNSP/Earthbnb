@@ -801,6 +801,13 @@ button:hover {
   background-color: #FF8E91;
 }
 
+.error-message-book {
+  color: red;
+  height: 16px;
+  text-align: center;
+  padding-bottom: 16px;
+}
+
 .show-property-header-image-div {
   display: block;
   width: 180px;

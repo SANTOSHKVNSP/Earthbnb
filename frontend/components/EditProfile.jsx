@@ -173,7 +173,7 @@ var EditProfile = React.createClass({
           </label><br />
           <p>Earthbnb is built on relationships. Help other people get to know you.</p>
           <p>Tell them about the things you like: What are 5 things you can’t live without? Share your favorite travel destinations, books, movies, shows, music, food.</p>
-          <p>Tell them what it’s like to have you as a guest or host: What’s your style of traveling? Of Airbnb hosting?</p>
+          <p>Tell them what it’s like to have you as a guest or host: What’s your style of traveling? Of Earthbnb hosting?</p>
           <p>Tell them about you: Do you have a life motto?</p>
         </form>
 

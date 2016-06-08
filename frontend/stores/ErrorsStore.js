@@ -7,7 +7,6 @@ var _errors = [];
 
 ErrorsStore.resetErrors = function(errors) {
   _errors = errors;
-  console.log(_errors);
 };
 
 ErrorsStore.all = function() {
@@ -24,6 +23,25 @@ ErrorsStore.nameErrors = function () {
      nameErrors.push("Name is required.");
    }
    return nameErrors;
+};
+
+ErrorsStore.checkInErrors = function () {
+  var checkInErrors = [];
+   if (_errors.indexOf("You cannot book your own property") > -1){
+     checkInErrors.push("You cannot book your own property.");
+   }
+   if (_errors.indexOf("Check in cannot be before today") > -1){
+     checkInErrors.push("Check in must be today at the earliest.");
+   }
+  return checkInErrors;
+};
+
+ErrorsStore.checkOutErrors = function () {
+  var checkOutErrors = [];
+   if (_errors.indexOf("Check out cannot come before check in") > -1){
+     checkOutErrors.push("Check out must come after check in.");
+   }
+  return checkOutErrors;
 };
 
 ErrorsStore.speciesErrors = function () {
@@ -45,7 +63,7 @@ ErrorsStore.emailErrors = function () {
    if (_errors.indexOf("Email does not exist") > -1){
      emailErrors.push("An account with this email does not exist.");
    }
-   return emailErrors;
+  return emailErrors;
 };
 
 ErrorsStore.passwordErrors = function () {

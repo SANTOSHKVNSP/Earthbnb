@@ -26,8 +26,7 @@ belushi = User.create(
   bio: "I’m a trillionaire. But the celestial courts sentenced me to renting out my space as a punishment for manslaughter. Harsh sentence, really."
 )
 
-# PropertyType.destroy_all
-#
+#only the first time!
 # PropertyType.create([
 #   { description: 'Apartment' },
 #   { description: 'House' },
