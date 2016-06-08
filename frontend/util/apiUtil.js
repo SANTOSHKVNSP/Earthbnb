@@ -196,6 +196,37 @@ module.exports = {
         ServerActions.removeProperty(response);
       }
     });
+  },
+
+  createReservation: function(reservation, successCallback, failureCallback) {
+    console.log("got here");
+    $.ajax({
+      url: 'api/reservations',
+      type: "POST",
+      data: {
+        reservation:{
+          user_id: reservation.user_id,
+          property_id: reservation.property_id,
+          check_in: reservation.check_in,
+          check_out: reservation.check_out,
+          guests: reservation.guests
+        }
+      },
+      success: function (response) {
+        console.log(response);
+        // ServerActions.receiveReservation(response);
+        if (successCallback) {
+          successCallback();
+        }
+      },
+      error: function (response) {
+        console.log(response);
+        ServerActions.receiveErrors(response);
+        if (failureCallback) {
+          failureCallback();
+        }
+      }
+    });
   }
 
 };

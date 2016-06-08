@@ -14,6 +14,8 @@ Rails.application.routes.draw do
 
     resources :property_types, only: [:index]
 
+    resources :reservations, only: [:create]
+
   end
 
 end

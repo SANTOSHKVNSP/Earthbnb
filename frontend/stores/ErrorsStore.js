@@ -7,6 +7,7 @@ var _errors = [];
 
 ErrorsStore.resetErrors = function(errors) {
   _errors = errors;
+  console.log(_errors);
 };
 
 ErrorsStore.all = function() {

@@ -785,11 +785,20 @@ button:hover {
   -webkit-appearance: none;
 }
 
-.book-body button {
+.booking-button-not-waiting {
   width: 100%;
   padding-top: 12px;
   padding-bottom: 12px;
   margin-top: 20px;
+}
+
+.booking-button-waiting {
+  width: 100%;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  margin-top: 20px;
+  cursor: default;
+  background-color: #FF8E91;
 }
 
 .show-property-header-image-div {

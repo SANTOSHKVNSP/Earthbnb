@@ -18,6 +18,8 @@ var ClientActions = {
 
   fetchPropertyTypes: ApiUtil.fetchPropertyTypes,
 
+  createReservation: ApiUtil.createReservation,
+
   clearErrors: function () {
     AppDispatcher.dispatch({
       actionType: "CLEAR_ERRORS"
