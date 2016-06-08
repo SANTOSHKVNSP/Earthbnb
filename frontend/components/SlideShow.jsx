@@ -9,7 +9,7 @@ var SlideShow = React.createClass({
   render: function () {
     return(
       <section className="slide-show">
-        <NavBar background={"transparent"}/>
+        <NavBar background={"transparent"} redirectCallback={this.props.redirectCallback}/>
       </section>
     );
   }

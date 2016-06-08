@@ -40,7 +40,7 @@ var App = React.createClass({
     if (this.props.location.pathname === "/") {
       return(
         <div className="app-root">
-          {this.props.children}
+          <SlideShow redirectCallback={this.go}/>
         </div>
       );
     } else {
