@@ -74,7 +74,35 @@ var ShowProperty = React.createClass({
     this.context.router.push("/users/" + this.state.userId);
   },
 
+  renderBookDiv: function () {
+
+    var guestsArray = [];
+    for ( i = 1; i <= this.state.accommodates; i++ ) {
+      guestsArray.push(i);
+    }
+
+    return(
+      <div className="book">
+        <header>{this.state.price} {this.state.currency} Per Night</header>
+        <div className="book-body">
+          Check in <input type="date" /><br />
+          Check out <input type="date" /><br />
+          Guests
+          <select defaultValue={1}>
+            {guestsArray.map(function (num) {
+              return(
+                <option key={num} value={num}>{num}</option>
+              );
+            })}
+          </select>
+          <button>Book</button>
+        </div>
+      </div>
+    );
+  },
+
   render: function () {
+
     return(
       <div className="show-property">
         <img className="show-property-image" src={this.state.imageUrl} />
@@ -88,6 +116,7 @@ var ShowProperty = React.createClass({
               <header>{this.state.title}</header>
               {this.state.city}, {this.state.state}, {this.state.country}
             </div>
+            {this.renderBookDiv()}
           </div>
         </section>
         <section className="show-property-column">
@@ -111,7 +140,7 @@ var ShowProperty = React.createClass({
                 Pricing
               </div>
               <div className="column-content">
-                <strong>{this.state.price} {this.state.currency} / night</strong>
+                <strong>{this.state.price} {this.state.currency} Per Night</strong>
               </div>
             </li>
             <li className="group">

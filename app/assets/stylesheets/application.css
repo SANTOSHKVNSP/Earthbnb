@@ -729,9 +729,67 @@ button:hover {
 }
 
 .show-property-header-column {
-  width: 685px;
+  position: relative;
+  width: 1020px;
   height: 170px;
   margin: auto;
+}
+
+.book {
+  display: block;
+  position: absolute;
+  width: 315px;
+  height: 100px;
+  background: white;
+  left: 703px;
+  top: -42px;
+}
+
+.book header {
+  background: black;
+  opacity: 0.8;
+  color: white;
+  height: 24px;
+  font-size: 20px;
+  padding: 8px;
+  border: 1px solid black;
+  cursor: default;
+}
+
+.book-body {
+  border: 1px solid #DCE0E0;
+  padding: 20px;
+  text-align: right;
+  background: white;
+}
+
+.book-body input {
+  width: 120px;
+  font-size: 14px;
+  border-radius: 3px;
+  margin-right: 50px;
+  margin-left: 10px;
+}
+
+.book-body select {
+  margin: 2px;
+  width: 140px;
+  height: 40px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  margin-left: 15px;
+  margin-right: 50px;
+}
+
+.book-body input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+.book-body button {
+  width: 100%;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  margin-top: 20px;
 }
 
 .show-property-header-image-div {
@@ -770,7 +828,7 @@ button:hover {
 }
 
 .show-property-column {
-  width: 685px;
+  width: 1020px;
   margin: auto;
   margin-top: 50px;
 }
@@ -786,6 +844,7 @@ button:hover {
 }
 
 .show-property-column li {
+  width: 685px;
   border-top: solid 1px #DCE0E0;
   padding: 10px 0
 }
@@ -826,21 +885,19 @@ button:hover {
   width: 60%;
   height: calc(100% - 20px);
   overflow-y: scroll;
-  background: green;
   padding-top: 20px;
 }
 
 .search-result {
   float: left;
   display: block;
-  border: solid 1px black;
-  background: yellow;
-  width: calc(50% - 2px);
+  position: relative;
+  width: calc(50%);
   min-width: 200px;
   padding-bottom: 20px;
 }
 
-.search-result img {
+.search-result-property-image {
   display: block;
   width: 95%;
   height: auto;
@@ -852,7 +909,6 @@ button:hover {
   display: block;
   width: 95%;
   height: 20px;
-  background: blue;
   margin: auto;
   padding-top: 18px;
   font-size: 16px;
@@ -862,9 +918,27 @@ button:hover {
   cursor: pointer;
 }
 
-.filler {
+.search-result-owner-image {
+  position: absolute;
   display: block;
-  background: blue;
-  height: 500px;
-  width: 100%;
+  width: 90px;
+  height: 90px;
+  left: calc(80% - 45px);
+  top: calc(83% - 45px);
+  background: gray;
+  border-radius: 50%;
+  border: solid 2px white;
+  cursor: pointer;
+}
+
+.price-display {
+  padding: 8px;
+  display: block;
+  opacity: 0.8;
+  background: black;
+  position: absolute;
+  left: 2.5%;
+  top: 70%;
+  color: white;
+  cursor: pointer;
 }

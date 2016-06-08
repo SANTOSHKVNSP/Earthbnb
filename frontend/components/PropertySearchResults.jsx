@@ -30,7 +30,6 @@ var PropertySearchResults = React.createClass({
     return (
       <ul className="search-results">
         {Object.keys(this.state.properties).map(function (key) {
-          console.log(this.state.properties[key]);
           return (
             <PropertySearchResult key={key} property={this.state.properties[key]} />
           );

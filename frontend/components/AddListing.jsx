@@ -27,7 +27,7 @@ var AddListing = React.createClass({
       beds: 0,
       bedrooms: 0,
       bathrooms: 0,
-      accommodates: 0,
+      accommodates: 1,
       lat: 0,
       lon: 0,
       price: 0,
@@ -211,7 +211,7 @@ var AddListing = React.createClass({
     this.setState({accommodates: this.state.accommodates + 1});
   },
   subtractAccomodates: function () {
-    if (this.state.accommodates > 0) {
+    if (this.state.accommodates > 1) {
       this.setState({accommodates: this.state.accommodates - 1});
     }
   },

@@ -81,13 +81,6 @@ var Map = React.createClass({
   },
 
   componentWillReceiveProps: function (nextProps) {
-    // console.log("new props!");
-    // console.log(this.props.startingLat);
-    // console.log(this.props.startingLng);
-    // if (nextProps) {
-    //   console.log(nextProps.startingLat);
-    //   console.log(nextProps.startingLng);
-    // }
     this.state.map.setCenter({lat: +nextProps.startingLat, lng: +nextProps.startingLng});
   },
 
