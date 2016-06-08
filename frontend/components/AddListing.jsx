@@ -23,7 +23,7 @@ var AddListing = React.createClass({
       title: "",
       description: "",
       houseRules: "",
-      propertyTypeId: 1,
+      propertyTypeId: 0,
       beds: 0,
       bedrooms: 0,
       bathrooms: 0,
