@@ -26,15 +26,15 @@ belushi = User.create(
   bio: "I’m a trillionaire. But the celestial courts sentenced me to renting out my space as a punishment for manslaughter. Harsh sentence, really."
 )
 
-PropertyType.destroy_all
-
-PropertyType.create([
-  { description: 'Apartment' },
-  { description: 'House' },
-  { description: 'Palace' },
-  { description: 'Subterranean Fortress' },
-  { description: 'Pyramid' },
-  { description: 'Dyson sphere' },
-])
+# PropertyType.destroy_all
+#
+# PropertyType.create([
+#   { description: 'Apartment' },
+#   { description: 'House' },
+#   { description: 'Palace' },
+#   { description: 'Subterranean Fortress' },
+#   { description: 'Pyramid' },
+#   { description: 'Dyson sphere' },
+# ])
 
 Property.destroy_all
