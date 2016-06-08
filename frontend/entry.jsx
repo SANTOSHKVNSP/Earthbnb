@@ -33,13 +33,13 @@ var App = React.createClass({
   render: function () {
     if (this.props.location.pathname === "/") {
       return(
-        <div>
+        <div className="app-root">
           {this.props.children}
         </div>
       );
     } else {
       return(
-        <div>
+        <div className="app-root">
           <NavBar />
           {this.props.children}
         </div>

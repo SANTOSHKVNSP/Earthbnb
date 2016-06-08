@@ -31,6 +31,10 @@ p { text-align: left; }
 a { cursor: pointer; color: #FE6C70; }
 a:hover { text-decoration: underline; }
 
+html, body, main {
+  height: 100%;
+}
+
 h1, h2, h3, h6 {
   font-family: 'Lato', sans-serif;
 }
@@ -87,6 +91,10 @@ button:hover {
 .white-button:hover {
   background: white;
   border: 1px solid #7A7A7A;
+}
+
+.app-root {
+  height: 100%;
 }
 
 .slide-show {
@@ -803,13 +811,13 @@ button:hover {
 }
 
 #search-container {
-  height: 100%;
+  height: calc(100% - 62px);
 }
 
 .map {
   float: left;
   width: 40%;
-  height: 500px;
+  height: 100%;
 }
 
 .search-results {
