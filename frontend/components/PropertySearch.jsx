@@ -8,7 +8,7 @@ var PropertySearch = React.createClass({
     return(
       <div id="search-container" className="group">
         <PropertySearchResults />
-        <Map/>
+        <Map startingLat={this.props.startingLat} startingLng={this.props.startingLng} />
       </div>
     );
   }

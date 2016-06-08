@@ -43,10 +43,19 @@ var Map = React.createClass({
 
   componentDidMount: function () {
     var mapDOMNode = this.refs.map;
-    var mapOptions = {
-      center: {lat: 40.7179464, lng: -74.0139052},
-      zoom: 13
-    };
+    var mapOptions;
+    if (this.props.startingLat && this.props.startingLng) {
+      mapOptions = {
+        center: {lat: this.props.startingLat, lng: this.props.startingLng},
+        zoom: 13
+      };
+    } else {
+      mapOptions = {
+        center: {lat: 40.7179464, lng: -74.0139052},
+        zoom: 13
+      };
+    }
+
     this.state.map = new google.maps.Map(mapDOMNode, mapOptions);
 
     this.state.map.addListener('idle', function() {
@@ -69,6 +78,17 @@ var Map = React.createClass({
     // }.bind(this));
 
     this.listener = PropertiesStore.addListener(this.updateState);
+  },
+
+  componentWillReceiveProps: function (nextProps) {
+    // console.log("new props!");
+    // console.log(this.props.startingLat);
+    // console.log(this.props.startingLng);
+    // if (nextProps) {
+    //   console.log(nextProps.startingLat);
+    //   console.log(nextProps.startingLng);
+    // }
+    this.state.map.setCenter({lat: +nextProps.startingLat, lng: +nextProps.startingLng});
   },
 
   render: function () {

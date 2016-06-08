@@ -30,6 +30,12 @@ var App = React.createClass({
     ClientActions.fetchPropertyTypes();
   },
 
+  go: function (lat, lng) {
+    this.lat = lat;
+    this.lng = lng;
+    this.context.router.push("/search");
+  },
+
   render: function () {
     if (this.props.location.pathname === "/") {
       return(
@@ -38,12 +44,25 @@ var App = React.createClass({
         </div>
       );
     } else {
-      return(
-        <div className="app-root">
-          <NavBar />
-          {this.props.children}
-        </div>
-      );
+      if (this.lat && this.lng) {
+        var passedLat = this.lat;
+        var passedLng = this.lng;
+        this.lat = undefined;
+        this.lng = undefined;
+        return(
+          <div className="app-root">
+            <NavBar redirectCallback={this.go} />
+            <PropertySearch startingLat={passedLat} startingLng={passedLng} />
+          </div>
+        );
+      } else {
+        return(
+          <div className="app-root">
+            <NavBar redirectCallback={this.go} />
+            {this.props.children}
+          </div>
+        );
+      }
     }
   }
 });

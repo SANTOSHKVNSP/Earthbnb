@@ -42,8 +42,10 @@ var NavBar = React.createClass({
   },
 
   go: function () {
-    console.log(autocomplete.getPlace().geometry.location.lat());
-    console.log(autocomplete.getPlace().geometry.location.lng());
+    this.props.redirectCallback(
+      autocomplete.getPlace().geometry.location.lat(),
+      autocomplete.getPlace().geometry.location.lng()
+    );
   },
 
   componentWillUnmount: function () {

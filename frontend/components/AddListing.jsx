@@ -23,7 +23,7 @@ var AddListing = React.createClass({
       title: "",
       description: "",
       houseRules: "",
-      propertyTypeId: 0,
+      propertyTypeId: 1,
       beds: 0,
       bedrooms: 0,
       bathrooms: 0,
@@ -279,7 +279,7 @@ var AddListing = React.createClass({
   renderPropertyTypeDropdown: function () {
     var PropertyTypes = PropertyTypeStore.all();
     var dropdownClass = this.state.showingPropertyTypeDropDown ? "drop-down-visible" : "drop-down-invisible";
-    if (PropertyTypes.length > 0) {
+    if (PropertyTypes) {
       return (
         <form>
           <div id="select-box" className={"no-errors"} onClick={this.handlePropertyTypeBoxClick}>

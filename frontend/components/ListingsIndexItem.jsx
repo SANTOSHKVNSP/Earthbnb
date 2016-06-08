@@ -14,7 +14,7 @@ var ListingsIndexItem = React.createClass({
   },
 
   handleDeleteClick: function () {
-    ClientActions.deleteProperty(this.props.listing.id)
+    ClientActions.deleteProperty(this.props.listing.id);
   },
 
   renderButtons: function () {
@@ -24,7 +24,7 @@ var ListingsIndexItem = React.createClass({
           <button onClick={this.handleEditClick} id="edit-listing-button" className="white-button">Edit This Listing</button><br />
           <button onClick={this.handleDeleteClick} id="delete-listing-button" className="white-button">Delete This Listing</button>
         </div>
-      )
+      );
     }
   },
 
