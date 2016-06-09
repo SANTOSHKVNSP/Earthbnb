@@ -22,6 +22,7 @@ var ShowProfile = require('./components/ShowProfile.jsx');
 var ListingsIndex = require('./components/ListingsIndex.jsx');
 var AddListing = require('./components/AddListing.jsx');
 var ShowProperty = require('./components/ShowProperty.jsx');
+var TripIndex = require('./components/ReservationsIndex.jsx');
 
 var App = React.createClass({
 
@@ -73,6 +74,7 @@ var routes = (
       <Route path="/user/edit" component={EditProfile} />
       <Route path="/user/listings" component={ListingsIndex} />
       <Route path="/user/listings/:listingId/edit" component={AddListing} />
+      <Route path="/user/trips" component={TripIndex} />
     </Route>
     <Route path="/add-a-listing" component={AddListing} />
     <Route path="/search" component={PropertySearch} />

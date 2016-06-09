@@ -2,6 +2,8 @@ var React = require('react');
 var Slider = require('react-slick');
 var ClientActions = require('../actions/ClientActions.js');
 var PropertiesStore = require('../stores/PropertiesStore.js');
+var PropertySearchResults = require('../components/PropertySearchResults.jsx');
+var PropertySearchResult = require('../components/PropertySearchResult.jsx');
 
 var SlickSlideShow = React.createClass({
 
@@ -16,6 +18,10 @@ var SlickSlideShow = React.createClass({
     ClientActions.fetchPropertyImages();
   },
 
+  componentWillUnmount: function () {
+    this.listener.remove();
+  },
+
   getProperties: function () {
     this.setState({
       properties: PropertiesStore.all()
@@ -23,18 +29,18 @@ var SlickSlideShow = React.createClass({
   },
 
   render: function() {
-    console.log(this.state.properties);
   	var settings = {
       infinite: true,
       speed: 500,
       fade: true,
       cssEase: 'linear',
       autoplay: true,
-      autoplaySpeed: 2000,
-      arrows: false
+      autoplaySpeed: 4000,
+      arrows: false,
+      draggable: false
     };
     return (
-    	<div className='slick-container'>
+    	<div>
       	<Slider className='slick-container' {...settings}>
           {this.state.properties.map(function (property, index) {
             return(
@@ -42,6 +48,16 @@ var SlickSlideShow = React.createClass({
             );
           })}
         </Slider>
+        <div className='front-page-column'>
+          <h1>Featured Listings</h1>
+          <ul className="root-search-results">
+            {Object.keys(this.state.properties).map(function (key) {
+              return (
+                <PropertySearchResult key={key} property={this.state.properties[key]} />
+              );
+            }.bind(this))}
+          </ul>
+        </div>
       </div>
     );
   }

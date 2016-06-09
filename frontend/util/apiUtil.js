@@ -208,6 +208,19 @@ module.exports = {
     });
   },
 
+  fetchUserReservations: function(id) {
+    $.ajax({
+      url: 'api/reservations-user',
+      type: "GET",
+      data: {
+        user_id: id
+      },
+      success: function (response) {
+        ServerActions.receiveReservations(response);
+      }
+    });
+  },
+
   createReservation: function(reservation, successCallback, failureCallback) {
     $.ajax({
       url: 'api/reservations',
@@ -222,7 +235,6 @@ module.exports = {
         }
       },
       success: function (response) {
-        // ServerActions.receiveReservation(response);
         if (successCallback) {
           successCallback();
         }
@@ -232,6 +244,16 @@ module.exports = {
         if (failureCallback) {
           failureCallback();
         }
+      }
+    });
+  },
+
+  deleteReservation: function(id) {
+    $.ajax({
+      url: 'api/reservations/' + id,
+      type: "DELETE",
+      success: function (response) {
+        ServerActions.removeReservation(response);
       }
     });
   }

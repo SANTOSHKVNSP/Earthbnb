@@ -15,7 +15,8 @@ Rails.application.routes.draw do
 
     resources :property_types, only: [:index]
 
-    resources :reservations, only: [:create]
+    resources :reservations, only: [:create, :destroy]
+    get 'reservations-user' => 'reservations#index_user'
 
   end
 

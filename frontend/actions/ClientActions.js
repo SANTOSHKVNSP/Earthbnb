@@ -19,7 +19,9 @@ var ClientActions = {
 
   fetchPropertyTypes: ApiUtil.fetchPropertyTypes,
 
+  fetchUserReservations: ApiUtil.fetchUserReservations,
   createReservation: ApiUtil.createReservation,
+  deleteReservation: ApiUtil.deleteReservation,
 
   clearErrors: function () {
     AppDispatcher.dispatch({

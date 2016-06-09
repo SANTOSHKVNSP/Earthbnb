@@ -40,10 +40,3 @@ var PropertySearchResults = React.createClass({
 });
 
 module.exports = PropertySearchResults;
-
-// <li key={key} className="search-result">
-//   <img onClick={this.gotoProperty} src={this.state.properties[key].full_image_url} />
-//   <div className="search-result-info">
-//     <span onClick={this.gotoProperty}>{this.state.properties[key].title}</span>
-//   </div>
-// </li>

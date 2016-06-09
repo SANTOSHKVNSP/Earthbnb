@@ -44,7 +44,6 @@ var ShowProperty = React.createClass({
   },
 
   componentWillReceiveProps: function (newProps) {
-    console.log("new props");
     ClientActions.fetchProperty(newProps.params.listingId);
   },
 
@@ -121,7 +120,7 @@ var ShowProperty = React.createClass({
     }
   },
   reDirectToTrips: function () {
-    console.log("go to trips page!");
+    this.context.router.push("/user/trips");
   },
   renderErrors: function () {
     this.setState({booking: false});

@@ -279,7 +279,7 @@ var AddListing = React.createClass({
   renderPropertyTypeDropdown: function () {
     var PropertyTypes = PropertyTypeStore.all();
     var dropdownClass = this.state.showingPropertyTypeDropDown ? "drop-down-visible" : "drop-down-invisible";
-    if (PropertyTypes) {
+    if (PropertyTypes.length > 0) {
       return (
         <form>
           <div id="select-box" className={"no-errors"} onClick={this.handlePropertyTypeBoxClick}>
@@ -395,9 +395,6 @@ var AddListing = React.createClass({
                   <div onClick={this.addAccomodates} className="increment-icon plus"></div>
                 </div>
               </label><br />
-            </form>
-            <h2>What amenities do you offer?</h2>
-            <form>
             </form>
             <h2>Add a cover photo</h2>
             <form>

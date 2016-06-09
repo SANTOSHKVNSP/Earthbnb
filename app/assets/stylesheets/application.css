@@ -114,6 +114,22 @@ button:hover {
   overflow: hidden;
 }
 
+.front-page-column {
+  margin: auto;
+  display: block;
+  width: 1000px;
+  padding-top:57px;
+  height: 500px;
+  text-align: center;
+}
+
+.root-search-results {
+  float: left;
+  display: block;
+  padding-top: 20px;
+  padding-bottom: 40px;
+}
+
 .nav-bar {
   background: white;
   height: 61px;
@@ -701,12 +717,13 @@ button:hover {
   margin-top: 22px;
 }
 
-.listing-index-item > form {
-  padding-bottom: 18px;
+.listing-index-item-form {
+  padding: 18px;
   text-align: left;
+  background: white;
 }
 
-.listing-index-item > form:last-child {
+.listing-index-item > section:last-child {
   margin-bottom: 24px;
 }
 
@@ -925,6 +942,7 @@ button:hover {
   width: calc(50%);
   min-width: 200px;
   padding-bottom: 20px;
+  text-align: left;
 }
 
 .search-result-property-image {
@@ -971,4 +989,14 @@ button:hover {
   top: 70%;
   color: white;
   cursor: pointer;
+}
+
+.reservation-text-container {
+  float: left;
+  display: block;
+  width: 300px;
+  padding-bottom: 20px;
+  margin-left: 20px;
+  color: #484848;
+  line-height: 22px;
 }

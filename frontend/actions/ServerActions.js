@@ -58,7 +58,19 @@ var ServerActions = {
       actionType: "PROPERTY_REMOVED",
       property: response
     });
-  }
+  },
+  receiveReservations: function (response) {
+    AppDispatcher.dispatch({
+      actionType: "RESERVATIONS_RECEIVED",
+      reservations: response
+    });
+  },
+  removeReservation: function (response) {
+    AppDispatcher.dispatch({
+      actionType: "RESERVATION_REMOVED",
+      reservation: response
+    });
+  },
 };
 
 module.exports = ServerActions;

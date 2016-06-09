@@ -28,6 +28,9 @@ var AdminNavBar = React.createClass({
       case "/user/listings":
         this.resetState(function () { this.setState({ListingClass: "on-page"}); }.bind(this));
         break;
+      case "/user/trips":
+        this.resetState(function () { this.setState({TripsClass: "on-page"}); }.bind(this));
+        break;
     }
   },
 
@@ -38,6 +41,9 @@ var AdminNavBar = React.createClass({
         break;
       case "/user/listings":
         this.resetState(function () { this.setState({ListingClass: "on-page"}); }.bind(this));
+        break;
+      case "/user/trips":
+        this.resetState(function () { this.setState({TripsClass: "on-page"}); }.bind(this));
         break;
     }
   },

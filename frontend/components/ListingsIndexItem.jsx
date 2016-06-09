@@ -10,7 +10,7 @@ var ListingsIndexItem = React.createClass({
   },
 
   handleEditClick: function () {
-    this.context.router.push("user/listings/" + this.props.listing.id + "/edit");
+    this.context.router.push("/user/listings/" + this.props.listing.id + "/edit");
   },
 
   handleDeleteClick: function () {
@@ -34,10 +34,10 @@ var ListingsIndexItem = React.createClass({
         <header>
           {this.props.listing.title}
         </header>
-        <form className="group">
+        <section className="listing-index-item-form group">
           <img onClick={this.redirect} className="listing-index-item-pic" src={this.props.listing.image_url} />
           {this.renderButtons()}
-        </form>
+        </section>
       </li>
     );
   }

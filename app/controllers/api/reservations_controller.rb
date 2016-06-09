@@ -13,33 +13,16 @@ class Api::ReservationsController < ApplicationController
     end
   end
 
-  # def index
-  #   if (params[:user])
-  #     @properties = Property.where(user_id: params[:user])
-  #   else
-  #     # render json: Property.in_bounds(params[:bounds])
-  #     @properties = Property.in_bounds(params[:bounds])
-  #   end
-  # end
-  #
-  # def show
-  #   @property = Property.find(params[:id])
-  # end
-  #
-  # def destroy
-  #   @property = Property.find(params[:id])
-  #   @property.destroy
-  #   render json: @property
-  # end
-  #
-  # def update
-  #   @property = Property.find(params[:id])
-  #   if @property.update(property_params)
-  #     render json: @property
-  #   else
-  #     render json: @property.errors.full_messages, status: 422
-  #   end
-  # end
+  def index_user
+    @reservations = Reservation.where(user_id: params[:user_id]).order(:check_in)
+  end
+
+  def destroy
+    @reservation = Reservation.find(params[:id])
+    @reservation.destroy
+    render json: @reservation
+  end
+
 
   private
 

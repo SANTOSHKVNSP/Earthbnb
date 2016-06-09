@@ -71,13 +71,11 @@ var Map = React.createClass({
       ClientActions.fetchBoundsProperties(boundsObject);
     }.bind(this));
 
-    // this.state.map.addListener('click', function(event) {
-    //   var latitude = event.latLng.lat();
-    //   var longitude = event.latLng.lng();
-    //   this.handleClick({lat: latitude, lng: longitude});
-    // }.bind(this));
-
     this.listener = PropertiesStore.addListener(this.updateState);
+  },
+
+  componentWillUnmount: function () {
+    this.listener.remove();
   },
 
   componentWillReceiveProps: function (nextProps) {
