@@ -2,7 +2,7 @@ var React = require('react');
 var ClientActions = require('../actions/ClientActions.js');
 var PropertiesStore = require('../stores/PropertiesStore.js');
 var UserStore = require('../stores/UserStore.js');
-var ErrorsStore = require('../stores/ErrorsStore.js')
+var ErrorsStore = require('../stores/ErrorsStore.js');
 
 var ShowProperty = React.createClass({
 
@@ -41,6 +41,11 @@ var ShowProperty = React.createClass({
     this.propertiesListener = PropertiesStore.addListener(this.getProperty);
     this.errorsListener = ErrorsStore.addListener(this.getErrors);
     ClientActions.fetchProperty(this.props.params.listingId);
+  },
+
+  componentWillReceiveProps: function (newProps) {
+    console.log("new props");
+    ClientActions.fetchProperty(newProps.params.listingId);
   },
 
   componentWillUnmount: function () {
