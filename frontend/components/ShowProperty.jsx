@@ -142,35 +142,37 @@ var ShowProperty = React.createClass({
 
   renderBookDiv: function () {
 
-    var guestsArray = [];
-    for ( i = 1; i <= this.state.accommodates; i++ ) {
-      guestsArray.push(i);
-    }
+    if (UserStore.user()) {
+      var guestsArray = [];
+      for ( i = 1; i <= this.state.accommodates; i++ ) {
+        guestsArray.push(i);
+      }
 
-    var checkInClass = this.state.checkInErrors.length > 0 ? "errors" : "no-errors";
-    var checkOutClass = this.state.checkOutErrors.length > 0 ? "errors" : "no-errors";
-    var addBookingButtonClass = this.state.booking ? "booking-button-waiting" : "booking-button-not-waiting";
+      var checkInClass = this.state.checkInErrors.length > 0 ? "errors" : "no-errors";
+      var checkOutClass = this.state.checkOutErrors.length > 0 ? "errors" : "no-errors";
+      var addBookingButtonClass = this.state.booking ? "booking-button-waiting" : "booking-button-not-waiting";
 
-    return(
-      <div className="book">
-        <header>{this.state.price} {this.state.currency} Per Night</header>
-        <div className="book-body">
-          {this.renderCheckInErrors()}
-          {this.renderCheckOutErrors()}
-          Check in <input id="check-in-input" className={checkInClass} onChange={this.handleCheckIn} type="date" disabled={this.state.booking} /><br />
-          Check out <input id="check-out-input" className={checkOutClass} onChange={this.handleCheckOut} type="date" disabled={this.state.booking} /><br />
-          Guests
-          <select onChange={this.handleGuestsChange} defaultValue={1} disabled={this.state.booking}>
-            {guestsArray.map(function (num) {
-              return(
-                <option key={num} value={num}>{num}</option>
-              );
-            })}
-          </select>
-          <button className={addBookingButtonClass} onClick={this.handleBook}>Book</button>
+      return(
+        <div className="book">
+          <header>{this.state.price} {this.state.currency} Per Night</header>
+          <div className="book-body">
+            {this.renderCheckInErrors()}
+            {this.renderCheckOutErrors()}
+            Check in <input id="check-in-input" className={checkInClass} onChange={this.handleCheckIn} type="date" disabled={this.state.booking} /><br />
+            Check out <input id="check-out-input" className={checkOutClass} onChange={this.handleCheckOut} type="date" disabled={this.state.booking} /><br />
+            Guests
+            <select onChange={this.handleGuestsChange} defaultValue={1} disabled={this.state.booking}>
+              {guestsArray.map(function (num) {
+                return(
+                  <option key={num} value={num}>{num}</option>
+                );
+              })}
+            </select>
+            <button className={addBookingButtonClass} onClick={this.handleBook}>Book</button>
+          </div>
         </div>
-      </div>
-    );
+      );
+    }
   },
 
   render: function () {
