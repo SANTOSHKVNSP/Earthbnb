@@ -9,6 +9,7 @@ var ClientActions = {
   updateUser: ApiUtil.updateUser,
   fetchUsers: ApiUtil.fetchUsers,
 
+  fetchPropertyImages: ApiUtil.fetchPropertyImages,
   createProperty: ApiUtil.createProperty,
   fetchUserProperties: ApiUtil.fetchUserProperties,
   fetchBoundsProperties: ApiUtil.fetchBoundsProperties,

@@ -10,7 +10,7 @@ PropertiesStore.resetProperties = function() {
 };
 
 PropertiesStore.removeProperty = function(property) {
-  delete _properties[property.id]
+  delete _properties[property.id];
 };
 
 PropertiesStore.all = function() {

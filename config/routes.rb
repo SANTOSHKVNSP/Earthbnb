@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     resources :users, only: [:index, :show]
 
     resources :properties, only: [:create, :index, :show, :destroy, :update]
+    get 'property-images' => 'properties#index_images'
 
     resources :property_types, only: [:index]
 

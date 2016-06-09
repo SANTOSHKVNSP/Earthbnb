@@ -12,8 +12,9 @@
 !/log/.keep
 /tmp
 
-# Ignore Node Modules
+# Ignore Node Modules and Bower Components
 /node_modules/*
+/bower_components/*
 
 * Ignore bundle.js and bundle.js.map
 /app/assets/javascripts/bundle.js

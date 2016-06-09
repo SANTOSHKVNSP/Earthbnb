@@ -133,6 +133,16 @@ module.exports = {
     });
   },
 
+  fetchPropertyImages: function () {
+    $.ajax({
+      url: 'api/property-images',
+      type: 'GET',
+      success: function (response) {
+        ServerActions.receiveProperties(response);
+      }
+    });
+  },
+
   createProperty: function(formData, successCallback, failureCallback) {
     $.ajax({
       url: 'api/properties',

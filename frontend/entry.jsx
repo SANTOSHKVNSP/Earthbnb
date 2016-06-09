@@ -13,6 +13,7 @@ var PropertyTypeStore = require('./stores/PropertyTypeStore.js');
 var ClientActions = require('./actions/ClientActions.js');
 
 var SlideShow = require('./components/SlideShow.jsx');
+var SlickSlideShow = require('./components/SlickSlideShow.jsx');
 var NavBar = require('./components/NavBar.jsx');
 var PropertySearch = require('./components/PropertySearch.jsx');
 var AdminNavBar = require('./components/AdminNavBar.jsx');
@@ -39,9 +40,7 @@ var App = React.createClass({
   render: function () {
     if (this.props.location.pathname === "/") {
       return(
-        <div className="app-root">
-          <SlideShow redirectCallback={this.go}/>
-        </div>
+        <SlideShow redirectCallback={this.go}/>
       );
     } else {
       if (this.lat && this.lng) {

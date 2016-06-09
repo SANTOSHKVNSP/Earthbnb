@@ -17,6 +17,10 @@ class Api::PropertiesController < ApplicationController
     end
   end
 
+  def index_images
+    @properties = Property.all
+  end
+
   def show
     @property = Property.find(params[:id])
   end
