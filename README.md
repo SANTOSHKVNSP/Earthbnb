@@ -1,137 +1,94 @@
 # Earthbnb
 
-[Heroku link][heroku] **NB:** This should be a link to your production site
+[Earthbnb][heroku]
 
 [heroku]: http://earthbnb.herokuapp.com
 
-## Minimum Viable Product
+Earthbnb is a full-stack web application inspired by Airbnb, but aimed at aliens instead of humans.  It utilizes Ruby on Rails on the backend, a PostgreSQL database, and React.js with a Flux architectural framework on the frontend.  
 
-Earthbnb is a web application inspired by Airbnb, but aimed at aliens instead of humans. It will be built using Ruby on Rails and React.js.  By the end of Week 9, this app will, at a minimum, satisfy the following criteria:
+## Features & Implementation
 
-- [x] New account creation, login, and guest/demo login
-- [ ] Smooth, bug-free navigation
-- [ ] Adequate seed data to demonstrate the site's features
-- [ ] The minimally necessary features for an Airbnb-inspired site: user profiles with property listings, reservations, and reviews
-- [x] Hosting on Heroku
-- [ ] CSS styling that is satisfactorily visually appealing
-- [ ] A production README, replacing this README (**NB**: check out the [sample production README](https://github.com/appacademy/sample-project-proposal/blob/master/docs/production_readme.md) -- you'll write this later)
+### Single-Page App
 
-## Product Goals and Priorities
+Earthbnb is truly a single-page; all content is delivered on one static page.  The root page listens to a `UserStore` and renders content based on a call to `UserStore.user()`.  Sensitive information is kept out of the frontend of the app by making an API call to `UserController#show`.
 
-Earthbnb will allow users to do the following:
+```ruby
+class Api::UserController < ApplicationController
+  def show
+    if current_user
+      @user = current_user
+      # below jbuilder template is then rendered
+    else
+      render json: {}
+    end
+  end
+ end
+  ```
 
-<!-- This is a Markdown checklist. Use it to keep track of your
-progress. Put an x between the brackets for a checkmark: [x] -->
+```ruby
+  json.user do
+    json.id @user.id
+    json.email @user.email
+    json.session_token @user.session_token
+    json.name @user.name
+    json.species @user.species
+    json.bio @user.bio
+    json.location @user.location
+    json.image_url asset_path(@user.image.url(:full))
+  end
+  ```
 
-- [ ] Create an account (MVP)
-- [ ] Log in / Log out, including as a Guest/Demo User (MVP)
-- [ ] Fill out their user profile and upload a photo (MVP)
-- [ ] Create, edit, and delete property listings where guests can stay (MVP)
-- [ ] Make reservations at other users' properties, and see reservations at their own properties (MVP)
-- [ ] Leave reviews about properties where they have stayed (MVP)
-- [ ] Leave reviews about users who have stayed at their properties (MVP)
+### Account Creation and Editing
 
-## Design Docs
-* [View Wireframes][views]
-* [React Components][components]
-* [Flux Cycles][flux-cycles]
-* [API endpoints][api-endpoints]
-* [DB schema][schema]
+  New users can sign up for an account with an email address and password, or with their Google credentials using OmniAuth. A guest account has also been created for convenience.
 
-[views]: ./docs/views.md
-[components]: ./docs/components.md
-[flux-cycles]: ./docs/flux-cycles.md
-[api-endpoints]: ./docs/api-endpoints.md
-[schema]: ./docs/schema.md
-
-## Implementation Timeline
-
-### Phase 1: Backend setup, User Authentication, User Info (2 days)
-
-**Objective:** Functioning rails project with Authentication and user profile info
-
-- [x] create new project
-- [x] create `User` model
-- [x] authentication
-- [x] user signup/signin pages
-- [x] setup Webpack & Flux scaffold
-- [x] setup `APIUtil` to interact with the API
-- [x] test out API interaction in the console.
-- [ ] seed the database with a small amount of user data
-- [x] setup React Router
-- [ ] public user profile page
-- [ ] update API for users (`UsersController`)
-- implement each user component, building out the flux loop as needed.
-  - [ ] `UserDetail`
-  - [ ] `UserPhoto`
-  - [ ] `EditUserInfo`
-- [ ] add CSS stylings
-
-### Phase 2: Properties (3 days)
-
-**Objective:** Properties can be created, displayed, edited and destroyed
-
-- [ ] create `Property` model
-- [ ] seed the database with a small amount of test data
-- [ ] CRUD API for properties (`PropertiesController`)
-- [ ] setup the flux loop with skeleton files
-- implement each property component, building out the flux loop as needed.
-  - [ ] `PropertySearch`
-  - [ ] `PropertyFilter`
-  - [ ] `PropertyIndex`
-  - [ ] `PropertyIndexItem`
-  - [ ] `Map`
-  - [ ] `PropertyDetail`
-  - [ ] `PropertyMainPhoto`
-  - [ ] `PropertyInfo`
-  - [ ] `AddReservation`
-  - [ ] `TheSpaceInfo`
-  - [ ] `AmenityIndex`
-  - [ ] `AmenityIndexItem`
-  - [ ] `MorePropertyInfo`
-  - [ ] `PhotoIndex`
-  - [ ] `PhotoIndexItem`
-  - [ ] `AddPhoto`
-- [ ] add CSS stylings
-
-### Phase 3: Reservations (2 days)
-
-**Objective:** Reservations can be created, indexed, and destroyed with the
-user interface.
-
-- [ ] create `Reservation` model
-- [ ] seed the database with a small amount of test data
-- [ ] CRUD API for reservations (`ReservationsController`)
-- [ ] setup the flux loop with skeleton files
-- implement each reservation component, building out the flux loop as needed.
-  - [ ] `ReservationsIndex`
-  - [ ] `ReservationsIndexItem`
-  - [ ] `ReservationDetail`
-  - [ ] `ReservationInfo`
-  - [ ] `HostInfo`
-  - [ ] `PropertyPhotos`
-- [ ] add CSS stylings
-
-### Phase 4: Reviews (2 days)
-
-**Objective:** Reviews can be created, indexed, and destroyed with the user interface.
-
-- [ ] create `Reviews` model
-- [ ] seed the database with a small amount of test data
-- [ ] CRUD API for reservations (`ReservationsController`)
-- [ ] setup the flux loop with skeleton files
-- implement each reservation component, building out the flux loop as needed.
-  - [ ] `ReviewsSelector`
-  - [ ] `ReviewType`
-  - [ ] `ReviewsToWriteIndex`
-  - [ ] `ReviewsToWriteItem`
-  - [ ] `PastReviewsIndex`
-  - [ ] `PastReviewsItem`
-  - [ ] `NewReview`
-- [ ] add CSS stylings
+  After creating an account, users can edit their location and other personal information, and upload a profile image. This is accomplished using the Paperclip gem by Thoughtbot, which uploads user-submitted images to Amazon Web Services.
 
 
-[phase-one]: ./docs/phases/phase1.md
-[phase-two]: ./docs/phases/phase2.md
-[phase-three]: ./docs/phases/phase3.md
-[phase-four]: ./docs/phases/phase4.md
+### Adding Listings
+
+  After creating an account, users can create listings available to rent. The Google Maps API is used to autocomplete an address as it's entered, returning the full address broken down by locality, state, etc., and also returning the latitude and longitude. The user can then add a description to the listing, specify details (number of bedrooms, bathrooms, etc.), and upload a photo.
+
+  The root page of the site uses the React-Slick photo carousel to display the photos of all the listings in the database.
+
+
+### Displaying Listings
+
+  After a listing has been added, it can be displayed on the listing search page. The listing search page once again uses the Google Maps API to allow the user to navigate around the world. A listener is added to the map's idle event:
+
+```javascript
+  this.state.map.addListener('idle', function() {
+    var mapBounds = this.state.map.getBounds();
+    var northEast = mapBounds.getNorthEast();
+    var southWest = mapBounds.getSouthWest();
+    var boundsObject = {
+      "bounds": {
+        "northEast": {"lat": northEast.lat(), "lng": northEast.lng()},
+        "southWest": {"lat": southWest.lat(), "lng": southWest.lng()}
+      }
+    };
+    ClientActions.fetchBoundsProperties(boundsObject);
+  }.bind(this));
+  ```
+
+  When the map has been left idle for a moment, a GET request is fired to the database to retrieve all of the listings within the bounds of what the map is currently displaying. A summary of each listing, along with the photo, is displayed on the left side of the screen. Users can then click a listing summary to see more information and book a reservation.
+
+
+### Reservations
+
+  Users can book a reservation on a listing's show page. Reservations have a check-in date, check-out date, and number of guests. After a reservation is booked, it will appear on a user's "Your Trips" page, accessible from their account's admin area.
+
+  Users who have created listings can see what users have booked reservations at them using the "Your Listings" page, also accessible from the admin area. If a listing is deleted, all reservations at that listing will be deleted as well.
+
+
+## Future Directions for the Project
+
+  There's more I'd like to do with Earthbnb. Future features are outlined below.
+
+### Reviews
+
+  Leaving reviews about hosts and guests is an important part of Airbnb.  I'd like this to be a feature of Earthbnb as well. I plan to create a new page in the account admin area, "Your Reviews", where users can see reviews they've written and reviews written about them. If they've completed a stay at a listing, they'll be prompted to write a new review (and the host will be prompted to write a review about them).
+
+### Booking Notifications
+
+  I also would like users to be instantly notified if they're online when another user books a reservation at one of their listings. I plan to implement Web Sockets to accomplish this.
