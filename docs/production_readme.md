@@ -1,74 +1,94 @@
-# FresherNote
+# Earthbnb
 
-[FresherNote live][heroku] **NB:** This should be a link to your production site
+[FresherNote live][heroku]
 
-[heroku]: http://www.herokuapp.com
+[heroku]: http://earthbnb.herokuapp.com
 
-FresherNote is a full-stack web application inspired by Evernote.  It utilizes Ruby on Rails on the backend, a PostgreSQL database, and React.js with a Flux architectural framework on the frontend.  
+Earthbnb is a full-stack web application inspired by Airbnb, but aimed at aliens instead of humans.  It utilizes Ruby on Rails on the backend, a PostgreSQL database, and React.js with a Flux architectural framework on the frontend.  
 
 ## Features & Implementation
 
- **NB**: don't copy and paste any of this.  Many folks will implement similar features, and many employers will see the READMEs of a lot of a/A grads.  You must write in a way that distinguishes your README from that of other students', but use this as a guide for what topics to cover.  
-
 ### Single-Page App
 
-FresherNote is truly a single-page; all content is delivered on one static page.  The root page listens to a `SessionStore` and renders content based on a call to `SessionStore.currentUser()`.  Sensitive information is kept out of the frontend of the app by making an API call to `SessionsController#get_user`.
+Earthbnb is truly a single-page; all content is delivered on one static page.  The root page listens to a `UserStore` and renders content based on a call to `UserStore.user()`.  Sensitive information is kept out of the frontend of the app by making an API call to `UserController#show`.
 
 ```ruby
-class Api::SessionsController < ApplicationController
-    def get_user
-      if current_user
-        render :current_user
-      else
-        render json: errors.full_messages
-      end
+class Api::UserController < ApplicationController
+  def show
+    if current_user
+      @user = current_user
+      # below jbuilder template is then rendered
+    else
+      render json: {}
     end
+  end
  end
   ```
 
-### Note Rendering and Editing
+```ruby
+  json.user do
+    json.id @user.id
+    json.email @user.email
+    json.session_token @user.session_token
+    json.name @user.name
+    json.species @user.species
+    json.bio @user.bio
+    json.location @user.location
+    json.image_url asset_path(@user.image.url(:full))
+  end
+  ```
 
-  On the database side, the notes are stored in one table in the database, which contains columns for `id`, `user_id`, `content`, and `updated_at`.  Upon login, an API call is made to the database which joins the user table and the note table on `user_id` and filters by the current user's `id`.  These notes are held in the `NoteStore` until the user's session is destroyed.  
+### Account Creation and Editing
 
-  Notes are rendered in two different components: the `CondensedNote` components, which show the title and first few words of the note content, and the `ExpandedNote` components, which are editable and show all note text.  The `NoteIndex` renders all of the `CondensedNote`s as subcomponents, as well as one `ExpandedNote` component, which renders based on `NoteStore.selectedNote()`. The UI of the `NoteIndex` is taken directly from Evernote for a professional, clean look:  
+  New users can sign up for an account with an email address and password, or with their Google credentials using OmniAuth. A guest account has also been created for convenience.
 
-![image of notebook index](https://github.com/appacademy/sample-project-proposal/blob/master/docs/noteIndex.png)
+  After creating an account, users can edit their location and other personal information, and upload a profile image. This is accomplished using the Paperclip gem by Thoughtbot, which uploads user-submitted images to Amazon Web Services.
 
-Note editing is implemented using the Quill.js library, allowing for a Word-processor-like user experience.
 
-### Notebooks
+### Adding Listings
 
-Implementing Notebooks started with a notebook table in the database.  The `Notebook` table contains two columns: `title` and `id`.  Additionally, a `notebook_id` column was added to the `Note` table.  
+  After creating an account, users can create listings available to rent. The Google Maps API is used to autocomplete an address as it's entered, returning the full address broken down by locality, state, etc., and also returning the latitude and longitude. The user can then add a description to the listing, specify details (number of bedrooms, bathrooms, etc.), and upload a photo.
 
-The React component structure for notebooks mirrored that of notes: the `NotebookIndex` component renders a list of `CondensedNotebook`s as subcomponents, along with one `ExpandedNotebook`, kept track of by `NotebookStore.selectedNotebook()`.  
+  The root page of the site uses the React-Slick photo carousel to display the photos of all the listings in the database.
 
-`NotebookIndex` render method:
+
+### Displaying Listings
+
+  After a listing has been added, it can be displayed on the listing search page. The listing search page once again uses the Google Maps API to allow the user to navigate around the world. A listener is added to the map's idle event:
 
 ```javascript
-render: function () {
-  return ({this.state.notebooks.map(function (notebook) {
-    return <CondensedNotebook notebook={notebook} />
-  }
-  <ExpandedNotebook notebook={this.state.selectedNotebook} />)
-}
-```
+  this.state.map.addListener('idle', function() {
+    var mapBounds = this.state.map.getBounds();
+    var northEast = mapBounds.getNorthEast();
+    var southWest = mapBounds.getSouthWest();
+    var boundsObject = {
+      "bounds": {
+        "northEast": {"lat": northEast.lat(), "lng": northEast.lng()},
+        "southWest": {"lat": southWest.lat(), "lng": southWest.lng()}
+      }
+    };
+    ClientActions.fetchBoundsProperties(boundsObject);
+  }.bind(this));
+  ```
 
-### Tags
+  When the map has been left idle for a moment, a GET request is fired to the database to retrieve all of the listings within the bounds of what the map is currently displaying. A summary of each listing, along with the photo, is displayed on the left side of the screen. Users can then click a listing summary to see more information and book a reservation.
 
-As with notebooks, tags are stored in the database through a `tag` table and a join table.  The `tag` table contains the columns `id` and `tag_name`.  The `tagged_notes` table is the associated join table, which contains three columns: `id`, `tag_id`, and `note_id`.  
 
-Tags are maintained on the frontend in the `TagStore`.  Because creating, editing, and destroying notes can potentially affect `Tag` objects, the `NoteIndex` and the `NotebookIndex` both listen to the `TagStore`.  It was not necessary to create a `Tag` component, as tags are simply rendered as part of the individual `Note` components.  
+### Reservations
 
-![tag screenshot](https://github.com/appacademy/sample-project-proposal/blob/master/docs/tagScreenshot.png)
+  Users can book a reservation on a listing's show page. Reservations have a check-in date, check-out date, and number of guests. After a reservation is booked, it will appear on a user's "Your Trips" page, accessible from their account's admin area.
+
+  Users who have created listings can see what users have booked reservations at them using the "Your Listings" page, also accessible from the admin area. If a listing is deleted, all reservations at that listing will be deleted as well.
+
 
 ## Future Directions for the Project
 
-In addition to the features already implemented, I plan to continue work on this project.  The next steps for FresherNote are outlined below.
+  There's more I'd like to do with Earthbnb. Future features are outlined below.
 
-### Search
+### Reviews
 
-Searching notes is a standard feature of Evernote.  I plan to utilize the Fuse.js library to create a fuzzy search of notes and notebooks.  This search will look go through tags, note titles, notebook titles, and note content.  
+  Leaving reviews about hosts and guests is an important part of Airbnb.  I'd like this to be a feature of Earthbnb as well. I plan to create a new page in the account admin area, "Your Reviews", where users can see reviews they've written and reviews written about them. If they've completed a stay at a listing, they'll be prompted to write a new review (and the host will be prompted to write a review about them).
 
-### Direct Messaging
+### Booking Notifications
 
-Although this is less essential functionality, I also plan to implement messaging between FresherNote users.  To do this, I will use WebRTC so that notifications of messages happens seamlessly.  
+  I also would like users to be instantly notified if they're online when another user books a reservation at one of their listings. I plan to implement Web Sockets to accomplish this. 

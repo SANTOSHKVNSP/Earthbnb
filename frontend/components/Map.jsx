@@ -1,7 +1,6 @@
 var React = require('react');
 var PropertiesStore = require('../stores/PropertiesStore.js');
 var ClientActions = require('../actions/ClientActions.js');
-// var hashHistory = require('react-router').hashHistory;
 
 var Map = React.createClass({
   contextTypes: {router: React.PropTypes.object.isRequired},
@@ -18,13 +17,6 @@ var Map = React.createClass({
     });
   },
 
-  handleClick: function (coords) {
-    // this.context.router.push({
-    //   pathname: "benches/new",
-    //   query: coords
-    // });
-  },
-
   updateState: function () {
     var marker;
     var properties = PropertiesStore.all();
@@ -34,8 +26,7 @@ var Map = React.createClass({
     Object.keys(properties).forEach(function (key) {
       marker = new google.maps.Marker({
         position: {lat: properties[key].lat, lng: properties[key].lon},
-        map: this.state.map,
-        title: 'Hello World!'
+        map: this.state.map
       });
       this.state.markers.push(marker);
     }.bind(this));
