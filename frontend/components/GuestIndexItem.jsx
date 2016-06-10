@@ -11,7 +11,6 @@ var GuestIndexItem = React.createClass({
   render: function () {
     var check_in = new Date(this.props.reservation.check_in);
     var check_out = new Date(this.props.reservation.check_out);
-    console.log(this.props.guestImage);
     return(
       <div className="guest-index-item group">
         <img onClick={this.redirectToGuestProfile} className="guest-pic" src={this.props.guestImage} />

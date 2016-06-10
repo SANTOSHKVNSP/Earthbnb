@@ -39,7 +39,6 @@ var ListingsIndexItem = React.createClass({
 
   renderReservationList: function () {
     if (this.props.editButton) {
-      console.log(this.props.listing);
       return(
         <section className="listing-reservations-list">
           {this.renderReservationsHeader()}
