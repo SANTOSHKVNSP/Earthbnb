@@ -3,8 +3,10 @@ var ClientActions = require('../actions/ClientActions.js');
 var ErrorsStore = require('../stores/ErrorsStore.js');
 
 var species1 = "Martian";
-var species2 = "Klingon";
+var species2 = "Neptunian";
 var species3 = "Alpha Centaurian";
+var species4 = "Teapot";
+var species5 = "Don't Label Me";
 
 var SignUpForm = React.createClass({
 
@@ -77,6 +79,12 @@ var SignUpForm = React.createClass({
   },
   handleSelect3: function(event) {
     this.setState({species: species3});
+  },
+  handleSelect4: function(event) {
+    this.setState({species: species4});
+  },
+  handleSelect5: function(event) {
+    this.setState({species: species5});
   },
 
   handleSubmit: function(event) {
@@ -153,6 +161,8 @@ var SignUpForm = React.createClass({
             <li onClick={this.handleSelect1}>{species1}</li>
             <li onClick={this.handleSelect2}>{species2}</li>
             <li onClick={this.handleSelect3}>{species3}</li>
+            <li onClick={this.handleSelect4}>{species4}</li>
+            <li onClick={this.handleSelect5}>{species5}</li>
           </ul>
         </div><br />
 

@@ -31,20 +31,20 @@ var LogInForm = React.createClass({
     });
   },
 
-  emailChanged: function(event) {
+  emailChanged: function(e) {
     this.setState({
-      email: event.target.value
+      email: e.target.value
     });
   },
 
-  passwordChanged: function(event) {
+  passwordChanged: function(e) {
     this.setState({
-      password: event.target.value
+      password: e.target.value
     });
   },
 
-  handleSubmit: function(event) {
-    event.preventDefault();
+  handleSubmit: function(e) {
+    e.preventDefault();
     ClientActions.createSession(
       {email: this.state.email, password: this.state.password},
       this.redirectAfterLogin
@@ -52,12 +52,17 @@ var LogInForm = React.createClass({
     ClientActions.clearErrors();
   },
 
-  handleGuestLogIn: function(event) {
-    event.preventDefault();
+  handleGuestLogIn: function(e) {
+    e.preventDefault();
     ClientActions.createSession(
       {email: "guest@guest.com", password: "password"},
       this.redirectAfterLogin
     );
+    ClientActions.clearErrors();
+  },
+
+  handleOmniAuth: function(e) {
+    e.preventDefault();
     ClientActions.clearErrors();
   },
 
@@ -92,6 +97,7 @@ var LogInForm = React.createClass({
         <input type="password" className={passwordClass} placeholder="Password" value={this.state.password} onChange={this.passwordChanged}/><br />
 
         <button onClick={this.handleSubmit}>Log In</button>
+        <a className="google-button" href="/auth/google_oauth2">Log in with Google</a>
         <button onClick={this.handleGuestLogIn}>Guest Log In</button>
       </div>
     );

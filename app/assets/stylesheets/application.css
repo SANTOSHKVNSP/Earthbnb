@@ -80,6 +80,26 @@ button:hover {
   background-color: #FF8E91;
 }
 
+.google-button {
+  display: block;
+  border: none;
+  cursor: pointer;
+  color: white;
+  background-color: #FF5A5F;
+  text-align: center;
+  font-size: 16px;
+  border-radius:2px;
+  height: 36px;
+  width: 412px;
+  margin-left: 19px;
+  padding-top: 14px;
+}
+
+.google-button:hover {
+  background-color: #FF8E91;
+  text-decoration: none;
+}
+
 .white-button {
   background: white;
   font-weight: 400;

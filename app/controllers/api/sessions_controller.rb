@@ -11,10 +11,20 @@ class Api::SessionsController < ApplicationController
       if User.check_password(user, params[:user][:password])
         login_user!(user)
         @user = user
-        # render json: {user: user}
       else
         render json: {message: "Password incorrect"}, status: 422
       end
+    end
+  end
+
+  def auth_create
+    @user = User.find_or_create_by_auth_hash(request.env['omniauth.auth'])
+
+    if @user
+      login_user!(@user)
+      redirect_to "/"
+    else
+      debugger
     end
   end
 

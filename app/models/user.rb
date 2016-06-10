@@ -27,6 +27,30 @@ class User < ActiveRecord::Base
     end
   end
 
+  def self.from_omniauth(auth)
+    where(provider: auth.provider, uid: auth.uid).first_or_initialize.tap do |user|
+      user.provider = auth.provider
+      user.uid = auth.uid
+      user.name = auth.info.name
+      user.oauth_token = auth.credentials.token
+      user.oauth_expires_at = Time.at(auth.credentials.expires_at)
+      user.save!
+    end
+  end
+
+  def self.find_or_create_by_auth_hash(auth_hash)
+    user = User.find_by(google_uid: auth_hash[:uid])
+      if user.nil?
+        user = User.create!(google_uid: auth_hash[:uid],
+                            name: auth_hash[:info][:first_name],
+                            species: "Human",
+                            email: auth_hash[:info][:email],
+                            password_digest: SecureRandom.urlsafe_base64(16)
+                            )
+      end
+    user
+  end
+
   def self.check_password(user, password)
     user.is_password?(password) ? true : false
   end

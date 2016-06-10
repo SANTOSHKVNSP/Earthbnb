@@ -17,7 +17,11 @@ Rails.application.routes.draw do
 
     resources :reservations, only: [:create, :destroy]
     get 'reservations-user' => 'reservations#index_user'
-
+    
   end
+
+  #OmniAuth:
+  get "/auth/:provider/callback", to: 'api/sessions#auth_create'
+  get '/auth/failure', to: redirect('/')
 
 end
