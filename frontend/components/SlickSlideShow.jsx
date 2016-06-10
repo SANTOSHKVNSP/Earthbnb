@@ -4,6 +4,7 @@ var ClientActions = require('../actions/ClientActions.js');
 var PropertiesStore = require('../stores/PropertiesStore.js');
 var PropertySearchResults = require('../components/PropertySearchResults.jsx');
 var PropertySearchResult = require('../components/PropertySearchResult.jsx');
+var WhereTo = require('./WhereTo.jsx');
 
 var SlickSlideShow = React.createClass({
 
@@ -41,13 +42,16 @@ var SlickSlideShow = React.createClass({
     };
     return (
     	<div>
-      	<Slider className='slick-container' {...settings}>
-          {this.state.properties.map(function (property, index) {
-            return(
-              <img key={index} src={property.image_url} />
-            );
-          })}
-        </Slider>
+        <div className="top-slideshow-section" >
+        	<Slider className='slick-container' {...settings}>
+            {this.state.properties.map(function (property, index) {
+              return(
+                <img key={index} src={property.image_url} />
+              );
+            })}
+          </Slider>
+          <WhereTo redirectCallback={this.props.redirectCallback}/>
+        </div>
         <div className='front-page-column'>
           <h1>Featured Listings</h1>
           <ul className="root-search-results">

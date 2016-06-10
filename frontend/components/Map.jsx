@@ -67,6 +67,7 @@ var Map = React.createClass({
 
   componentWillUnmount: function () {
     this.listener.remove();
+    google.maps.event.clearListeners(this.state.map, 'idle');
   },
 
   componentWillReceiveProps: function (nextProps) {

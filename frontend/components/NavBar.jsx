@@ -32,13 +32,15 @@ var NavBar = React.createClass({
     this.errorsListener = ErrorsStore.addListener(this.getNumberOfErrors);
     ClientActions.fetchUser();
 
-    // Create the autocomplete object, restricting the search to geographical
-    // location types.
-    autocomplete = new google.maps.places.Autocomplete(
-        /** @type {!HTMLInputElement} */(document.getElementById('autocomplete-nav')),
-        {types: ['geocode']});
-    // When the user selects an address from the dropdown, redirect to a search form
-    autocomplete.addListener('place_changed', this.go);
+    if (this.props.background !== "transparent") {
+      // Create the autocomplete object, restricting the search to geographical
+      // location types.
+      autocomplete = new google.maps.places.Autocomplete(
+          /** @type {!HTMLInputElement} */(document.getElementById('autocomplete-nav')),
+          {types: ['geocode']});
+      // When the user selects an address from the dropdown, redirect to a search form
+      autocomplete.addListener('place_changed', this.go);
+    }
   },
 
   go: function () {
@@ -95,11 +97,13 @@ var NavBar = React.createClass({
   },
 
   renderAutoComplete: function () {
-    return(
-      <div className="autocomplete-container">
-        <input id="autocomplete-nav" placeholder="Where to?" type="text"></input>
-      </div>
-    );
+    if (this.props.background !== "transparent") {
+      return(
+        <div className="autocomplete-container">
+          <input id="autocomplete-nav" placeholder="Where to?" type="text"></input>
+        </div>
+      );
+    }
   },
 
   render: function () {
