@@ -37,16 +37,25 @@ var ReservationsIndex = React.createClass({
   },
 
   render: function () {
-
-    return(
-      <ul className="listing-index">
-        {this.state.reservations.map(function (reservation, index) {
-          return(
-            <ReservationsIndexItem key={index} reservation={reservation} />
-          );
-        })}
-      </ul>
-    );
+    if (this.state.reservations.length > 0) {
+      return(
+        <ul className="listing-index">
+          {this.state.reservations.map(function (reservation, index) {
+            return(
+              <ReservationsIndexItem key={index} reservation={reservation} />
+            );
+          })}
+        </ul>
+      );
+    } else {
+      return(
+        <ul className="listing-index">
+          <div className="no-trips">
+            You have no trips scheduled.
+          </div>
+        </ul>
+      );
+    }
   }
 
 });

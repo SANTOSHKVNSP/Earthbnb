@@ -10,6 +10,13 @@ class Reservation < ActiveRecord::Base
     primary_key: :id
   )
 
+  belongs_to(
+    :user,
+    class_name: "User",
+    foreign_key: :user_id,
+    primary_key: :id
+  )
+
   def start_after_today
     if self.check_in < Date.today
       errors.add(:check_in, "cannot be before today")

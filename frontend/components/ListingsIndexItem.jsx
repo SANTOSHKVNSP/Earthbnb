@@ -1,5 +1,6 @@
 var React = require('react');
 var ClientActions = require('../actions/ClientActions.js');
+var GuestIndexItem = require('./GuestIndexItem.jsx');
 
 var ListingsIndexItem = React.createClass({
 
@@ -28,15 +29,42 @@ var ListingsIndexItem = React.createClass({
     }
   },
 
+  renderReservationsHeader: function () {
+    if (this.props.listing.reservations.length > 0) {
+      return(<div className="reservations-header">Reservations</div>);
+    } else {
+      return(<div className="reservations-header">(No Reservations)</div>);
+    }
+  },
+
+  renderReservationList: function () {
+    if (this.props.editButton) {
+      console.log(this.props.listing);
+      return(
+        <section className="listing-reservations-list">
+          {this.renderReservationsHeader()}
+          {this.props.listing.reservations.map(function (reservation, index) {
+            return(
+              <GuestIndexItem key={index} reservation={reservation} guest={this.props.listing.user_names[index].name} guestImage={this.props.listing.user_images[index].image_url} />
+            );
+          }.bind(this))}
+        </section>
+      );
+    }
+  },
+
   render: function () {
     return(
       <li className="listing-index-item">
         <header>
           {this.props.listing.title}
         </header>
-        <section className="listing-index-item-form group">
-          <img onClick={this.redirect} className="listing-index-item-pic" src={this.props.listing.image_url} />
-          {this.renderButtons()}
+        <section className="listing-index-item-form">
+          <div className="group">
+            <img onClick={this.redirect} className="listing-index-item-pic" src={this.props.listing.image_url} />
+            {this.renderButtons()}
+          </div>
+          {this.renderReservationList()}
         </section>
       </li>
     );

@@ -24,6 +24,14 @@ class Property < ActiveRecord::Base
     primary_key: :id
   )
 
+  has_many(
+    :reservations,
+    class_name: "Reservation",
+    foreign_key: :property_id,
+    primary_key: :id,
+    dependent: :destroy
+  )
+
   def self.in_bounds(bounds)
     north_east_lat = bounds["northEast"]["lat"].to_f()
     south_west_lat = bounds["southWest"]["lat"].to_f()

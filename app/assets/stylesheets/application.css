@@ -721,6 +721,38 @@ button:hover {
   padding: 18px;
   text-align: left;
   background: white;
+  border: solid 1px #DCE0E0;
+}
+
+.listing-reservations-list {
+  text-align: left;
+  margin-top: 18px;
+  background: white;
+}
+
+.reservations-header {
+  font-size: 15px;
+  color: #484848;
+  margin-bottom: 12px;
+}
+
+.guest-index-item {
+  border: solid 1px #DCE0E0;
+  padding: 18px;
+  line-height: 20px;
+}
+
+.guest-pic {
+  display: block;
+  float: left;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.guest-index-item-text {
+  display: block;
+  float: left;
+  margin-left: 12px;
 }
 
 .listing-index-item > section:last-child {
@@ -999,4 +1031,17 @@ button:hover {
   margin-left: 20px;
   color: #484848;
   line-height: 22px;
+}
+
+.no-trips {
+  background: #EDEFED;
+  height: 16px;
+  margin-top: 24px;
+  border: solid 1px #DCE0E0;
+  padding-top: 13px;
+  padding-bottom: 17px;
+  padding-left: 20px;
+  font-size: 16px;
+  text-align: left;
+  color: #484848
 }

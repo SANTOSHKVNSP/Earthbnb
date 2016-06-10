@@ -12,7 +12,6 @@ class Api::PropertiesController < ApplicationController
     if (params[:user])
       @properties = Property.where(user_id: params[:user])
     else
-      # render json: Property.in_bounds(params[:bounds])
       @properties = Property.in_bounds(params[:bounds])
     end
   end
