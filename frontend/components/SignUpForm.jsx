@@ -1,12 +1,7 @@
 var React = require('react');
 var ClientActions = require('../actions/ClientActions.js');
 var ErrorsStore = require('../stores/ErrorsStore.js');
-
-var species1 = "Martian";
-var species2 = "Neptunian";
-var species3 = "Alpha Centaurian";
-var species4 = "Teapot";
-var species5 = "Don't Label Me";
+var SpeciesDropDown = require('./SpeciesDropDown.jsx');
 
 var SignUpForm = React.createClass({
 
@@ -21,8 +16,7 @@ var SignUpForm = React.createClass({
       nameErrors: [],
       speciesErrors: [],
       emailErrors: [],
-      passwordErrors: [],
-      showingDropDown: false
+      passwordErrors: []
     });
   },
 
@@ -58,33 +52,10 @@ var SignUpForm = React.createClass({
       name: event.target.value
     });
   },
-  speciesChanged: function(event) {
+  speciesChanged: function(species) {
     this.setState({
-      species: event.target.value
+      species: species
     });
-  },
-
-  handleSpeciesBoxClick: function(event) {
-    if (this.state.showingDropDown) {
-      this.setState({showingDropDown: false});
-    } else {
-      this.setState({showingDropDown: true});
-    }
-  },
-  handleSelect1: function(event) {
-    this.setState({species: species1});
-  },
-  handleSelect2: function(event) {
-    this.setState({species: species2});
-  },
-  handleSelect3: function(event) {
-    this.setState({species: species3});
-  },
-  handleSelect4: function(event) {
-    this.setState({species: species4});
-  },
-  handleSelect5: function(event) {
-    this.setState({species: species5});
   },
 
   handleSubmit: function(event) {
@@ -141,7 +112,7 @@ var SignUpForm = React.createClass({
     var speciesClass = this.state.speciesErrors.length > 0 ? "errors" : "no-errors";
     var emailClass = this.state.emailErrors.length > 0 ? "errors" : "no-errors";
     var passwordClass = this.state.passwordErrors.length > 0 ? "errors" : "no-errors";
-    var dropdownClass = this.state.showingDropDown ? "drop-down-visible" : "drop-down-invisible";
+
     var speciesBoxText = this.state.species ? this.state.species : "I am a...";
     var speciesTextClass = this.state.species ? "blackText" : "grayText";
     var speciesClasses = speciesClass + " " + speciesTextClass;
@@ -154,17 +125,7 @@ var SignUpForm = React.createClass({
         <input type="text" className={nameClass} placeholder="Name" value={this.state.name} onChange={this.nameChanged}/><br />
 
         {this.renderSpeciesErrors()}
-        <div id="select-box" className={speciesClasses} onClick={this.handleSpeciesBoxClick}>
-          {speciesBoxText}
-          <img src={window.dropDownButtonUrl} />
-          <ul id="select-box-dropdown" className={dropdownClass}>
-            <li onClick={this.handleSelect1}>{species1}</li>
-            <li onClick={this.handleSelect2}>{species2}</li>
-            <li onClick={this.handleSelect3}>{species3}</li>
-            <li onClick={this.handleSelect4}>{species4}</li>
-            <li onClick={this.handleSelect5}>{species5}</li>
-          </ul>
-        </div><br />
+        <SpeciesDropDown text={speciesBoxText} classes={speciesClasses} callback={this.speciesChanged} /><br />
 
         {this.renderEmailErrors()}
         <input type="text" className={emailClass} placeholder="Email address" value={this.state.email} onChange={this.emailChanged}/><br />
