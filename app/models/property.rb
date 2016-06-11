@@ -41,4 +41,8 @@ class Property < ActiveRecord::Base
     Property.where("lon <= ? AND lon >= ? AND lat <= ? AND lat >= ?", north_east_lng, south_west_lng, north_east_lat, south_west_lat)
   end
 
+  def self.featured
+    Property.where(featured: true)
+  end
+
 end

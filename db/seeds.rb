@@ -48,6 +48,7 @@ belushiSpot = Property.create(
   house_rules: "",
   price: 75,
   currency: 'Buckazoids',
+  featured: true,
   description: "I live in a place that my great-great-great grandmothers built. It’s lovely. Fully furnished with crypt-beds and serious sand guards. Pyramid shape allows for maximum space with good cooling system. Long stairway makes for excellent exercise place. Swimming river nearby. Sometimes human babies float in it. Breakfast!"
 )
 belushiSpot.image = File.open(Dir.pwd + "/app/assets/images/seed_images/belushi_property.jpg")
@@ -83,6 +84,7 @@ beldarSpot = Property.create(
   house_rules: "Please be mindful of how skillfully we have fooled humans into believing we are of their kind. Refrain from any activity that could be perceived as not common or ordinary.",
   price: 25,
   currency: 'Buckazoids',
+  featured: true,
   description: "We have a common and ordinary colonial house in Paramus, New Jersey. We have a normal kitchen, bedroom, living room, and bathrooms. It is all basic and commonplace. We have 3 bedrooms for those who require sleep. And a kitchen with an island, much like an island of the mind, but for food. Near good schools, parks, and dentist."
 )
 beldarSpot.image = File.open(Dir.pwd + "/app/assets/images/seed_images/beldar_property.jpg")
@@ -118,6 +120,7 @@ frankSpot = Property.create(
   house_rules: "Underground laboratory is strictly off limits before dark.",
   price: 80,
   currency: 'Buckazoids',
+  featured: true,
   description: "My guests say my mansion is like stepping back in time. There are plenty of handrails to slide down, as well as lots of banquet halls, state rooms, red drapery, and slaves good for relieving my tension. Remnants of my past mental relationships sometimes drop by unannounced."
 )
 frankSpot.image = File.open(Dir.pwd + "/app/assets/images/seed_images/frank_property.jpg")
@@ -153,6 +156,7 @@ marthaSpot = Property.create(
   house_rules: "No shoes on the carpet. Please wash all scalpels thoroughly after using.",
   price: 200,
   currency: 'Buckazoids',
+  featured: true,
   description: "This is a beautiful pre-war home with all stainless steel appliances. Lots of natural light and a fully-stocked pantry and craft closet. I supplied the torture chamber with local instruments from planets across the galaxy so no matter where you're from, you'll feel right at home!"
 )
 marthaSpot.image = File.open(Dir.pwd + "/app/assets/images/seed_images/martha_property.jpg")
@@ -221,6 +225,7 @@ yonterSpot = Property.create(
   house_rules: "No cops. No empty drinks. No shoes in the Jacuzzi.",
   price: 800,
   currency: 'Plutonium Shards',
+  featured: true,
   description: "We’ve got everything here. 45 bedrooms (but who needs sleep!?), 10 dance floors, a bowling alley, three swimming pools, four tattoo parlors, drinking rooms, screaming rooms, music rooms, eating rooms, jumping rooms, deep conversation rooms, and 15 more dance floors that become swimming pools."
 )
 yonterSpot.image = File.open(Dir.pwd + "/app/assets/images/seed_images/yonter_property.jpg")

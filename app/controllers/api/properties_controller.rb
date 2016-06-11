@@ -17,7 +17,7 @@ class Api::PropertiesController < ApplicationController
   end
 
   def index_images
-    @properties = Property.all
+    @properties = Property.featured
   end
 
   def show
