@@ -8,7 +8,7 @@ var species5 = "Don't Label Me";
 
 var SpeciesArray = [
   "Martian",
-  "Neputnian",
+  "Neptunian",
   "Alpha Centaurian",
   "Teapot",
   "Don't Label Me"

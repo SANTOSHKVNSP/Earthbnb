@@ -2,6 +2,7 @@ var React = require('react');
 var ClientActions = require('../actions/ClientActions.js');
 var UserStore = require('../stores/UserStore.js');
 var ErrorsStore = require('../stores/ErrorsStore.js');
+var SpeciesDropDown = require('./SpeciesDropDown.jsx')
 
 var EditProfile = React.createClass({
 
@@ -134,11 +135,21 @@ var EditProfile = React.createClass({
     });
   },
 
+  speciesChanged: function(species) {
+    this.setState({
+      species: species
+    });
+  },
+
   render: function () {
 
     var nameClass = this.state.nameErrors.length > 0 ? "errors" : "no-errors";
     var speciesClass = this.state.speciesErrors.length > 0 ? "errors" : "no-errors";
     var emailClass = this.state.emailErrors.length > 0 ? "errors" : "no-errors";
+
+    var speciesBoxText = this.state.species ? this.state.species : "I am a...";
+    var speciesTextClass = this.state.species ? "blackText" : "grayText";
+    var speciesClasses = speciesClass + " " + speciesTextClass;
 
     var saveButtonClass = this.state.saving ? "save-profile-button-disabled" : "save-profile-button";
     var saveButtonText = this.state.saving ? "Saving..." : "Save";
@@ -159,7 +170,7 @@ var EditProfile = React.createClass({
 
           {this.renderSpeciesErrors()}
           <label>
-            I Am A<input type="text" className={speciesClass} onChange={this.changeSpecies} value={this.state.species} />
+            I Am A<SpeciesDropDown text={this.state.species} classes={speciesClasses + " edit-profile-species-dropdown"} callback={this.speciesChanged} /><br />
           </label>
         </form>
 
