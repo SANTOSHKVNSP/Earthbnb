@@ -186,9 +186,21 @@ button:hover {
 
 .where-to input {
   background: white;
-  color: #757575;
+  color: #545454;
   font-size: 16px;
   width: 900px;
+}
+.where-to input::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: #545454;
+}
+.where-to input::-moz-placeholder { /* Firefox 19+ */
+  color: #545454;
+}
+.where-to input:-ms-input-placeholder { /* IE 10+ */
+  color: #545454;
+}
+.where-to input:-moz-placeholder { /* Firefox 18- */
+  color: #545454;
 }
 
 .where-to-background {
@@ -247,11 +259,11 @@ button:hover {
 }
 
 #user-button {
-  width: 107px;
   position: relative;
   padding-top: 16px;
   height: 19.5px;
   padding-left: 19px;
+  padding-right: 19px;
   text-align: left;
 }
 
@@ -263,7 +275,7 @@ button:hover {
   width: 30px;
   height: 30px;
   background: gray;
-  vertical-align: -13px;
+  vertical-align: -12px;
   margin-left: 10px;
   border-radius: 50%;
   border: solid 2px #C4C4C4;
@@ -273,7 +285,7 @@ button:hover {
   display: none;
   position: absolute;
   z-index: 200;
-  left: -156px;
+  left: calc(100% - 282px);
   top: 61px;
   border-top: 1px solid #DCE0E0;
   text-align: left;
@@ -282,10 +294,11 @@ button:hover {
 
 .user-menu li {
   float: none;
-  width: 261px;
+  width: 260px;
   height: 34px;
   background: white;
   border-left: 1px solid #DCE0E0;
+  border-right: 1px solid #DCE0E0;
   padding-left: 20px;
   padding-top: 20px;
   -webkit-transition: padding-left 0.25s, width 0.25s;
@@ -297,7 +310,7 @@ button:hover {
 }
 
 .user-menu li:hover {
-  width: 251px;
+  width: 250px;
   padding-left: 30px;
 }
 
