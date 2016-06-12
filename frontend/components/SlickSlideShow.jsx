@@ -50,6 +50,12 @@ var SlickSlideShow = React.createClass({
               );
             })}
           </Slider>
+          <div className="live-there">
+            <header>
+              LIVE THERE
+            </header>
+            Book homes from local hosts across the planet and experience Earth like a human.
+          </div>
           <WhereTo redirectCallback={this.props.redirectCallback}/>
         </div>
         <div className='front-page-column'>
