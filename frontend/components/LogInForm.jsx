@@ -52,15 +52,6 @@ var LogInForm = React.createClass({
     ClientActions.clearErrors();
   },
 
-  handleGuestLogIn: function(e) {
-    e.preventDefault();
-    ClientActions.createSession(
-      {email: "guest@guest.com", password: "password"},
-      this.redirectAfterLogin
-    );
-    ClientActions.clearErrors();
-  },
-
   handleOmniAuth: function(e) {
     e.preventDefault();
     ClientActions.clearErrors();
@@ -79,6 +70,15 @@ var LogInForm = React.createClass({
     return this.state.passwordErrors.map(function(passwordError, index) {
       return(<div key={index} className="error-message">{passwordError}</div>);
     });
+  },
+
+  handleGuestLogIn: function(e) {
+    e.preventDefault();
+    ClientActions.createSession(
+      {email: "guest@guest.com", password: "password"},
+      this.redirectAfterLogin
+    );
+    ClientActions.clearErrors();
   },
 
   render: function () {

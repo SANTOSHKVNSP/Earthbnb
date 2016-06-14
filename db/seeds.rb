@@ -178,11 +178,36 @@ grizzmorta = User.create(
   species: "Alpha Centaurian",
   email: 'grizzamorta@belushi.com',
   password: 'password',
-  location: 'Milan, Italy',
-  bio: "I’m a trillionaire. But the celestial courts sentenced me to renting out my space as a punishment for manslaughter. Harsh sentence, really."
+  location: 'New York, New York, United States',
+  bio: "I can't die. It's really annoying. My apartment is filled with thousands of books and I've read each one three times. My friends suggested I become an Earthbnb host to keep myself occupied, so here I am. I also enjoy horseback riding. Sometimes I eat the horse after I'm done."
 )
 grizzmorta.image = File.open(Dir.pwd + "/app/assets/images/seed_images/grizzamorta.jpg")
 grizzmorta.save!
+
+grizzamorta_spot = Property.create(
+  user_id: grizzmorta.id,
+  property_type_id: 1,
+  title: "Spacious SoHo Apartment",
+  lat: 40.723022,
+  lon: -73.995000,
+  country: "United States",
+  address: "address",
+  city: "New York",
+  state: "New York",
+  zip: "zip",
+  apt: "apt",
+  accommodates: 3,
+  bedrooms: 3,
+  bathrooms: 2,
+  beds: 3,
+  house_rules: "Do whatever you want. Just make it interesting.",
+  price: 25,
+  currency: 'Plutonium Shards',
+  featured: true,
+  description: "Luxurious SoHo apartment. I built all the furniture myself from imported materials. Occasionally the boredom of immortality overwhelmes me and I set everything on fire so I can start over. That only happened once when a guest was staying here though, so you'll probably be fine."
+)
+grizzamorta_spot.image = File.open(Dir.pwd + "/app/assets/images/seed_images/grizzamorta_property.jpg")
+grizzamorta_spot.save!
 
 obelsk = User.create(
   name: 'Obelsk',

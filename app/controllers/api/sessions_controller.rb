@@ -24,7 +24,7 @@ class Api::SessionsController < ApplicationController
       login_user!(@user)
       redirect_to "/"
     else
-      debugger
+      render json: {message: "Invalid username/password"}, status: 422
     end
   end
 
