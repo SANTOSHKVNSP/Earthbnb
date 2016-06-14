@@ -54,7 +54,12 @@ class Api::UserController < ApplicationController
 
 ### Displaying Listings
 
-  After a listing has been added, it can be displayed on the listing search page. The listing search page once again uses the Google Maps API to allow the user to navigate around the world. A listener is added to the map's idle event:
+  After a listing has been added, it can be displayed on the listing search page. The listing search page once again uses the Google Maps API to allow the user to navigate around the world.
+
+  ![Screenshot](/docs/screenshot.jpg)
+
+
+  A listener is added to the map's idle event:
 
 ```javascript
   this.state.map.addListener('idle', function() {
