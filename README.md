@@ -6,6 +6,8 @@
 
 Earthbnb is a full-stack web application inspired by Airbnb, but aimed at aliens instead of humans.  It utilizes Ruby on Rails on the backend, a PostgreSQL database, and React.js with a Flux architectural framework on the frontend.  
 
+![Screenshot](/docs/screenshot-2.jpg)
+
 ## Features & Implementation
 
 ### Single-Page App
