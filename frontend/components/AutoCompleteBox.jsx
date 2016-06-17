@@ -14,15 +14,7 @@ var AutoCompleteBox = React.createClass({
   },
 
   componentDidMount: function(){
-
     this.initAutocomplete();
-
-      // var mapDOMNode = this.refs.map;
-      // var mapOptions = {
-      //   center: {lat: 37.7758, lng: -122.435},
-      //   zoom: 13
-      // };
-      // this.map = new google.maps.Map(mapDOMNode, mapOptions);
   },
 
   initAutocomplete: function() {
@@ -49,8 +41,6 @@ var AutoCompleteBox = React.createClass({
         zip: place.address_components[8].long_name
       });
     },
-
-// onFocus="geolocate()"
 
   render: function () {
     return(
