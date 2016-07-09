@@ -41,19 +41,28 @@ var ListingsIndex = React.createClass({
   },
 
   render: function () {
-
-    return(
-      <ul className="listing-index">
-        {this.state.listings.map(function (listing, index) {
-          return(
-            <ListingsIndexItem key={index} listing={listing} editButton={true} />
-          );
-        })}
-        <button onClick={this.handleAddNewListingClick} id="add-listing-button" className="white-button">Add New Listing</button>
-      </ul>
-    );
+    if (this.state.listings.length > 0) {
+      return(
+        <ul className="listing-index">
+          {this.state.listings.map(function (listing, index) {
+            return(
+              <ListingsIndexItem key={index} listing={listing} editButton={true} />
+            );
+          })}
+          <button onClick={this.handleAddNewListingClick} id="add-listing-button" className="white-button">Add New Listing</button>
+        </ul>
+      );
+    } else {
+      return(
+        <ul className="listing-index">
+          <div className="no-trips">
+            You have no listings.
+          </div>
+          <button onClick={this.handleAddNewListingClick} id="add-listing-button" className="white-button">Add New Listing</button>
+        </ul>
+      );
+    }
   }
-
 });
 
 module.exports = ListingsIndex;
