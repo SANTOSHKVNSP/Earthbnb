@@ -5,6 +5,7 @@ var PropertiesStore = require('../stores/PropertiesStore.js');
 var PropertySearchResults = require('../components/PropertySearchResults.jsx');
 var PropertySearchResult = require('../components/PropertySearchResult.jsx');
 var WhereTo = require('./WhereTo.jsx');
+var GuestLogInButton = require('./GuestLogInButton.jsx');
 
 var SlickSlideShow = React.createClass({
 
@@ -29,19 +30,6 @@ var SlickSlideShow = React.createClass({
     this.setState({
       properties: PropertiesStore.all()
     });
-  },
-
-  handleGuestLogIn: function(e) {
-    e.preventDefault();
-    ClientActions.createSession(
-      {email: "guest@guest.com", password: "password"},
-      this.redirectAfterLogin
-    );
-    ClientActions.clearErrors();
-  },
-
-  redirectAfterLogin: function () {
-    this.context.router.push("/user/trips");
   },
 
   render: function() {
@@ -70,9 +58,9 @@ var SlickSlideShow = React.createClass({
               LIVE THERE
             </header>
             Book homes from local hosts across the planet and experience Earth like a human.<br />
-            <button onClick={this.handleGuestLogIn}>Guest Log In</button>
+            <GuestLogInButton />
           </div>
-          <WhereTo redirectCallback={this.props.redirectCallback}/>
+          <WhereTo redirectCallback={this.props.redirectCallback} />
         </div>
         <div className='front-page-column'>
           <h1>Featured Listings</h1>

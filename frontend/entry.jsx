@@ -24,6 +24,13 @@ var AddListing = require('./components/AddListing.jsx');
 var ShowProperty = require('./components/ShowProperty.jsx');
 var TripIndex = require('./components/ReservationsIndex.jsx');
 
+var setSlideShowHeight = function() {
+  var slideShow = $(".slick-container")
+  var proportionalHeight = slideShow.width() * (7 / 19)
+  var height = proportionalHeight < 400 ? 400 : proportionalHeight
+  slideShow.css('height', height)
+}
+
 var App = React.createClass({
 
   contextTypes: {router: React.PropTypes.object.isRequired},
@@ -41,7 +48,7 @@ var App = React.createClass({
   render: function () {
     if (this.props.location.pathname === "/") {
       return(
-        <SlideShow redirectCallback={this.go}/>
+        <SlideShow redirectCallback={this.go} />
       );
     } else {
       if (this.lat && this.lng) {
@@ -90,3 +97,6 @@ document.addEventListener("DOMContentLoaded", function(){
     document.getElementById("content")
   );
 });
+
+window.addEventListener("resize", setSlideShowHeight);
+window.addEventListener("load", setSlideShowHeight);

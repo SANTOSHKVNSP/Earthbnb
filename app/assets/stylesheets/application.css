@@ -128,9 +128,10 @@ button:hover {
   margin: 0 auto;
   padding: 0;
   width: 100%;
+  min-width: 1086px;
   height: auto;
   color: #333;
-  background: transparent;
+  background: #000;
   overflow: hidden;
 }
 
