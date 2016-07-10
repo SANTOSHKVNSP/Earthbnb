@@ -25,13 +25,14 @@ var ListingsIndex = React.createClass({
   componentWillUnmount: function () {
     this.listener.remove();
     this.userListener.remove();
+    this.pusher.unsubscribe('host_' + this.state.currentUser().id);
   },
 
   setUpPusher: function () {
-    var pusher = new Pusher('ea2f7bcf6389a0b51ac6', {
+    this.pusher = new Pusher('ea2f7bcf6389a0b51ac6', {
       encrypted: true
     });
-    var channel = pusher.subscribe('host_' + this.state.currentUser().id);
+    var channel = this.pusher.subscribe('host_' + this.state.currentUser().id);
     channel.bind('reservation_change', this.fetchMyProperties);
   },
 
