@@ -21,15 +21,29 @@ var ListingsIndex = React.createClass({
     this.userListener = UserStore.addListener(this.getUser);
     ClientActions.fetchUser();
   },
+
   componentWillUnmount: function () {
     this.listener.remove();
     this.userListener.remove();
   },
 
+  setUpPusher: function () {
+    var pusher = new Pusher('ea2f7bcf6389a0b51ac6', {
+      encrypted: true
+    });
+    var channel = pusher.subscribe('host_' + this.state.currentUser().id);
+    channel.bind('reservation_change', this.fetchMyProperties);
+  },
+
   getUser: function () {
     this.setState({currentUser: UserStore.user}, function () {
-      ClientActions.fetchUserProperties(this.state.currentUser().id);
+      this.setUpPusher();
+      this.fetchMyProperties();
     });
+  },
+
+  fetchMyProperties: function () {
+    ClientActions.fetchUserProperties(this.state.currentUser().id);
   },
 
   getProperties: function () {

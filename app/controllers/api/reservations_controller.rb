@@ -6,6 +6,7 @@ class Api::ReservationsController < ApplicationController
     else
       @reservation = Reservation.new(reservation_params)
       if @reservation.save
+        Pusher.trigger('host_' + @reservation.property.user.id.to_s, 'reservation_change', {})
         render json: @reservation
       else
         render json: @reservation.errors.full_messages, status: 422
@@ -20,6 +21,7 @@ class Api::ReservationsController < ApplicationController
   def destroy
     @reservation = Reservation.find(params[:id])
     @reservation.destroy
+    Pusher.trigger('host_' + @reservation.property.user.id.to_s, 'reservation_change', {})
     render json: @reservation
   end
 
